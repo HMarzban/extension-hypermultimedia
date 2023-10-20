@@ -1,0 +1,43 @@
+{
+  "name": "@docs.plus/demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "server": "npx @hocuspocus/cli --sqlite"
+  },
+  "dependencies": {
+    "@hocuspocus/provider": "^2.5.0",
+    "@tiptap/core": "^2.1.11",
+    "@tiptap/extension-collaboration": "^2.1.11",
+    "@tiptap/extension-collaboration-cursor": "^2.1.11",
+    "@tiptap/extension-color": "^2.1.11",
+    "@tiptap/extension-list-item": "^2.1.11",
+    "@tiptap/extension-text-align": "^2.1.11",
+    "@tiptap/extension-text-style": "^2.1.11",
+    "@tiptap/pm": "^2.1.11",
+    "@tiptap/react": "^2.1.11",
+    "@tiptap/starter-kit": "^2.1.11",
+    "@types/node": "20.6.5",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.16",
+    "eslint": "8.50.0",
+    "eslint-config-next": "13.5.2",
+    "next": "13.5.2",
+    "postcss": "8.4.30",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.2.2",
+    "y-prosemirror": "^1.2.1",
+    "y-websocket": "^1.5.0",
+    "yjs": "^13.6.8"
+  },
+  "devDependencies": {
+    "sass": "^1.68.0"
+  }
+}

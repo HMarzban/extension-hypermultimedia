@@ -1,0 +1,55 @@
+{
+  "name": "@docs.plus/extension-hypermedia",
+  "description": "Insert multimedia components for docs.plus",
+  "version": "1.0.0",
+  "author": "Hossein Marzban",
+  "homepage": "https://github.com/HMarzban/extension-hypermedia",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/docs-plus/docs.plus",
+    "directory": "packages/extension-hypermedia"
+  },
+  "keywords": [
+    "tiptap",
+    "tiptap extension",
+    "insert Media",
+    "link",
+    "docs.plus",
+    "prosemirror",
+    "wysiwyg",
+    "youtube",
+    "vimeo",
+    "soundcloud",
+    "twitter"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "umd": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && rollup -c",
+    "ts": "tsc -p tsconfig.json"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "linkifyjs": "^4.1.1",
+    "tippy.js": "^6.3.7"
+  },
+  "peerDependencies": {
+    "@tiptap/core": "^2.0.3",
+    "@tiptap/pm": "^2.0.3"
+  }
+}
