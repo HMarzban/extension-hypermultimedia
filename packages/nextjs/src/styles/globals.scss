@@ -17,11 +17,10 @@
 }
 
 body {
-
 }
 
 .tippy-svg-arrow {
-  svg{
+  svg {
     bottom: 6px;
     background: #fff;
     fill: #aaa;
@@ -29,8 +28,8 @@ body {
 }
 
 .tippy-box {
-  max-width: 400px!important;
-  .hyperlinkLinkModal{
+  max-width: 400px !important;
+  .hyperlinkLinkModal {
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #dadce0;
@@ -38,23 +37,23 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 6px 6px;
-    box-shadow: 0 1px 3px 1px rgba(60,64,67,.15);
+    box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
     margin-top: -6px;
 
-    .metadata{
+    .metadata {
       width: 200px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       flex-direction: row-reverse;
-      a{
-        font-size: .9rem;
+      a {
+        font-size: 0.9rem;
         margin-right: 6px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      img{
+      img {
         width: 18px;
         height: 18px;
         border-radius: 50%;
@@ -66,7 +65,7 @@ body {
       margin-left: auto;
     }
 
-    form{
+    form {
       display: flex;
       align-items: flex-end;
       width: 100%;
@@ -76,62 +75,61 @@ body {
         padding: 0.4rem 0.8rem;
         margin-bottom: 0.2rem;
         width: 100%;
-        &:last-of-type{
+        &:last-of-type {
           margin-bottom: 0;
         }
       }
-      .buttonsWrapper{
+      .buttonsWrapper {
         margin-left: 8px;
-        button{
+        button {
           border-radius: 6px;
           padding: 4px 14px;
           width: 70px;
           margin-bottom: 0.2rem;
           color: #1a73e8;
-          &:hover{
-            background: rgba(26,115,232,.04);
+          &:hover {
+            background: rgba(26, 115, 232, 0.04);
             color: #174ea6;
           }
         }
       }
     }
 
-     button{
+    button {
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      margin: 0  0.25rem;
+      margin: 0 0.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background-color 0.1s ease-in-out;
-      &:hover{
+      &:hover {
         background-color: #eee;
       }
 
-      > svg{
+      > svg {
         width: 16px;
         height: 16px;
       }
     }
-
   }
 
   .tippy-svg-arrow {
-    top: -6px!important;
+    top: -6px !important;
   }
 }
 
-.menuBar{
+.menuBar {
   padding-bottom: 6px;
   border-bottom: 1px solid #ddd;
 
-  > button{
+  > button {
     padding: 0.5rem 1rem;
     border: 1px solid #ddd;
     border-radius: 6px;
-    margin:  0.25rem;
-    &[disabled]{
+    margin: 0.25rem;
+    &[disabled] {
       background-color: #eee;
     }
   }
@@ -171,9 +169,9 @@ body {
   }
 
   pre {
-    background: #0D0D0D;
-    color: #FFF;
-    font-family: 'JetBrainsMono', monospace;
+    background: #0d0d0d;
+    color: #fff;
+    font-family: "JetBrainsMono", monospace;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
 
@@ -193,48 +191,45 @@ body {
 
   blockquote {
     padding-left: 1rem;
-    border-left: 2px solid rgba(#0D0D0D, 0.1);
+    border-left: 2px solid rgba(#0d0d0d, 0.1);
   }
 
   hr {
     border: none;
-    border-top: 2px solid rgba(#0D0D0D, 0.1);
+    border-top: 2px solid rgba(#0d0d0d, 0.1);
     margin: 2rem 0;
   }
 }
-
 
 .divided {
   display: inline-block;
   @apply border-l-2 mx-[10px] my-[6px];
 }
 
-.media-resize-wrapper{
+.media-resize-wrapper {
   position: relative;
-
 }
-.media-resize-gripper{
+.media-resize-gripper {
   position: absolute;
   margin: 0;
   display: none;
 
-  &--active{
+  &--active {
     border: 1.5px solid #1a73e8;
     display: block;
-    .media-resize-clamp{
+    .media-resize-clamp {
       display: block;
     }
   }
 }
-.media-resize-clamp{
+.media-resize-clamp {
   width: 10px;
   height: 10px;
   background-color: #1a73e8;
-  border:1px solid #fff;
+  border: 1px solid #fff;
   display: none;
 
-
-  &--rotate{
+  &--rotate {
     border-radius: 50%;
     position: absolute;
     top: -28px;
@@ -242,18 +237,18 @@ body {
     transform: translateX(-50%);
     cursor: crosshair;
 
-    &::after{
-      content: '';
+    &::after {
+      content: "";
       position: absolute;
       left: 50%;
-      transform: translateX( -50%);
+      transform: translateX(-50%);
       width: 1.5px;
       height: 30px;
       background-color: #1a73e8;
     }
   }
 
-  &--left{
+  &--left {
     position: absolute;
     top: 50%;
     left: -5px;
@@ -261,7 +256,7 @@ body {
     cursor: ew-resize;
   }
 
-  &--right{
+  &--right {
     position: absolute;
     top: 50%;
     right: -5px;
@@ -269,7 +264,7 @@ body {
     cursor: ew-resize;
   }
 
-  &--top{
+  &--top {
     position: absolute;
     top: -5px;
     left: 50%;
@@ -277,7 +272,7 @@ body {
     cursor: ns-resize;
   }
 
-  &--bottom{
+  &--bottom {
     position: absolute;
     bottom: -5px;
     left: 50%;
@@ -285,124 +280,103 @@ body {
     cursor: ns-resize;
   }
 
-  &--top-left{
+  &--top-left {
     position: absolute;
     top: -5px;
     left: -5px;
     cursor: nwse-resize;
   }
 
-  &--top-right{
+  &--top-right {
     position: absolute;
     top: -5px;
     right: -5px;
     cursor: nesw-resize;
   }
 
-  &--bottom-left{
+  &--bottom-left {
     position: absolute;
     bottom: -5px;
     left: -5px;
     cursor: nesw-resize;
   }
 
-  &--bottom-right{
+  &--bottom-right {
     position: absolute;
     bottom: -5px;
     right: -5px;
     cursor: nwse-resize;
   }
-
 }
 
-
-
-.media-resize-gripper__tooltip{
+.media-resize-gripper__tooltip {
   padding: 8px 8px;
   background-color: #fff;
   border-radius: 6px;
-  @apply flex items-center drop-shadow-md border flex-row flex-wrap justify-start ;
+  @apply flex items-center drop-shadow-md border flex-row flex-wrap justify-start;
 
-  &__divider{
+  &__divider {
     @apply border-l-2 border-gray-300 h-5 mx-[10px] my-[6px];
   }
 
-
-
-
   select {
-    @apply  border-gray-300 py-2 px-2 rounded-md;
-    &:hover{
+    @apply border-gray-300 py-2 px-2 rounded-md;
+    &:hover {
       background-color: #eee;
     }
   }
 
-  button{
+  button {
     @apply flex items-center justify-center rounded-full mx-1  border-black w-8 h-8;
-    &:hover{
+    &:hover {
       background-color: #eee;
     }
-    // svg {
-    //   width: 24px;
-    //   height: 24px;
-    // }
   }
 
   &__btn--resize {
-    svg{
-      // width: 20px;
-      // height: 20px;
+    svg {
     }
   }
 
-  &--active{
+  &--active {
     background-color: #1a73e8;
     fill: #fff;
-    &:hover{
-      svg{
-
+    &:hover {
+      svg {
         fill: black;
       }
     }
-    svg{
+    svg {
       fill: #fff;
     }
   }
 }
 
-.youtube-video__content{
-  iframe{
+.youtube-video__content {
+  iframe {
     background-color: #eee;
   }
 }
 
-.vimeo-video__content{
-  iframe{
+.vimeo-video__content {
+  iframe {
     background-color: #fafafa;
   }
 }
 
-
-.twitter-card__content{
-  iframe{
+.twitter-card__content {
+  iframe {
     background-color: #fff;
-    html{
-      overflow: hidden!important;
+    html {
+      overflow: hidden !important;
     }
   }
 }
 
-
-
-// #editorContents{
-//   p{
-//     position: relative;
-//   }
-// }
-
-
-.sound-cloud__content, .vimeo-video__content, .twitter-card__content{
-  iframe{
+.sound-cloud__content,
+.vimeo-video__content,
+.twitter-card__content {
+  iframe {
     background-color: #fafafa;
   }
 }
