@@ -225,6 +225,14 @@ const MenuBar: React.FC<{ editor: TiptapEditor | null }> = ({ editor }) => {
       <button onClick={addTwitterVideo}>Add Twitter</button>
       <div className="divided"></div>
       <button onClick={addSoundCloud}>Add SoundCloud</button>
+      <div className="divided"></div>
+      <button onClick={() => editor.chain().focus().setHyperlink()}>set hyperlink</button>
+      <button
+        onClick={() => editor.chain().focus().unsetHyperlink().run()}
+        disabled={!editor.isActive("hyperlink")}
+      >
+        unsetHyperlink
+      </button>
     </div>
   );
 };

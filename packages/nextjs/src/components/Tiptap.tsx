@@ -6,9 +6,10 @@ import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
 import editorContents from "./editorContents";
 import MenuBar from "./MenuBar";
-import { HypermediaKit, imageDialogBox, youtubeDialogBox } from "@docs.plus/extension-insert-media";
+import { HypermediaKit, imageDialogBox, youtubeDialogBox } from "@docs.plus/extension-hypermedia";
 import * as Y from "yjs";
 import Collaboration from "@tiptap/extension-collaboration";
+import { Hyperlink, previewHyperlink, setHyperlink } from "@docs.plus/extension-hyperlink";
 
 const ydoc = new Y.Doc();
 
@@ -19,9 +20,15 @@ const Tiptap = () => {
   const editor = useEditor({
     extensions: [
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
-
       TextStyle.configure(),
-
+      Hyperlink.configure({
+        hyperlinkOnPaste: false,
+        openOnClick: true,
+        dialogBoxs: {
+          previewHyperlink: previewHyperlink,
+          setHyperlink: setHyperlink,
+        },
+      }),
       HypermediaKit.configure({
         Image: {
           dialogBox: imageDialogBox,

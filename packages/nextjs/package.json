@@ -10,6 +10,7 @@
     "server": "npx @hocuspocus/cli --sqlite"
   },
   "dependencies": {
+    "@docs.plus/extension-hyperlink": "^1.4.0",
     "@hocuspocus/provider": "^2.5.0",
     "@tiptap/core": "^2.1.11",
     "@tiptap/extension-collaboration": "^2.1.11",
@@ -27,6 +28,7 @@
     "autoprefixer": "10.4.16",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.2",
+    "metadata-scraper": "^0.2.61",
     "next": "13.5.2",
     "postcss": "8.4.30",
     "react": "18.2.0",
