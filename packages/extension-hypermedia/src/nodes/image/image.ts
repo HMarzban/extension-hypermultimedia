@@ -2,12 +2,12 @@ import { mergeAttributes, Node, nodeInputRule } from "@tiptap/core";
 import { Plugin, PluginKey } from "@tiptap/pm/state";
 import { inputRegex, imageClickHandler } from "./helper";
 import { createTooltip } from "../../utils/utils";
-import { MediaPlacement } from "../../utils/dialogs/media-placement";
+import { MediaPlacement } from "../../utils/media-placement";
 
 export interface ImageOptions {
   allowBase64: boolean;
   HTMLAttributes: Record<string, any>;
-  dialogBox?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
 }
 
 declare module "@tiptap/core" {
@@ -30,7 +30,7 @@ export const Image = Node.create<ImageOptions>({
   addOptions() {
     return {
       allowBase64: false,
-      dialogBox: null,
+      modal: null,
       HTMLAttributes: {},
     };
   },
@@ -134,7 +134,7 @@ export const Image = Node.create<ImageOptions>({
                 editor: this.editor,
                 tooltip,
                 tippyModal,
-                dialogBox: this.options.dialogBox,
+                modal: this.options.modal,
               });
               return false;
             },

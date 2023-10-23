@@ -6,7 +6,7 @@ import {
   fetchOEmbedHtml,
 } from "./helper";
 import { createTooltip, applyStyles } from "../../utils/utils";
-import { MediaPlacement } from "../../utils/dialogs/media-placement";
+import { MediaPlacement } from "../../utils/media-placement";
 
 export interface TwitterOptions {
   addPasteHandler?: boolean;
@@ -22,7 +22,7 @@ export interface TwitterOptions {
   lang?: string; // Language parameter, e.g., 'en' for English
   ariaPolite?: "polite" | "assertive" | "rude"; // Aria polite parameter
   tweetLimit?: number; // Tweet limit parameter, e.g., 5 for displaying 5 tweets
-  dialogBox?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
 }
 
 type AddTwitterOptions = {
@@ -49,7 +49,7 @@ export const Twitter = Node.create({
       theme: "light",
       lang: "en",
       dnt: true,
-      dialogBox: null,
+      modal: null,
       addPasteHandler: true,
       HTMLAttributes: {},
     };
@@ -149,7 +149,7 @@ export const Twitter = Node.create({
 
   addNodeView() {
     return ({ node, HTMLAttributes, editor }) => {
-      const dialogBox = this.options.dialogBox;
+      const modal = this.options.modal;
 
       const wrapper = document.createElement("div");
       wrapper.classList.add("twitter-card__content");
@@ -188,10 +188,10 @@ export const Twitter = Node.create({
       blockquote.appendChild(anchor);
       wrapper.appendChild(blockquote);
 
-      if (dialogBox) {
+      if (modal) {
         wrapper.addEventListener("mouseenter", (e) => {
           const iframe = wrapper.querySelector("iframe") as HTMLIFrameElement;
-          dialogBox && dialogBox({ editor, tooltip, tippyModal, wrapper, iframe });
+          modal && modal({ editor, tooltip, tippyModal, wrapper, iframe });
         });
       }
 

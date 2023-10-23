@@ -1,7 +1,7 @@
 import { mergeAttributes, Node, nodePasteRule } from "@tiptap/core";
 import { getEmbedUrlFromYoutubeUrl, isValidYoutubeUrl, YOUTUBE_REGEX_GLOBAL } from "./helper";
 import { createTooltip, applyStyles } from "../../utils/utils";
-import { MediaPlacement } from "../../utils/dialogs/media-placement";
+import { MediaPlacement } from "../../utils/media-placement";
 
 export interface YoutubeOptions {
   addPasteHandler: boolean;
@@ -24,7 +24,7 @@ export interface YoutubeOptions {
   playlist: string;
   progressBarColor?: string;
   width: number;
-  dialogBox?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
 }
 
 type SetYoutubeVideoOptions = {
@@ -60,7 +60,7 @@ export const Youtube = Node.create<YoutubeOptions>({
       enableIFrameApi: false,
       endTime: 0,
       height: 480,
-      dialogBox: null,
+      modal: null,
       interfaceLanguage: undefined,
       ivLoadPolicy: 0,
       loop: false,
@@ -105,7 +105,7 @@ export const Youtube = Node.create<YoutubeOptions>({
 
   addNodeView() {
     return ({ node, HTMLAttributes, editor }) => {
-      const dialogBox = this.options.dialogBox;
+      const modal = this.options.modal;
 
       const { tooltip, tippyModal } = createTooltip(editor);
 
@@ -156,9 +156,9 @@ export const Youtube = Node.create<YoutubeOptions>({
         ...youtubeAttrs,
       });
 
-      if (dialogBox) {
+      if (modal) {
         iframe.addEventListener("mouseenter", (e) => {
-          dialogBox && dialogBox({ editor, tooltip, tippyModal, iframe, wrapper: dom });
+          modal && modal({ editor, tooltip, tippyModal, iframe, wrapper: dom });
         });
       }
 

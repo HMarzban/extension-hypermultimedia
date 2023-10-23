@@ -1,8 +1,8 @@
-import * as Icons from "../icons";
-import { createElement } from "../utils";
-import { mediaPlacement, MediaPlacement } from "./media-placement";
+import * as Icons from "../utils/icons";
+import { createElement } from "../utils/utils";
+import { mediaPlacement, MediaPlacement } from "../utils/media-placement";
 
-export const youtubeDialogBox = ({
+export const youtubeModal = ({
   editor,
   tooltip,
   tippyModal,

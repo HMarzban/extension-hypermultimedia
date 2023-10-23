@@ -1,4 +1,4 @@
-import * as Icons from "../icons";
+import * as Icons from "./icons";
 import { Editor } from "@tiptap/core";
 
 import {
@@ -9,7 +9,7 @@ import {
   btnPlacementSettings,
   highlightButton,
   Ttooltip,
-} from "../utils";
+} from "./utils";
 
 export type MediaPlacement = {
   editor: Editor;

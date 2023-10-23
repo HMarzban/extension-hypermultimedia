@@ -1,7 +1,7 @@
 import { Node, mergeAttributes, nodePasteRule } from "@tiptap/core";
 import { SOUNDCLOUD_URL_REGEX_GLOBAL, getSoundCloudEmbedUrl, isValidSoundCloudUrl } from "./helper";
 import { createTooltip, applyStyles } from "../../utils/utils";
-import { MediaPlacement } from "../../utils/dialogs/media-placement";
+import { MediaPlacement } from "../../utils/media-placement";
 
 export interface SoundCloudOptions {
   width?: number | string; // Width of the embedded SoundCloud player
@@ -17,7 +17,7 @@ export interface SoundCloudOptions {
   showReposts?: boolean; // set to false to hide reposts
   addPasteHandler: boolean;
   HTMLAttributes: Record<string, any>;
-  dialogBox?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
 }
 
 type SetSoundCloudOptions = {
@@ -49,7 +49,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       autoPlay: false,
       addPasteHandler: true,
       HTMLAttributes: {},
-      dialogBox: null,
+      modal: null,
     };
   },
 
@@ -109,7 +109,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
   addNodeView() {
     return ({ node, HTMLAttributes }) => {
       const editor = this.editor;
-      const dialogBox = this.options.dialogBox;
+      const modal = this.options.modal;
 
       const dom = document.createElement("div");
       const content = document.createElement("div");
@@ -157,9 +157,9 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
         ...soundCloudAttrs,
       });
 
-      if (dialogBox) {
+      if (modal) {
         iframe.addEventListener("mouseenter", (e) => {
-          dialogBox && dialogBox({ editor, tooltip, tippyModal, iframe, wrapper: dom });
+          modal && modal({ editor, tooltip, tippyModal, iframe, wrapper: dom });
         });
       }
 

@@ -1,7 +1,6 @@
 import { Editor } from "@tiptap/core";
 import { EditorView } from "@tiptap/pm/view";
-import { imageDialogBox } from "../../utils/dialogs/image-dialog-box";
-import { MediaPlacement } from "../../utils/dialogs/media-placement";
+import { MediaPlacement } from "../../utils/media-placement";
 
 export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/;
 
@@ -9,19 +8,19 @@ type ImageClickHandlerOptions = {
   editor: Editor;
   tooltip: any;
   tippyModal: HTMLElement;
-  dialogBox?: ((options: MediaPlacement) => void) | null;
+  modal?: ((options: MediaPlacement) => void) | null;
 };
 
 export const imageClickHandler = (
   view: EditorView,
   event: MouseEvent,
-  { editor, tooltip, tippyModal, dialogBox }: ImageClickHandlerOptions
+  { editor, tooltip, tippyModal, modal }: ImageClickHandlerOptions
 ) => {
   const img = event.target as HTMLImageElement;
   if (img.localName === "img") {
     // replace with the custom modal
-    if (dialogBox) {
-      dialogBox({ editor, tooltip, tippyModal, iframe: img, wrapper: img });
+    if (modal) {
+      modal({ editor, tooltip, tippyModal, iframe: img, wrapper: img });
     }
 
     const mediaResizeGripper = img.previousSibling as HTMLElement;

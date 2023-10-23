@@ -1,7 +1,7 @@
 import { Node, mergeAttributes, nodePasteRule } from "@tiptap/core";
 import { getEmbedUrlFromVimeoUrl, isValidVimeoUrl, VIMEO_REGEX_GLOBAL } from "./helper";
 import { createTooltip, applyStyles } from "../../utils/utils";
-import { MediaPlacement } from "../../utils/dialogs/media-placement";
+import { MediaPlacement } from "../../utils/media-placement";
 
 export interface VimeoOptions {
   addPasteHandler?: boolean;
@@ -25,7 +25,7 @@ export interface VimeoOptions {
   width?: number;
   allow?: string;
   HTMLAttributes?: any;
-  dialogBox?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
 }
 
 type SetVimeoVideoOptions = {
@@ -53,7 +53,7 @@ export const Vimeo = Node.create<VimeoOptions>({
   addOptions() {
     return {
       HTMLAttributes: {},
-      dialogBox: null,
+      modal: null,
       addPasteHandler: true,
       allowFullscreen: true,
       autoplay: false,
@@ -109,7 +109,7 @@ export const Vimeo = Node.create<VimeoOptions>({
   addNodeView() {
     return ({ node, HTMLAttributes }) => {
       const editor = this.editor;
-      const dialogBox = this.options.dialogBox;
+      const modal = this.options.modal;
       const { tooltip, tippyModal } = createTooltip(editor);
 
       const dom = document.createElement("div");
@@ -159,9 +159,9 @@ export const Vimeo = Node.create<VimeoOptions>({
         "data-node-name": this.name,
       });
 
-      if (dialogBox) {
+      if (modal) {
         iframe.addEventListener("mouseenter", (e) => {
-          dialogBox && dialogBox({ editor, tooltip, tippyModal, iframe, wrapper: dom });
+          modal && modal({ editor, tooltip, tippyModal, iframe, wrapper: dom });
         });
       }
 

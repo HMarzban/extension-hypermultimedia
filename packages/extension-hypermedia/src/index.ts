@@ -1,30 +1,28 @@
-export * from "./utils/dialogs/media-placement";
+export * from "./utils/media-placement";
 
 export * from "./hypermediaKit";
 
-export * from "./utils/dialogs/image-dialog-box";
+export * from "./modals/image";
 
-export * from "./utils/dialogs/youtube-dialog-box";
+export * from "./modals/youtube";
 
-export * from "./utils/dialogs/twitter-dialog-box";
+export * from "./modals/twitter";
 
 import { HypermediaKit } from "./hypermediaKit";
 
-import { imageDialogBox } from "./utils/dialogs/image-dialog-box";
+import { imageModal } from "./modals/image";
 
-import { youtubeDialogBox } from "./utils/dialogs/youtube-dialog-box";
+import { youtubeModal } from "./modals/youtube";
 
-import { twitterDialogBox } from "./utils/dialogs/twitter-dialog-box";
+import { twitterModal } from "./modals/twitter";
 
-import { youtubeDialogBox as soundCloudDialogBox } from "./utils/dialogs/youtube-dialog-box";
+export const vimeoModal = youtubeModal;
 
-import { youtubeDialogBox as vimeoDialogBox } from "./utils/dialogs/youtube-dialog-box";
+export const soundCloudModal = youtubeModal;
 
 export default {
   HypermediaKit,
-  imageDialogBox,
-  youtubeDialogBox,
-  twitterDialogBox,
-  soundCloudDialogBox,
-  vimeoDialogBox,
+  imageModal,
+  youtubeModal,
+  twitterModal,
 };
