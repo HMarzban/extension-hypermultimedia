@@ -19,17 +19,10 @@
 body {
 }
 
-.tippy-svg-arrow {
-  svg {
-    bottom: 6px;
-    background: #fff;
-    fill: #aaa;
-  }
-}
-
 .tippy-box {
-  max-width: 400px !important;
-  .hyperlinkLinkModal {
+  .hyperlink-preview-modal,
+  .hyperlink-set-modal,
+  .hyperlink-edit-modal {
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #dadce0;
@@ -40,7 +33,7 @@ body {
     box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
     margin-top: -6px;
 
-    .metadata {
+    &__metadata {
       width: 200px;
       display: flex;
       align-items: center;
@@ -61,8 +54,25 @@ body {
       }
     }
 
-    .copy {
-      margin-left: auto;
+    &__remove-button,
+    &__edit-button,
+    &__copy-button,
+    &__apply-button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin: 0 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.1s ease-in-out;
+      &:hover {
+        background-color: #eee;
+      }
+      > svg {
+        width: 16px;
+        height: 16px;
+      }
     }
 
     form {
@@ -79,7 +89,8 @@ body {
           margin-bottom: 0;
         }
       }
-      .buttonsWrapper {
+      .hyperlink-set-modal__buttons-wrapper,
+      .hyperlink-edit-modal__buttons-wrapper {
         margin-left: 8px;
         button {
           border-radius: 6px;
@@ -94,32 +105,12 @@ body {
         }
       }
     }
-
-    button {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      margin: 0 0.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.1s ease-in-out;
-      &:hover {
-        background-color: #eee;
-      }
-
-      > svg {
-        width: 16px;
-        height: 16px;
-      }
-    }
   }
 
   .tippy-svg-arrow {
     top: -6px !important;
   }
 }
-
 .menuBar {
   padding-bottom: 6px;
   border-bottom: 1px solid #ddd;

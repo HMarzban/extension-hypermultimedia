@@ -6,10 +6,24 @@ import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
 import editorContents from "./editorContents";
 import MenuBar from "./MenuBar";
-import { HypermediaKit, imageDialogBox, youtubeDialogBox } from "@docs.plus/extension-hypermedia";
+import {
+  HypermediaKit,
+  imageModal,
+  youtubeModal,
+  vimeoModal,
+  soundCloudModal,
+  twitterModal,
+} from "@docs.plus/extension-hypermedia";
+
 import * as Y from "yjs";
 import Collaboration from "@tiptap/extension-collaboration";
-import { Hyperlink, previewHyperlink, setHyperlink } from "@docs.plus/extension-hyperlink";
+import {
+  Hyperlink,
+  previewHyperlinkModal,
+  setHyperlinkModal,
+} from "@docs.plus/extension-hyperlink";
+
+console.log({});
 
 const ydoc = new Y.Doc();
 
@@ -24,24 +38,27 @@ const Tiptap = () => {
       Hyperlink.configure({
         hyperlinkOnPaste: false,
         openOnClick: true,
-        dialogBoxs: {
-          previewHyperlink: previewHyperlink,
-          setHyperlink: setHyperlink,
+        modals: {
+          previewHyperlink: previewHyperlinkModal,
+          setHyperlink: setHyperlinkModal,
         },
       }),
       HypermediaKit.configure({
         Image: {
-          dialogBox: imageDialogBox,
+          modal: imageModal,
         },
         Youtube: {
-          resizeGripper: true,
-          dialogBox: youtubeDialogBox,
+          modal: youtubeModal,
         },
         Vimeo: {
-          resizeGripper: true,
+          modal: vimeoModal,
         },
-        SoundCloud: true,
-        Twitter: true,
+        SoundCloud: {
+          modal: soundCloudModal,
+        },
+        Twitter: {
+          modal: twitterModal,
+        },
       }),
 
       TextAlign.configure({
