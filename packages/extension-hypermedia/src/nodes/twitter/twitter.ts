@@ -8,28 +8,37 @@ import {
 import { createTooltip, applyStyles } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
-export interface TwitterOptions {
-  addPasteHandler?: boolean;
+interface LayoutOptions {
+  margin?: string;
+  clear?: string;
+  float?: string;
+  display?: string;
+  justifyContent?: string;
+}
+
+interface NodeOptions {
+  addPasteHandler: boolean;
+  HTMLAttributes: Record<string, any>;
+  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+}
+
+export interface TwitterOptions extends LayoutOptions, NodeOptions {
   id?: string; // Tweet ID
-  url: string; // Tweet URL
   theme?: "light" | "dark"; // Theme of the embedded Tweet
   width?: number | string; // Width of the embedded Tweet, e.g., 550 or '550px'
   height?: number | string; // Height of the embedded Tweet, e.g., 600 or '600px'
   dnt?: boolean; // Data tracking parameter
-  frame?: boolean; // Frame parameter
-  hideCard?: boolean; // Hide card parameter
-  hideThread?: boolean; // Hide thread parameter
   lang?: string; // Language parameter, e.g., 'en' for English
-  ariaPolite?: "polite" | "assertive" | "rude"; // Aria polite parameter
-  tweetLimit?: number; // Tweet limit parameter, e.g., 5 for displaying 5 tweets
-  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+  limit?: number; //	Display up to N items where N is a value between 1 and 20 inclusive
+  maxwidth?: number; // Set the maximum width of the widget. Must be between 180 and 1200 inclusive
+  maxheight?: number; // Set the maximum height of the widget. Must be greater than 200
+  chrome?: "noheader" | "nofooter" | "noborders" | "noscrollbar" | "transparent" | string;
+  aria_polite?: string; // Set an assertive ARIA live region politeness value for Tweets added to a timeline
 }
 
 type AddTwitterOptions = {
   url: string;
-  width?: number;
-  height?: number;
-};
+} & LayoutOptions;
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
@@ -52,6 +61,11 @@ export const Twitter = Node.create({
       modal: null,
       addPasteHandler: true,
       HTMLAttributes: {},
+      justifyContent: "start",
+      margin: "0in",
+      clear: "none",
+      float: "unset",
+      display: "block",
     };
   },
 
@@ -84,20 +98,26 @@ export const Twitter = Node.create({
       dir: {
         default: null,
       },
+      hideCard: {
+        default: null,
+      },
+      hideThread: {
+        default: null,
+      },
       margin: {
-        default: "0in",
+        default: this.options.margin,
       },
       clear: {
-        default: "none",
+        default: this.options.clear,
       },
       float: {
-        default: "unset",
+        default: this.options.float,
       },
       display: {
-        default: "block",
+        default: this.options.display,
       },
       justifyContent: {
-        default: "start",
+        default: this.options.justifyContent,
       },
     };
   },
@@ -196,16 +216,22 @@ export const Twitter = Node.create({
       }
 
       const params = {
-        url: HTMLAttributes.url,
-        theme: HTMLAttributes.theme,
-        width: HTMLAttributes.width,
-        cards: HTMLAttributes.cards,
-        dnt: HTMLAttributes.dnt,
-        lang: HTMLAttributes.lang,
-        conversation: HTMLAttributes.conversation,
-        align: HTMLAttributes.align,
-        dir: HTMLAttributes.dir,
+        url: this.options.url,
+        theme: this.options.theme,
+        width: this.options.width,
+        height: this.options.height,
+        cards: this.options.cards,
+        dnt: this.options.dnt,
+        lang: this.options.lang,
+        conversation: this.options.conversation,
+        align: this.options.align,
+        dir: this.options.dir,
         omit_script: 1,
+        limit: this.options.limit,
+        maxwidth: this.options.maxwidth,
+        maxheight: this.options.maxheight,
+        chrome: this.options.chrome,
+        aria_polite: this.options.aria_polite,
       };
 
       // Fetch oEmbed HTML
@@ -213,9 +239,11 @@ export const Twitter = Node.create({
         .then((html) => {
           wrapper.innerHTML = html;
           // Load Twitter widgets script
-          loadTwitterScript().then((twttr) => {
-            twttr.widgets.load(wrapper);
-          });
+          setTimeout(() => {
+            loadTwitterScript().then((twttr) => {
+              twttr.widgets.load(wrapper);
+            });
+          }, 100);
         })
         .catch((error) => {
           loadTwitterScript().then((twttr) => {
@@ -237,9 +265,7 @@ export const Twitter = Node.create({
   },
 
   addPasteRules() {
-    if (!this.options.addPasteHandler) {
-      return [];
-    }
+    if (!this.options.addPasteHandler) return [];
 
     return [
       nodePasteRule({

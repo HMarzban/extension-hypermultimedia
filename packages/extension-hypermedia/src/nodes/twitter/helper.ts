@@ -19,41 +19,41 @@ export const getTwitterIdFromUrl = (url: string): string => {
 };
 export interface GetTwitterEmbedUrlOptions {
   url: string;
-  theme?: string;
-  lang?: string;
-  cards?: boolean;
-  conversation?: boolean;
-  width?: number;
-  align?: string;
-  dnt?: boolean;
-  dir?: string;
+  id?: string; // Tweet ID
+  theme?: "light" | "dark"; // Theme of the embedded Tweet
+  width?: number | string; // Width of the embedded Tweet, e.g., 550 or '550px'
+  height?: number | string; // Height of the embedded Tweet, e.g., 600 or '600px'
+  dnt?: boolean; // Data tracking parameter
+  lang?: string; // Language parameter, e.g., 'en' for English
+  limit?: number; //	Display up to N items where N is a value between 1 and 20 inclusive
+  maxwidth?: number; // Set the maximum width of the widget. Must be between 180 and 1200 inclusive
+  maxheight?: number; // Set the maximum height of the widget. Must be greater than 200
+  chrome?: "noheader" | "nofooter" | "noborders" | "noscrollbar" | "transparent" | string;
+  aria_polite?: string; // Set an assertive ARIA live region politeness value for Tweets added to a timeline
 }
 
 export const getTwitterEmbedUrl = (options: GetTwitterEmbedUrlOptions): string => {
-  const { url, theme, lang, cards, conversation, width, align, dnt, dir } = options;
+  const { url, ...otherOptions } = options;
 
   const tweetId = getTwitterIdFromUrl(url);
-
   const newUrl = new URL(`https://platform.twitter.com/embed/Tweet.html`);
 
-  // Build URL parameters
+  // Special handling for the tweet id which is derived from the url
   newUrl.searchParams.append("id", tweetId);
-  if (theme) newUrl.searchParams.append("theme", theme);
-  if (width) newUrl.searchParams.append("width", width.toString());
-  if (cards) newUrl.searchParams.append("hide_media", cards ? "false" : "true");
-  if (dnt) newUrl.searchParams.append("dnt", dnt ? "true" : "false");
-  if (lang) newUrl.searchParams.append("lang", lang);
-  if (conversation) newUrl.searchParams.append("hide_thread", conversation ? "false" : "true");
-  if (align) newUrl.searchParams.append("align", align);
-  if (dir) newUrl.searchParams.append("dir", dir);
+
+  Object.entries(otherOptions).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      if (typeof value === "boolean") {
+        newUrl.searchParams.append(key, value ? "true" : "false");
+      } else if (typeof value === "number" || typeof value === "string") {
+        newUrl.searchParams.append(key, value.toString());
+      }
+      // additional handling for other types if necessary
+    }
+  });
 
   return newUrl.toString();
 };
-
-// export const getEmbedUrlFromTwitterId = (id: string): string => {
-//   const options: GetTwitterEmbedUrlOptions = { id };
-//   return getTwitterEmbedUrl(options);
-// };
 
 declare global {
   interface Window {
