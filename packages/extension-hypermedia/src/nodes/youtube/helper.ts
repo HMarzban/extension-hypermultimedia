@@ -9,144 +9,58 @@ export const isValidYoutubeUrl = (url: string) => {
 
 export interface GetEmbedUrlOptions {
   url: string;
-  allowFullscreen?: boolean;
-  autoplay?: boolean;
+  autoplay: 0 | 1;
   ccLanguage?: string;
-  ccLoadPolicy?: boolean;
-  controls?: boolean;
-  disableKBcontrols?: boolean;
-  enableIFrameApi?: boolean;
+  ccLoadPolicy?: 0 | 1;
+  controls: 0 | 1;
+  disableKBcontrols: 0 | 1;
+  enableIFrameApi: 0 | 1;
   endTime?: number;
   interfaceLanguage?: string;
-  ivLoadPolicy?: number;
-  loop?: boolean;
-  modestBranding?: boolean;
+  ivLoadPolicy: 1 | 3;
+  loop: 0 | 1;
   nocookie?: boolean;
   origin?: string;
   playlist?: string;
-  progressBarColor?: string;
-  startAt?: number;
 }
 
 export const getYoutubeEmbedUrl = (nocookie?: boolean) => {
   return nocookie ? "https://www.youtube-nocookie.com/embed/" : "https://www.youtube.com/embed/";
 };
 
-export const getEmbedUrlFromYoutubeUrl = (options: GetEmbedUrlOptions) => {
-  const {
-    url,
-    allowFullscreen,
-    autoplay,
-    ccLanguage,
-    ccLoadPolicy,
-    controls,
-    disableKBcontrols,
-    enableIFrameApi,
-    endTime,
-    interfaceLanguage,
-    ivLoadPolicy,
-    loop,
-    modestBranding,
-    nocookie,
-    origin,
-    playlist,
-    progressBarColor,
-    startAt,
-  } = options;
-
-  // if is already an embed url, return it
+const getVideoIdFromUrl = (url: string): string | undefined | null => {
   if (url.includes("/embed/")) {
-    return url;
+    return url.split("/").pop();
   }
 
-  // if is a youtu.be url, get the id after the /
   if (url.includes("youtu.be")) {
-    const id = url.split("/").pop();
-
-    if (!id) {
-      return null;
-    }
-    return `${getYoutubeEmbedUrl(nocookie)}${id}`;
+    return url.split("/").pop();
   }
 
-  const videoIdRegex = /v=([-\w]+)/gm;
+  const videoIdRegex = /v=([-\w]+)/;
   const matches = videoIdRegex.exec(url);
+  return matches ? matches[1] : null;
+};
 
-  if (!matches || !matches[1]) {
+export const getEmbedUrlFromYoutubeUrl = (options: GetEmbedUrlOptions): string | null => {
+  const { url, nocookie, ...restOptions } = options;
+  const videoId = getVideoIdFromUrl(url);
+
+  if (!videoId) {
     return null;
   }
 
-  let outputUrl = `${getYoutubeEmbedUrl(nocookie)}${matches[1]}`;
+  const embedUrl = new URL(`${getYoutubeEmbedUrl(nocookie)}${videoId}`);
 
-  const params = [];
+  Object.entries(restOptions).forEach(([key, value]) => {
+    if (value || value === 0) {
+      if (typeof value === "boolean") {
+        embedUrl.searchParams.append(key, value ? "1" : "0");
+      } else if (typeof value === "number" || typeof value === "string") {
+        embedUrl.searchParams.append(key, value.toString());
+      }
+    }
+  });
 
-  if (allowFullscreen === false) {
-    params.push("fs=0");
-  }
-
-  if (autoplay) {
-    params.push("autoplay=1");
-  }
-
-  if (ccLanguage) {
-    params.push(`cc_lang_pref=${ccLanguage}`);
-  }
-
-  if (ccLoadPolicy) {
-    params.push("cc_load_policy=1");
-  }
-
-  if (!controls) {
-    params.push("controls=0");
-  }
-
-  if (disableKBcontrols) {
-    params.push("disablekb=1");
-  }
-
-  if (enableIFrameApi) {
-    params.push("enablejsapi=1");
-  }
-
-  if (endTime) {
-    params.push(`end=${endTime}`);
-  }
-
-  if (interfaceLanguage) {
-    params.push(`hl=${interfaceLanguage}`);
-  }
-
-  if (ivLoadPolicy) {
-    params.push(`iv_load_policy=${ivLoadPolicy}`);
-  }
-
-  if (loop) {
-    params.push("loop=1");
-  }
-
-  if (modestBranding) {
-    params.push("modestbranding=1");
-  }
-
-  if (origin) {
-    params.push(`origin=${origin}`);
-  }
-
-  if (playlist) {
-    params.push(`playlist=${playlist}`);
-  }
-
-  if (startAt) {
-    params.push(`start=${startAt}`);
-  }
-
-  if (progressBarColor) {
-    params.push(`color=${progressBarColor}`);
-  }
-
-  if (params.length) {
-    outputUrl += `?${params.join("&")}`;
-  }
-
-  return outputUrl;
+  return embedUrl.toString();
 };

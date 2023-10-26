@@ -3,35 +3,47 @@ import { getEmbedUrlFromYoutubeUrl, isValidYoutubeUrl, YOUTUBE_REGEX_GLOBAL } fr
 import { createTooltip, applyStyles } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
-export interface YoutubeOptions {
+interface LayoutOptions {
+  width?: number;
+  height?: number;
+  margin?: string;
+  clear?: string;
+  float?: string;
+  display?: string;
+  justifyContent?: string;
+}
+
+interface NodeOptions {
   addPasteHandler: boolean;
-  allowFullscreen: boolean;
-  autoplay: boolean;
-  ccLanguage?: string;
-  ccLoadPolicy?: boolean;
-  controls: boolean;
-  disableKBcontrols: boolean;
-  enableIFrameApi: boolean;
-  endTime: number;
-  height: number;
-  interfaceLanguage?: string;
-  ivLoadPolicy: number;
-  loop: boolean;
-  modestBranding: boolean;
   HTMLAttributes: Record<string, any>;
-  nocookie: boolean;
-  origin: string;
-  playlist: string;
-  progressBarColor?: string;
-  width: number;
   modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+}
+
+export interface YoutubeOptions extends LayoutOptions, NodeOptions {
+  // URL Search Params attributes
+  autoplay: 0 | 1;
+  ccLanguage?: string;
+  ccLoadPolicy?: 0 | 1;
+  controls: 0 | 1;
+  disableKBcontrols: 0 | 1;
+  enableIFrameApi: 0 | 1;
+  endTime?: number;
+  interfaceLanguage?: string;
+  ivLoadPolicy: 1 | 3;
+  loop: 0 | 1;
+  nocookie?: boolean;
+  origin?: string;
+  playlist?: string;
+
+  // Iframe html attributes
+  frameborder?: number; // 0
+  allow?: string; // accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture
+  allowfullscreen?: boolean;
 }
 
 type SetYoutubeVideoOptions = {
   src: string;
-  width?: number;
-  height?: number;
-};
+} & LayoutOptions;
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
@@ -52,41 +64,47 @@ export const Youtube = Node.create<YoutubeOptions>({
     return {
       addPasteHandler: true,
       allowFullscreen: true,
-      autoplay: false,
+      autoplay: 0,
       ccLanguage: undefined,
       ccLoadPolicy: undefined,
-      controls: true,
-      disableKBcontrols: false,
-      enableIFrameApi: false,
+      controls: 0,
+      disableKBcontrols: 0,
+      enableIFrameApi: 0,
       endTime: 0,
       height: 480,
       modal: null,
       interfaceLanguage: undefined,
-      ivLoadPolicy: 0,
-      loop: false,
-      modestBranding: false,
+      ivLoadPolicy: 1,
+      loop: 0,
       HTMLAttributes: {},
       nocookie: false,
-      origin: "",
-      playlist: "",
-      progressBarColor: undefined,
+      origin: undefined,
+      playlist: undefined,
       width: 640,
+      justifyContent: "start",
+      margin: "0in",
+      clear: "none",
+      float: "unset",
+      display: "block",
     };
   },
 
   addAttributes() {
     return {
       margin: {
-        default: "0in",
+        default: this.options.margin,
       },
       clear: {
-        default: "none",
+        default: this.options.clear,
       },
       float: {
-        default: "unset",
+        default: this.options.float,
       },
       display: {
-        default: "block",
+        default: this.options.display,
+      },
+      justifyContent: {
+        default: this.options.justifyContent,
       },
       src: {
         default: null,
@@ -122,38 +140,39 @@ export const Youtube = Node.create<YoutubeOptions>({
         float: node.attrs.float,
         clear: node.attrs.clear,
         margin: node.attrs.margin,
+        justifyContent: node.attrs.justifyContent,
       };
 
       applyStyles(dom, styles);
 
       const youtubeAttrs = {
         url: HTMLAttributes.src,
-        allowFullscreen: this.options.allowFullscreen,
-        autoplay: this.options.autoplay,
-        ccLanguage: this.options.ccLanguage,
-        ccLoadPolicy: this.options.ccLoadPolicy,
-        controls: this.options.controls,
-        disableKBcontrols: this.options.disableKBcontrols,
-        enableIFrameApi: this.options.enableIFrameApi,
-        endTime: this.options.endTime,
-        interfaceLanguage: this.options.interfaceLanguage,
-        ivLoadPolicy: this.options.ivLoadPolicy,
-        loop: this.options.loop,
-        modestBranding: this.options.modestBranding,
-        nocookie: this.options.nocookie,
-        origin: this.options.origin,
-        playlist: this.options.playlist,
-        progressBarColor: this.options.progressBarColor,
-        startAt: HTMLAttributes.start || 0,
+        autoplay: node.attrs.autoplay,
+        ccLanguage: node.attrs.ccLanguage,
+        ccLoadPolicy: node.attrs.ccLoadPolicy,
+        controls: node.attrs.controls,
+        disableKBcontrols: node.attrs.disableKBcontrols,
+        enableIFrameApi: node.attrs.enableIFrameApi,
+        endTime: node.attrs.endTime,
+        interfaceLanguage: node.attrs.interfaceLanguage,
+        ivLoadPolicy: node.attrs.ivLoadPolicy,
+        loop: node.attrs.loop,
+        nocookie: node.attrs.nocookie,
+        origin: node.attrs.origin,
+        playlist: node.attrs.playlist,
       };
 
       const embedUrl = getEmbedUrlFromYoutubeUrl(youtubeAttrs) as string;
 
       HTMLAttributes.src = embedUrl;
 
-      const attributes = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+      const attributes = mergeAttributes(this.options.HTMLAttributes, {
         "data-node-name": this.name,
-        ...youtubeAttrs,
+        width: this.options.width,
+        height: this.options.height,
+        allow: this.options.allow,
+        frameborder: this.options.frameborder,
+        autoplay: this.options.autoplay,
       });
 
       if (modal) {
@@ -221,42 +240,24 @@ export const Youtube = Node.create<YoutubeOptions>({
     };
   },
 
-  addPasteRules() {
-    if (!this.options.addPasteHandler) {
-      return [];
-    }
+  renderHTML({ node, HTMLAttributes }) {
+    console.log("rendedHTML", { node, HTMLAttributes });
 
-    return [
-      nodePasteRule({
-        find: YOUTUBE_REGEX_GLOBAL,
-        type: this.type,
-        getAttributes: (match) => {
-          return { src: match.input };
-        },
-      }),
-    ];
-  },
-
-  renderHTML({ HTMLAttributes }) {
     const embedUrl = getEmbedUrlFromYoutubeUrl({
       url: HTMLAttributes.src,
-      allowFullscreen: this.options.allowFullscreen,
-      autoplay: this.options.autoplay,
-      ccLanguage: this.options.ccLanguage,
-      ccLoadPolicy: this.options.ccLoadPolicy,
-      controls: this.options.controls,
-      disableKBcontrols: this.options.disableKBcontrols,
-      enableIFrameApi: this.options.enableIFrameApi,
-      endTime: this.options.endTime,
-      interfaceLanguage: this.options.interfaceLanguage,
-      ivLoadPolicy: this.options.ivLoadPolicy,
-      loop: this.options.loop,
-      modestBranding: this.options.modestBranding,
-      nocookie: this.options.nocookie,
-      origin: this.options.origin,
-      playlist: this.options.playlist,
-      progressBarColor: this.options.progressBarColor,
-      startAt: HTMLAttributes.start || 0,
+      autoplay: node.attrs.autoplay,
+      ccLanguage: node.attrs.ccLanguage,
+      ccLoadPolicy: node.attrs.ccLoadPolicy,
+      controls: node.attrs.controls,
+      disableKBcontrols: node.attrs.disableKBcontrols,
+      enableIFrameApi: node.attrs.enableIFrameApi,
+      endTime: node.attrs.endTime,
+      interfaceLanguage: node.attrs.interfaceLanguage,
+      ivLoadPolicy: node.attrs.ivLoadPolicy,
+      loop: node.attrs.loop,
+      nocookie: node.attrs.nocookie,
+      origin: node.attrs.origin,
+      playlist: node.attrs.playlist,
     });
 
     HTMLAttributes.src = embedUrl;
@@ -280,24 +281,27 @@ export const Youtube = Node.create<YoutubeOptions>({
           {
             width: this.options.width,
             height: this.options.height,
-            allowfullscreen: this.options.allowFullscreen,
+            allow: this.options.allow,
+            frameborder: this.options.frameborder,
             autoplay: this.options.autoplay,
-            ccLanguage: this.options.ccLanguage,
-            ccLoadPolicy: this.options.ccLoadPolicy,
-            disableKBcontrols: this.options.disableKBcontrols,
-            enableIFrameApi: this.options.enableIFrameApi,
-            endTime: this.options.endTime,
-            interfaceLanguage: this.options.interfaceLanguage,
-            ivLoadPolicy: this.options.ivLoadPolicy,
-            loop: this.options.loop,
-            modestBranding: this.options.modestBranding,
-            origin: this.options.origin,
-            playlist: this.options.playlist,
-            progressBarColor: this.options.progressBarColor,
           },
           HTMLAttributes
         ),
       ],
+    ];
+  },
+
+  addPasteRules() {
+    if (!this.options.addPasteHandler) return [];
+
+    return [
+      nodePasteRule({
+        find: YOUTUBE_REGEX_GLOBAL,
+        type: this.type,
+        getAttributes: (match) => {
+          return { src: match.input };
+        },
+      }),
     ];
   },
 
