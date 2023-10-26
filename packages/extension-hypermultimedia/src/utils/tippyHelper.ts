@@ -93,6 +93,7 @@ class Tooltip {
       trigger: "manual",
       placement: "bottom",
       hideOnClick: true,
+      maxWidth: "none",
       onClickOutside: (instance, event) => {
         this.hide();
       },
