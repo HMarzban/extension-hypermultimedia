@@ -235,8 +235,6 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
     const display = HTMLAttributes.display;
     const justifyContent = HTMLAttributes.justifyContent;
 
-    console.log("im in rednedr html");
-
     if (height > 130) {
       HTMLAttributes.visual = true;
     }
