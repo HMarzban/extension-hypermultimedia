@@ -23,8 +23,6 @@ import {
   setHyperlinkModal,
 } from "@docs.plus/extension-hyperlink";
 
-console.log({});
-
 const ydoc = new Y.Doc();
 
 // make sure import this arrow.css
