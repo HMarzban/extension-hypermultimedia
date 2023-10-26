@@ -5,13 +5,13 @@ This extension allows embedding SoundCloud tracks/playlist within your editor as
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hyperMultimedia
+npm install @docs.plus/extension-hypermultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   SoundCloud,
@@ -330,7 +330,7 @@ Custom HTML attributes that should be added to the rendered HTML wrapper tag.
 - Default: `{}`
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   SoundCloud: {
@@ -349,7 +349,7 @@ A modal box that appears when you <u>**click on the track**</u>. A default modal
 - Default: `true`
 
 ```js
-import { HypermediaKit, soundCloudModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, soundCloudModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   SoundCloud: {

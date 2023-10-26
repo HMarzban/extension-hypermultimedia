@@ -13,7 +13,7 @@ import {
   vimeoModal,
   soundCloudModal,
   twitterModal,
-} from "@docs.plus/extension-hyperMultimedia";
+} from "@docs.plus/extension-hypermultimedia";
 
 import * as Y from "yjs";
 import Collaboration from "@tiptap/extension-collaboration";

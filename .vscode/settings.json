@@ -1,6 +1,6 @@
 {
     "conventionalCommits.scopes": [
         "@docs.plus/demo",
-        "@docs.plus/extension-hyperMultimedia"
+        "@docs.plus/extension-hypermultimedia"
     ]
 }

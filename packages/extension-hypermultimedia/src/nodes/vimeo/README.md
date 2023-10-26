@@ -5,13 +5,13 @@ Use this extension to render `<iframe>` HTML tags for embedding Vimeo videos.
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hyperMultimedia
+npm install @docs.plus/extension-hypermultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Vimeo,
@@ -409,7 +409,7 @@ A modal box that appears when you <u>**click on the video**</u>. A default modal
 - Default: `false`
 
 ```js
-import { HypermediaKit, vimeoModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, vimeoModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Vimeo: {

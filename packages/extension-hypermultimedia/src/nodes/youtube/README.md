@@ -5,13 +5,13 @@ This extension adds a new YouTube embed node to the editor.
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hyperMultimedia
+npm install @docs.plus/extension-hypermultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Image,
@@ -89,7 +89,7 @@ A modal box that apear when you `mouseover` on video. A default modal box is pro
 - Default: `false`
 
 ```js
-import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Youtube: {
@@ -108,7 +108,7 @@ a resize gripper that apear when you `mouseover` on video.
 - default: `true`
 
 ```js
-import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Youtube: {

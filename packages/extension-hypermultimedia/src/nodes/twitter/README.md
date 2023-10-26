@@ -5,13 +5,13 @@ This extension render embedded Twitter tweets in your editor.
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hyperMultimedia
+npm install @docs.plus/extension-hypermultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Twitter,
@@ -193,7 +193,7 @@ A modal box that appears when you <u>**click on the tweet**</u>. A default modal
 - Default: `false`
 
 ```js
-import { HypermediaKit, twitterModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, twitterModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Twitter: {

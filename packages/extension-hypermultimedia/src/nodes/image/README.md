@@ -7,13 +7,13 @@ Use this extension to render `<img>` HTML tags. Block level node.
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hyperMultimedia
+npm install @docs.plus/extension-hypermultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Image,
@@ -30,7 +30,7 @@ Allow images to be parsed as base64 strings `<img src="data:image/jpg;base64..."
 - Default: `false`
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Image: {
@@ -47,7 +47,7 @@ A modal box that apear when you <u>**click on image**</u>. A default modal box i
 - Default: `true`
 
 ```js
-import { HypermediaKit, imageModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, imageModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Image: {
@@ -66,7 +66,7 @@ a resize gripper that apear when you click on image.
 default: `true`
 
 ```js
-import { HypermediaKit, imageModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, imageModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Image: {
@@ -84,7 +84,7 @@ Custom HTML attributes that should be added to the rendered HTML tag.
 - Default: `{}`
 
 ```js
-import { HypermediaKit, imageModal } from "@docs.plus/extension-hyperMultimedia";
+import { HypermediaKit, imageModal } from "@docs.plus/extension-hypermultimedia";
 
 HypermediaKit.configure({
   Image: {
