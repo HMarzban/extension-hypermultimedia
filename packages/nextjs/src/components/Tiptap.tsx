@@ -5,6 +5,7 @@ import TextStyle from "@tiptap/extension-text-style";
 import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
 import editorContents from "./editorContents";
+import { HocuspocusProvider } from "@hocuspocus/provider";
 import MenuBar from "./MenuBar";
 import {
   HypermediaKit,
@@ -24,6 +25,13 @@ import {
 } from "@docs.plus/extension-hyperlink";
 
 const ydoc = new Y.Doc();
+
+const provider = new HocuspocusProvider({
+  url: "ws://127.0.0.1:1234",
+  name: "example-document",
+});
+
+console.log("provider", provider);
 
 // make sure import this arrow.css
 import "tippy.js/dist/svg-arrow.css";
@@ -73,7 +81,7 @@ const Tiptap = () => {
         },
       }),
       Collaboration.configure({
-        document: ydoc,
+        document: provider.document,
       }),
     ],
     content: editorContents,
