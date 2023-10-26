@@ -219,8 +219,10 @@ export const Vimeo = Node.create<VimeoOptions>({
             iframe.style.height = `${updatedNode.attrs.height}px`;
             dom.style.width = `${updatedNode.attrs.width}px`;
             iframe.style.width = `${updatedNode.attrs.width}px`;
+            iframe.width = `${updatedNode.attrs.width}`;
+            iframe.height = `${updatedNode.attrs.height}`;
 
-            return false;
+            return true;
           }
           if (updatedNode.type.name !== this.name) return false;
           return true;
