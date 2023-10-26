@@ -5,13 +5,13 @@ This extension render embedded Twitter tweets in your editor.
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hypermedia
+npm install @docs.plus/extension-hyperMultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   Twitter,
@@ -193,7 +193,7 @@ A modal box that appears when you <u>**click on the tweet**</u>. A default modal
 - Default: `false`
 
 ```js
-import { HypermediaKit, twitterModal } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit, twitterModal } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   Twitter: {
@@ -202,7 +202,7 @@ HypermediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/modals/twitter.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/twitter.ts) for more details.
 
 ## Commands
 
@@ -242,4 +242,4 @@ editor.commands.addTwitter({
 
 ## Source code
 
-[packages/extension-hypermedia/twitter](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/twitter/twitter.ts)
+[packages/extension-hyperMultimedia/twitter](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/twitter/twitter.ts)

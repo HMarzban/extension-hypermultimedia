@@ -1,13 +1,13 @@
 {
-  "name": "@docs.plus/extension-hypermedia",
+  "name": "@docs.plus/extension-hyperMultimedia",
   "description": "Insert multimedia components for docs.plus",
   "version": "1.0.0",
   "author": "Hossein Marzban",
-  "homepage": "https://github.com/HMarzban/extension-hypermedia",
+  "homepage": "https://github.com/HMarzban/extension-hyperMultimedia",
   "repository": {
     "type": "git",
     "url": "https://github.com/docs-plus/docs.plus",
-    "directory": "packages/extension-hypermedia"
+    "directory": "packages/extension-hyperMultimedia"
   },
   "keywords": [
     "tiptap",

@@ -5,13 +5,13 @@ Use this extension to render `<iframe>` HTML tags for embedding Vimeo videos.
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hypermedia
+npm install @docs.plus/extension-hyperMultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   Vimeo,
@@ -409,7 +409,7 @@ A modal box that appears when you <u>**click on the video**</u>. A default modal
 - Default: `false`
 
 ```js
-import { HypermediaKit, vimeoModal } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit, vimeoModal } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   Vimeo: {
@@ -418,7 +418,7 @@ HypermediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/modals/youtube.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/youtube.ts) for more details.
 
 ## Commands
 
@@ -457,4 +457,4 @@ editor.commands.setVimeo({
 
 ## Source code
 
-[packages/extension-hypermedia/vimeo](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/vimeo/vimeo.ts)
+[packages/extension-hyperMultimedia/vimeo](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/vimeo/vimeo.ts)

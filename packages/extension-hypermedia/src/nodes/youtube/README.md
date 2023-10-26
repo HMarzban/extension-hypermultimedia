@@ -5,13 +5,13 @@ This extension adds a new YouTube embed node to the editor.
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hypermedia
+npm install @docs.plus/extension-hyperMultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   Image,
@@ -89,7 +89,7 @@ A modal box that apear when you `mouseover` on video. A default modal box is pro
 - Default: `false`
 
 ```js
-import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   Youtube: {
@@ -98,7 +98,7 @@ HypermediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/modals/youtube.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/youtube.ts) for more details.
 
 ### resizeGripper
 
@@ -108,7 +108,7 @@ a resize gripper that apear when you `mouseover` on video.
 - default: `true`
 
 ```js
-import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   Youtube: {
@@ -358,4 +358,4 @@ editor.commands.setYoutubeVideo({
 
 ## Source code
 
-[packages/extension-hypermedia/youtube]((https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/youtube/youtube.ts))
+[packages/extension-hyperMultimedia/youtube]((https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/youtube/youtube.ts))

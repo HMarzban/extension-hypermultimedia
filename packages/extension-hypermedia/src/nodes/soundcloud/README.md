@@ -5,13 +5,13 @@ This extension allows embedding SoundCloud tracks/playlist within your editor as
 ## Installation
 
 ```bash
-npm install @docs.plus/extension-hypermedia
+npm install @docs.plus/extension-hyperMultimedia
 ```
 
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   SoundCloud,
@@ -330,7 +330,7 @@ Custom HTML attributes that should be added to the rendered HTML wrapper tag.
 - Default: `{}`
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   SoundCloud: {
@@ -349,7 +349,7 @@ A modal box that appears when you <u>**click on the track**</u>. A default modal
 - Default: `true`
 
 ```js
-import { HypermediaKit, soundCloudModal } from "@docs.plus/extension-hypermedia";
+import { HypermediaKit, soundCloudModal } from "@docs.plus/extension-hyperMultimedia";
 
 HypermediaKit.configure({
   SoundCloud: {
@@ -358,7 +358,7 @@ HypermediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/modals/youtube.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/youtube.ts) for more details.
 
 ## Commands
 
@@ -399,4 +399,4 @@ editor.commands.addSoundCloud({
 
 ## Source Code
 
-[packages/extension-hypermedia/soundcloud](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/soundcloud/soundCloud.ts)
+[packages/extension-hyperMultimedia/soundcloud](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/soundcloud/soundCloud.ts)
