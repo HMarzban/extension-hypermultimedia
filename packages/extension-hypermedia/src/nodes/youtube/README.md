@@ -81,13 +81,12 @@ HypermediaKit.configure({
 })
 ```
 
-
 ### modal
 
 A modal box that apear when you `mouseover` on video. A default modal box is provided which you can utilize or replace with your custom modal.
 
 - Target: `Node`
-- Default: `true`
+- Default: `false`
 
 ```js
 import { HypermediaKit, youtubeModal } from "@docs.plus/extension-hypermedia";
@@ -346,16 +345,17 @@ editor.commands.setYoutubeVideo({
 
 ### Options
 
-|Option   |Description                                                            | Default|Optional |
-|---      |---                                                                    |---      | --- |
-|src      |The url of the youtube video. Can be a YouTube or YouTube Music link   |`null`   ||
-|width    |The embed width (overrides the default option, optional)               |`null`   |✅ |
-|height   |The embed height (overrides the default option, optional)              |`null`   |✅ |
-|float    |The css style `float` (overrides the default option, optional)     |`unset`  |✅ |
-|clear    |The css style `clear` (overrides the default option, optional)     |`none`   |✅ |
-|display  |The css style `display` (overrides the default option, optional)   |`block`  |✅ |
-|margin   |The css style `margin` (overrides the default option, optional)    |`0.0in`  |✅ |
+|Option          |Description                                                               |Default    |Optional |
+|---             |---                                                                       |---        |---      |
+|url             |The URL of the youtube                                                    |`null`     |         |
+|width           |The embed width (overrides the default option, optional)                  |`450`      |✅       |
+|height          |The embed height (overrides the default option, optional)                 |`120`      |✅       |
+|float           |The CSS style `float` (overrides the default option, optional)            |`unset`    |✅       |
+|clear           |The CSS style `clear` (overrides the default option, optional)            |`none`     |✅       |
+|display         |The CSS style `display` (overrides the default option, optional)          |`block`    |✅       |
+|margin          |The CSS style `margin` (overrides the default option, optional)           |`0.0in`    |✅       |
+|justifyContent  |The CSS style `justify-content` (overrides the default option, optional)  |`start`    |✅       |
 
 ## Source code
 
-[packages/extension-youtube/]((https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/youtube/youtube.ts))
+[packages/extension-hypermedia/youtube]((https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/youtube/youtube.ts))

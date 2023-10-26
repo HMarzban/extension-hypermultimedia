@@ -126,16 +126,17 @@ editor.commands.setImage({
 
 ### Options
 
-|Option   |Description                                                            | Default|Optional |
-|---      |---                                                                    |---      | --- |
-|src      |The url of the youtube video. Can be a YouTube or YouTube Music link   |`null`   ||
-|width    |The embed width (overrides the default option, optional)               |`null`   |✅ |
-|height   |The embed height (overrides the default option, optional)              |`null`   |✅ |
-|float    |The css style `float` (overrides the default option, optional)     |`unset`  |✅ |
-|clear    |The css style `clear` (overrides the default option, optional)     |`none`   |✅ |
-|display  |The css style `display` (overrides the default option, optional)   |`block`  |✅ |
-|margin   |The css style `margin` (overrides the default option, optional)    |`0.0in`  |✅ |
+|Option          |Description                                                               |Default    |Optional |
+|---             |---                                                                       |---        |---      |
+|url             |The URL of the image                                                      |`null`     |         |
+|width           |The embed width (overrides the default option, optional)                  |`450`      |✅       |
+|height          |The embed height (overrides the default option, optional)                 |`120`      |✅       |
+|float           |The CSS style `float` (overrides the default option, optional)            |`unset`    |✅       |
+|clear           |The CSS style `clear` (overrides the default option, optional)            |`none`     |✅       |
+|display         |The CSS style `display` (overrides the default option, optional)          |`block`    |✅       |
+|margin          |The CSS style `margin` (overrides the default option, optional)           |`0.0in`    |✅       |
+|justifyContent  |The CSS style `justify-content` (overrides the default option, optional)  |`start`    |✅       |
 
 ## Source code
 
-[packages/extension-image/](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/image/image.ts)
+[packages/extension-hypermedia/image](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/nodes/image/image.ts)

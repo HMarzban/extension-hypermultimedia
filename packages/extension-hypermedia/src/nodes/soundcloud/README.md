@@ -66,7 +66,6 @@ HypermediaKit.configure({
 })
 ```
 
-
 ### hideRelated
 
 Toggle visibility of related tracks.
@@ -247,8 +246,6 @@ HypermediaKit.configure({
 })
 ```
 
-
-
 ### width, height
 
 Specify the dimensions of the embedded player. Default width is `460` and height is `130`.
@@ -264,8 +261,6 @@ HypermediaKit.configure({
   }
 })
 ```
-
-
 
 ### scrolling
 
@@ -327,7 +322,6 @@ HypermediaKit.configure({
 })
 ```
 
-
 ### HTMLAttributes
 
 Custom HTML attributes that should be added to the rendered HTML wrapper tag.
@@ -364,8 +358,7 @@ HypermediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/modals/soundCloud.ts) for more details.
-
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hypermedia/tree/main/packages/extension-hypermedia/src/modals/youtube.ts) for more details.
 
 ## Commands
 
