@@ -183,10 +183,10 @@ export const Vimeo = Node.create<VimeoOptions>({
 
       const attributes = mergeAttributes(this.options.HTMLAttributes, {
         "data-node-name": this.name,
-        width: this.options.width,
-        height: this.options.height,
-        frameborder: this.options.frameborder,
-        allowfullscreen: this.options.allowfullscreen,
+        width: node.attrs.width,
+        height: node.attrs.height,
+        frameborder: node.attrs.frameborder,
+        allowfullscreen: node.attrs.allowfullscreen,
       });
 
       if (modal) {
@@ -254,7 +254,7 @@ export const Vimeo = Node.create<VimeoOptions>({
     };
   },
 
-  renderHTML({ HTMLAttributes }) {
+  renderHTML({ node, HTMLAttributes }) {
     const vimeoAttrs = {
       url: HTMLAttributes.src,
       autopause: this.options.autopause,
@@ -299,10 +299,10 @@ export const Vimeo = Node.create<VimeoOptions>({
         mergeAttributes(
           this.options.HTMLAttributes,
           {
-            width: this.options.width,
-            height: this.options.height,
-            frameborder: this.options.frameborder,
-            allowfullscreen: this.options.allowfullscreen,
+            width: node.attrs.width,
+            height: node.attrs.height,
+            frameborder: node.attrs.frameborder,
+            allowfullscreen: node.attrs.allowfullscreen,
           },
           HTMLAttributes
         ),

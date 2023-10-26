@@ -168,11 +168,11 @@ export const Youtube = Node.create<YoutubeOptions>({
 
       const attributes = mergeAttributes(this.options.HTMLAttributes, {
         "data-node-name": this.name,
-        width: this.options.width,
-        height: this.options.height,
-        allow: this.options.allow,
-        frameborder: this.options.frameborder,
-        autoplay: this.options.autoplay,
+        width: node.attrs.width,
+        height: node.attrs.height,
+        allow: node.attrs.allow,
+        frameborder: node.attrs.frameborder,
+        autoplay: node.attrs.autoplay,
       });
 
       if (modal) {
@@ -278,17 +278,13 @@ export const Youtube = Node.create<YoutubeOptions>({
       { "data-youtube-video": "", class: "youtube-video", style },
       [
         "iframe",
-        mergeAttributes(
-          this.options.HTMLAttributes,
-          {
-            width: this.options.width,
-            height: this.options.height,
-            allow: this.options.allow,
-            frameborder: this.options.frameborder,
-            autoplay: this.options.autoplay,
-          },
-          HTMLAttributes
-        ),
+        mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+          width: node.attrs.width,
+          height: node.attrs.height,
+          allow: node.attrs.allow,
+          frameborder: node.attrs.frameborder,
+          autoplay: node.attrs.autoplay,
+        }),
       ],
     ];
   },

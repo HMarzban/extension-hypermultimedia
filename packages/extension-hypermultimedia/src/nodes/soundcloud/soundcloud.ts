@@ -226,7 +226,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
     ];
   },
 
-  renderHTML({ HTMLAttributes }) {
+  renderHTML({ node, HTMLAttributes }) {
     const height = parseInt(HTMLAttributes.height);
     const width = parseInt(HTMLAttributes.width);
     const float = HTMLAttributes.float;
@@ -255,11 +255,11 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
         mergeAttributes(
           this.options.HTMLAttributes,
           {
-            width: this.options.width,
-            height: this.options.height,
-            scrolling: this.options.scrolling,
-            frameborder: this.options.frameborder,
-            allow: this.options.allow,
+            width: node.attrs.width,
+            height: node.attrs.height,
+            scrolling: node.attrs.scrolling,
+            frameborder: node.attrs.frameborder,
+            allow: node.attrs.allow,
           },
           HTMLAttributes
         ),
