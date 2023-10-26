@@ -3,28 +3,51 @@ import { SOUNDCLOUD_URL_REGEX_GLOBAL, getSoundCloudEmbedUrl, isValidSoundCloudUr
 import { createTooltip, applyStyles } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
-export interface SoundCloudOptions {
-  width?: number | string; // Width of the embedded SoundCloud player
-  height?: number | string; // Height of the embedded SoundCloud player
-  visual?: boolean; // set to true for a video player, false for audio player
-  autoPlay?: boolean; // set to true to autoplay the track on load
-  scrolling?: string; // set to yes to allow scrolling
-  frameborder?: string; // set to no to hide frame border
-  allow?: string; // set to autoplay to allow the track to autoplay
-  hideRelated?: boolean; // set to true to hide related tracks
-  showComments?: boolean; // set to false to hide comments
-  showUser?: boolean; // set to false to hide the uploader name and avatar
-  showReposts?: boolean; // set to false to hide reposts
+interface LayoutOptions {
+  width?: number;
+  height?: number;
+  margin?: string;
+  clear?: string;
+  float?: string;
+  display?: string;
+  justifyContent?: string;
+}
+
+interface NodeOptions {
   addPasteHandler: boolean;
   HTMLAttributes: Record<string, any>;
   modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
 }
 
+export interface SoundCloudOptions extends LayoutOptions, NodeOptions {
+  // URL Search Params attributes
+  autoPlay?: boolean; // set to true to autoplay the track on load
+  hideRelated?: boolean; // set to true to hide related tracks
+  showComments?: boolean; // set to false to hide comments
+  showUser?: boolean; // set to false to hide the uploader name and avatar
+  showReposts?: boolean; // set to false to hide reposts
+  auto_play?: boolean; // Play track automatically
+  hide_related?: boolean; // Hide related tracks in the visual player
+  visual?: boolean; // set to true for a video player, false for audio player
+  color?: string; // hex code, Color play button and other controls. e.g. “#0066CC”
+  buying?: boolean; // Show/Hide buy buttons
+  sharing?: boolean; // Show/Hide share buttons
+  download?: boolean; // Show/Hide download buttons
+  show_artwork?: boolean; // Show/Hide the item’s artwork
+  show_playcount?: boolean; // Show/Hide the item’s playcount
+  show_user?: boolean; // Show/Hide the uploader’s name
+  start_track?: number; // A number from 0 to the playlist length which reselects the track in a playlist
+  single_active?: boolean; // If set to false the multiple players on the page won’t toggle each other off when playing
+
+  // Iframe html attributes
+  scrolling?: string; // set to yes to allow scrolling
+  frameborder?: string; // set to no to hide frame border
+  allow?: string; // set to autoplay to allow the track to `autoplay`
+}
+
 type SetSoundCloudOptions = {
   url: string;
-  width?: number;
-  height?: number;
-};
+} & LayoutOptions;
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
@@ -43,44 +66,36 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
 
   addOptions() {
     return {
-      width: "460",
-      height: "130",
+      width: 450,
+      height: 120,
       visual: false,
-      autoPlay: false,
       addPasteHandler: true,
       HTMLAttributes: {},
       modal: null,
+      justifyContent: "start",
+      margin: "0in",
+      clear: "none",
+      float: "unset",
+      display: "block",
     };
   },
 
   addAttributes() {
     return {
-      url: {
-        default: null,
-      },
-      width: {
-        default: this.options.width,
-      },
-      height: {
-        default: this.options.height,
-      },
-      float: {
-        default: null,
+      margin: {
+        default: this.options.margin,
       },
       clear: {
-        default: null,
+        default: this.options.clear,
       },
-      margin: {
-        default: null,
+      float: {
+        default: this.options.float,
       },
       display: {
-        default: null,
+        default: this.options.display,
       },
-      visual: {
-        default: this.options.visual,
-      },
-      autoPlay: {
-        default: this.options.autoPlay,
+      justifyContent: {
+        default: this.options.justifyContent,
       },
       scrolling: {
         default: "no",
@@ -91,18 +106,30 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       allow: {
         default: "autoplay",
       },
-      hideRelated: {
-        default: null,
+      width: {
+        default: this.options.width,
       },
-      showComments: {
-        default: null,
+      height: {
+        default: this.options.height,
       },
-      showUser: {
-        default: null,
-      },
-      showReposts: {
-        default: null,
-      },
+      url: null,
+      autoPlay: null,
+      hideRelated: null,
+      showComments: null,
+      showUser: null,
+      showReposts: null,
+      auto_play: null,
+      hide_related: null,
+      visual: null,
+      color: null,
+      buying: null,
+      sharing: null,
+      download: null,
+      show_artwork: null,
+      show_playcount: null,
+      show_user: null,
+      start_track: null,
+      single_active: null,
     };
   },
 
@@ -126,6 +153,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
         float: node.attrs.float,
         clear: node.attrs.clear,
         margin: node.attrs.margin,
+        justifyContent: node.attrs.justifyContent,
       };
 
       applyStyles(dom, styles);
@@ -135,26 +163,31 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       }
 
       const soundCloudAttrs = {
-        url: HTMLAttributes.url,
-        autoPlay: HTMLAttributes.autoPlay,
-        hideRelated: HTMLAttributes.hideRelated,
-        showComments: HTMLAttributes.showComments,
-        showUser: HTMLAttributes.showUser,
-        showReposts: HTMLAttributes.showReposts,
-        visual: HTMLAttributes.visual,
-        width: HTMLAttributes.width,
-        height: HTMLAttributes.height,
-        scrolling: this.options.scrolling,
-        frameborder: this.options.frameborder,
-        allow: this.options.allow,
+        url: node.attrs.url,
+        auto_play: node.attrs.auto_play,
+        hide_related: node.attrs.hide_related,
+        visual: node.attrs.visual,
+        color: node.attrs.color,
+        buying: node.attrs.buying,
+        sharing: node.attrs.sharing,
+        download: node.attrs.download,
+        show_artwork: node.attrs.show_artwork,
+        show_playcount: node.attrs.show_playcount,
+        show_user: node.attrs.show_user,
+        start_track: node.attrs.start_track,
+        single_active: node.attrs.single_active,
       };
 
-      const embedUrl = getSoundCloudEmbedUrl(soundCloudAttrs) as string;
+      const embedUrl = getSoundCloudEmbedUrl(soundCloudAttrs);
       HTMLAttributes.src = embedUrl;
 
-      const attributes = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+      const attributes = mergeAttributes(this.options.HTMLAttributes, {
         "data-node-name": this.name,
-        ...soundCloudAttrs,
+        scrolling: node.attrs.scrolling,
+        frameborder: node.attrs.frameborder,
+        allow: node.attrs.allow,
+        width: node.attrs.width,
+        height: node.attrs.height,
       });
 
       if (modal) {
@@ -200,6 +233,9 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
     const clear = HTMLAttributes.clear;
     const margin = HTMLAttributes.margin;
     const display = HTMLAttributes.display;
+    const justifyContent = HTMLAttributes.justifyContent;
+
+    console.log("im in rednedr html");
 
     if (height > 130) {
       HTMLAttributes.visual = true;
@@ -211,7 +247,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
 
     HTMLAttributes.src = embedUrl;
 
-    const style = `display: ${display}; height:${height}px; width: ${width}px; float: ${float}; clear: ${clear}; margin: ${margin}`;
+    const style = `display: ${display}; justify-content: ${justifyContent}, height:${height}px; width: ${width}px; float: ${float}; clear: ${clear}; margin: ${margin}`;
 
     return [
       "div",
@@ -238,9 +274,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       addSoundCloud:
         (options) =>
         ({ commands }) => {
-          if (!isValidSoundCloudUrl(options.url)) {
-            return false;
-          }
+          if (!isValidSoundCloudUrl(options.url)) return false;
 
           return commands.insertContent({
             type: this.name,
@@ -251,9 +285,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
   },
 
   addPasteRules() {
-    if (!this.options.addPasteHandler) {
-      return [];
-    }
+    if (!this.options.addPasteHandler) return [];
 
     return [
       nodePasteRule({

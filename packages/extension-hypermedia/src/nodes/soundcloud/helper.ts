@@ -7,29 +7,41 @@ export const isValidSoundCloudUrl = (url: string): boolean => {
   return SOUNDCLOUD_URL_REGEX.test(url);
 };
 
+// https://developers.soundcloud.com/docs/api/html5-widget
 export interface GetSoundCloudEmbedUrlOptions {
   url: string;
-  autoPlay?: boolean;
-  hideRelated?: boolean;
-  showComments?: boolean;
-  showUser?: boolean;
-  showReposts?: boolean;
+  auto_play?: boolean; // Play track automatically
+  // showComments?: boolean; // deprecated
+  // show_reposts?: boolean; // deprecated
+  // show_teaser?: boolean; // deprecated
+  // show_comments?: boolean; // deprecated
+  hide_related?: boolean; // Hide related tracks in the visual player
   visual?: boolean; // set to true for a video player, false for audio player
+  color?: string; // hex code, Color play button and other controls. e.g. “#0066CC”
+  buying?: boolean; // Show/Hide buy buttons
+  sharing?: boolean; // Show/Hide share buttons
+  download?: boolean; // Show/Hide download buttons
+  show_artwork?: boolean; // Show/Hide the item’s artwork
+  show_playcount?: boolean; // Show/Hide the item’s playcount
+  show_user?: boolean; // Show/Hide the uploader’s name
+  start_track?: number; // A number from 0 to the playlist length which reselects the track in a playlist
+  single_active?: boolean; // If set to false the multiple players on the page won’t toggle each other off when playing
 }
 
 export const getSoundCloudEmbedUrl = (options: GetSoundCloudEmbedUrlOptions): string => {
-  const { url, autoPlay, hideRelated, showComments, showUser, showReposts, visual } = options;
-
   const embedUrl = new URL("https://w.soundcloud.com/player/");
 
-  // Build URL parameters
-  embedUrl.searchParams.append("url", url);
-  if (autoPlay) embedUrl.searchParams.append("auto_play", autoPlay ? "true" : "false");
-  if (hideRelated) embedUrl.searchParams.append("hide_related", hideRelated ? "true" : "false");
-  if (showComments) embedUrl.searchParams.append("show_comments", showComments ? "true" : "false");
-  if (showUser) embedUrl.searchParams.append("show_user", showUser ? "true" : "false");
-  if (showReposts) embedUrl.searchParams.append("show_reposts", showReposts ? "true" : "false");
-  if (visual) embedUrl.searchParams.append("visual", visual ? "true" : "false");
+  Object.entries(options).forEach(([key, value]) => {
+    if (value) {
+      if (typeof value === "boolean") {
+        embedUrl.searchParams.append(key, value ? "true" : "false");
+      } else if (typeof value === "number") {
+        embedUrl.searchParams.append(key, value.toString());
+      } else {
+        embedUrl.searchParams.append(key, value);
+      }
+    }
+  });
 
   return embedUrl.toString();
 };
