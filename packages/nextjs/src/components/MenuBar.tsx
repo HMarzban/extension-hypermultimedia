@@ -32,7 +32,7 @@ const MenuBar: React.FC<{ editor: TiptapEditor | null }> = ({ editor }) => {
     const url = prompt("Enter Vimeo URL");
 
     if (url) {
-      editor.commands.setVimeoVideo({
+      editor.commands.setVimeo({
         src: url,
         width: 640,
         height: 480,
@@ -46,8 +46,6 @@ const MenuBar: React.FC<{ editor: TiptapEditor | null }> = ({ editor }) => {
     if (url) {
       editor.commands.addTwitter({
         url: url,
-        width: 500,
-        height: 710,
       });
     }
   };
