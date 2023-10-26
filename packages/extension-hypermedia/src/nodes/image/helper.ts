@@ -17,11 +17,8 @@ export const imageClickHandler = (
   { editor, tooltip, tippyModal, modal }: ImageClickHandlerOptions
 ) => {
   const img = event.target as HTMLImageElement;
-  if (img.localName === "img") {
-    // replace with the custom modal
-    if (modal) {
-      modal({ editor, tooltip, tippyModal, iframe: img, wrapper: img });
-    }
+  if (img && img.localName === "img") {
+    if (modal) modal({ editor, tooltip, tippyModal, iframe: img, wrapper: img });
 
     const mediaResizeGripper = img.previousSibling as HTMLElement;
 

@@ -4,19 +4,34 @@ import { inputRegex, imageClickHandler } from "./helper";
 import { createTooltip } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
-export interface ImageOptions {
-  allowBase64: boolean;
+interface LayoutOptions {
+  width?: number;
+  height?: number;
+  margin?: string;
+  clear?: string;
+  float?: string;
+  display?: string;
+}
+
+interface NodeOptions {
   HTMLAttributes: Record<string, any>;
   modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
 }
 
+export interface ImageOptions extends LayoutOptions, NodeOptions {
+  allowBase64: boolean;
+}
+
+export type SetImageOptions = {
+  src: string;
+  alt?: string;
+  title?: string;
+} & LayoutOptions;
+
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     image: {
-      /**
-       * Add an image
-       */
-      setImage: (options: { src: string; alt?: string; title?: string }) => ReturnType;
+      setImage: (options: SetImageOptions) => ReturnType;
     };
   }
 }
@@ -31,6 +46,10 @@ export const Image = Node.create<ImageOptions>({
     return {
       allowBase64: false,
       modal: null,
+      margin: "0in",
+      clear: "none",
+      float: "unset",
+      display: "block",
       HTMLAttributes: {},
     };
   },
@@ -38,16 +57,16 @@ export const Image = Node.create<ImageOptions>({
   addAttributes() {
     return {
       margin: {
-        default: "0in",
+        default: this.options.margin,
       },
       clear: {
-        default: "none",
+        default: this.options.clear,
       },
       float: {
-        default: "unset",
+        default: this.options.float,
       },
       display: {
-        default: "block",
+        default: this.options.display,
       },
       transform: {
         default: "rotate(0deg)",
