@@ -3,10 +3,28 @@ import { getEmbedUrlFromVimeoUrl, isValidVimeoUrl, VIMEO_REGEX_GLOBAL } from "./
 import { createTooltip, applyStyles } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
-export interface VimeoOptions {
-  addPasteHandler?: boolean;
-  allowFullscreen?: boolean;
+interface LayoutOptions {
+  width?: number;
+  height?: number;
+  margin?: string;
+  clear?: string;
+  float?: string;
+  display?: string;
+  justifyContent?: string;
+}
+
+interface NodeOptions {
+  addPasteHandler: boolean;
+  HTMLAttributes: Record<string, any>;
+  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+}
+
+export interface VimeoOptions extends LayoutOptions, NodeOptions {
+  // URL Search Params attributes
+  autopause?: boolean;
   autoplay?: boolean;
+  background?: boolean;
+  byline?: boolean | "site-default";
   color?: string;
   controls?: boolean;
   dnt?: boolean;
@@ -15,29 +33,26 @@ export interface VimeoOptions {
   muted?: boolean;
   pip?: boolean;
   playsinline?: boolean;
-  portrait?: boolean;
-  quality?: string;
+  portrait?: boolean | "site-default";
+  quality?: "240p" | "360p" | "540p" | "720p" | "1080p" | "2k" | "4k" | "auto";
   speed?: boolean;
   startTime?: string;
-  texttrack?: string;
+  texttrack?: string | false;
   title?: boolean;
-  height?: number;
-  width?: number;
-  allow?: string;
-  HTMLAttributes?: any;
-  modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
+
+  // Iframe html attributes
+  frameborder?: number; // false
+  allowfullscreen?: boolean; // true
 }
 
-type SetVimeoVideoOptions = {
+type SetVimeoOptions = {
   src: string;
-  width?: number;
-  height?: number;
-};
+} & LayoutOptions;
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     Vimeo: {
-      setVimeoVideo: (options: SetVimeoVideoOptions) => ReturnType;
+      setVimeo: (options: SetVimeoOptions) => ReturnType;
     };
   }
 }
@@ -46,7 +61,6 @@ export const Vimeo = Node.create<VimeoOptions>({
   name: "Vimeo",
   draggable: true,
   group: "block",
-  // inline: true,
   atom: true,
   isolating: true,
 
@@ -55,41 +69,50 @@ export const Vimeo = Node.create<VimeoOptions>({
       HTMLAttributes: {},
       modal: null,
       addPasteHandler: true,
-      allowFullscreen: true,
+      autopause: true,
       autoplay: false,
-      ccLanguage: undefined,
-      ccLoadPolicy: undefined,
+      background: false,
+      byline: true,
+      color: "#00adef",
       controls: true,
-      disableKBcontrols: false,
-      enableIFrameApi: false,
-      endTime: 0,
-      height: 480,
-      interfaceLanguage: undefined,
-      ivLoadPolicy: 0,
+      dnt: false,
+      keyboard: true,
       loop: false,
-      modestBranding: false,
-      nocookie: false,
-      origin: "",
-      playlist: "",
-      progressBarColor: undefined,
+      muted: false,
+      pip: false,
+      playsinline: false,
+      portrait: true,
+      quality: "auto",
+      speed: false,
+      startTime: "0",
+      texttrack: false,
+      title: true,
+      height: 480,
       width: 640,
-      allow: undefined,
+      justifyContent: "start",
+      margin: "0in",
+      clear: "none",
+      float: "unset",
+      display: "block",
     };
   },
 
   addAttributes() {
     return {
       margin: {
-        default: "0in",
+        default: this.options.margin,
       },
       clear: {
-        default: "none",
+        default: this.options.clear,
       },
       float: {
-        default: "unset",
+        default: this.options.float,
       },
       display: {
-        default: "block",
+        default: this.options.display,
+      },
+      justifyContent: {
+        default: this.options.justifyContent,
       },
       src: {
         default: null,
@@ -125,38 +148,45 @@ export const Vimeo = Node.create<VimeoOptions>({
         float: node.attrs.float,
         clear: node.attrs.clear,
         margin: node.attrs.margin,
+        justifyContent: node.attrs.justifyContent,
       };
 
       applyStyles(dom, styles);
 
       const vimeoAttrs = {
         url: HTMLAttributes.src,
+        autopause: this.options.autopause,
         autoplay: this.options.autoplay,
-        controls: this.options.controls,
-        loop: this.options.loop,
+        background: this.options.background,
+        byline: this.options.byline,
         color: this.options.color,
+        controls: this.options.controls,
         dnt: this.options.dnt,
         keyboard: this.options.keyboard,
+        loop: this.options.loop,
         muted: this.options.muted,
         pip: this.options.pip,
         playsinline: this.options.playsinline,
         portrait: this.options.portrait,
         quality: this.options.quality,
         speed: this.options.speed,
+        startTime: this.options.startTime,
         texttrack: this.options.texttrack,
         title: this.options.title,
         height: this.options.height,
         width: this.options.width,
-        allowfullscreen: this.options.allowFullscreen,
-        allow: this.options.allow,
       };
 
       const embedUrl = getEmbedUrlFromVimeoUrl(vimeoAttrs) || "";
 
       HTMLAttributes.src = embedUrl;
 
-      const attributes = mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {
+      const attributes = mergeAttributes(this.options.HTMLAttributes, {
         "data-node-name": this.name,
+        width: this.options.width,
+        height: this.options.height,
+        frameborder: this.options.frameborder,
+        allowfullscreen: this.options.allowfullscreen,
       });
 
       if (modal) {
@@ -209,12 +239,10 @@ export const Vimeo = Node.create<VimeoOptions>({
 
   addCommands() {
     return {
-      setVimeoVideo:
-        (options: SetVimeoVideoOptions) =>
+      setVimeo:
+        (options: SetVimeoOptions) =>
         ({ commands }) => {
-          if (!isValidVimeoUrl(options.src)) {
-            return false;
-          }
+          if (!isValidVimeoUrl(options.src)) return false;
 
           return commands.insertContent({
             type: this.name,
@@ -224,43 +252,29 @@ export const Vimeo = Node.create<VimeoOptions>({
     };
   },
 
-  addPasteRules() {
-    if (!this.options.addPasteHandler) {
-      return [];
-    }
-
-    return [
-      nodePasteRule({
-        find: VIMEO_REGEX_GLOBAL,
-        type: this.type,
-        getAttributes: (match) => {
-          return { src: match.input };
-        },
-      }),
-    ];
-  },
-
   renderHTML({ HTMLAttributes }) {
     const vimeoAttrs = {
       url: HTMLAttributes.src,
+      autopause: this.options.autopause,
       autoplay: this.options.autoplay,
-      controls: this.options.controls,
-      loop: this.options.loop,
+      background: this.options.background,
+      byline: this.options.byline,
       color: this.options.color,
+      controls: this.options.controls,
       dnt: this.options.dnt,
       keyboard: this.options.keyboard,
+      loop: this.options.loop,
       muted: this.options.muted,
       pip: this.options.pip,
       playsinline: this.options.playsinline,
       portrait: this.options.portrait,
       quality: this.options.quality,
       speed: this.options.speed,
+      startTime: this.options.startTime,
       texttrack: this.options.texttrack,
       title: this.options.title,
       height: this.options.height,
       width: this.options.width,
-      allowfullscreen: this.options.allowFullscreen,
-      allow: this.options.allow,
     };
 
     const embedUrl = getEmbedUrlFromVimeoUrl(vimeoAttrs);
@@ -283,11 +297,28 @@ export const Vimeo = Node.create<VimeoOptions>({
         mergeAttributes(
           this.options.HTMLAttributes,
           {
-            ...vimeoAttrs,
+            width: this.options.width,
+            height: this.options.height,
+            frameborder: this.options.frameborder,
+            allowfullscreen: this.options.allowfullscreen,
           },
           HTMLAttributes
         ),
       ],
+    ];
+  },
+
+  addPasteRules() {
+    if (!this.options.addPasteHandler) return [];
+
+    return [
+      nodePasteRule({
+        find: VIMEO_REGEX_GLOBAL,
+        type: this.type,
+        getAttributes: (match) => {
+          return { src: match.input };
+        },
+      }),
     ];
   },
 

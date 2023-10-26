@@ -24,44 +24,31 @@ export const getViemoVideoDetails = async (videoId: string): Promise<any> => {
 
 export interface GetEmbedUrlOptions {
   url: string;
+  height?: number;
+  width?: number;
+  title?: boolean;
+  autopause?: boolean;
   autoplay?: boolean;
-  controls?: boolean;
-  loop?: boolean;
+  background?: boolean;
+  byline?: boolean | "site-default";
   color?: string;
+  controls?: boolean;
   dnt?: boolean;
   keyboard?: boolean;
+  loop?: boolean;
   muted?: boolean;
   pip?: boolean;
   playsinline?: boolean;
-  portrait?: boolean;
-  quality?: string;
+  portrait?: boolean | "site-default";
+  quality?: "240p" | "360p" | "540p" | "720p" | "1080p" | "2k" | "4k" | "auto";
   speed?: boolean;
-  texttrack?: string;
-  title?: boolean;
-  height?: number;
-  width?: number;
+  startTime?: string;
+  texttrack?: string | false;
 }
 
-export const getEmbedUrlFromVimeoUrl = (options: GetEmbedUrlOptions) => {
-  const {
-    url,
-    autoplay,
-    controls,
-    loop,
-    color,
-    dnt,
-    keyboard,
-    muted,
-    pip,
-    playsinline,
-    portrait,
-    quality,
-    speed,
-    texttrack,
-    title,
-    height,
-    width,
-  } = options;
+export const getEmbedUrlFromVimeoUrl = (options: GetEmbedUrlOptions): string | null => {
+  // Destructure the URL and other necessary properties from options
+  const { url, title, height, width, ...restOptions } = options;
 
   if (!url) return null;
 
@@ -78,77 +65,31 @@ export const getEmbedUrlFromVimeoUrl = (options: GetEmbedUrlOptions) => {
     return null;
   }
 
-  let outputUrl = `https://player.vimeo.com/video/${matches[1]}`;
+  // Create a new URL object for the Vimeo embed URL
+  const embedUrl = new URL(`https://player.vimeo.com/video/${matches[1]}`);
 
-  const params = [];
+  // Process rest of the options and append them to the URL's search params
+  Object.entries(restOptions).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      // Check for undefined or null values
+      if (typeof value === "boolean") {
+        embedUrl.searchParams.append(key, value ? "1" : "0");
+      } else if (typeof value === "number" || typeof value === "string") {
+        embedUrl.searchParams.append(key, value.toString());
+      }
+    }
+  });
 
-  if (autoplay) {
-    params.push("autoplay=1");
-  }
-
-  if (controls === false) {
-    params.push("controls=0");
-  }
-
-  if (loop) {
-    params.push("loop=1");
-  }
-
-  if (color) {
-    params.push(`color=${color.replace("#", "")}`); // Ensure color code doesn't have a #
-  }
-
-  if (dnt) {
-    params.push("dnt=1");
-  }
-
-  if (keyboard === false) {
-    params.push("keyboard=0");
-  }
-
-  if (muted) {
-    params.push("muted=1");
-  }
-
-  if (pip) {
-    params.push("pip=1");
-  }
-
-  if (playsinline) {
-    params.push("playsinline=1");
-  }
-
-  if (portrait === false) {
-    params.push("portrait=0");
-  }
-
-  if (quality) {
-    params.push(`quality=${quality}`);
-  }
-
-  if (speed) {
-    params.push("speed=1");
-  }
-
-  if (texttrack) {
-    params.push(`texttrack=${texttrack}`);
-  }
-
+  // Handle the title, height, and width separately as they are not part of restOptions
   if (title === false) {
-    params.push("title=0");
+    embedUrl.searchParams.append("title", "0");
   }
-
   if (height) {
-    params.push(`height=${height}`);
+    embedUrl.searchParams.append("height", height.toString());
   }
-
   if (width) {
-    params.push(`width=${width}`);
+    embedUrl.searchParams.append("width", width.toString());
   }
 
-  if (params.length) {
-    outputUrl += `?${params.join("&")}`;
-  }
-
-  return outputUrl;
+  return embedUrl.toString();
 };
