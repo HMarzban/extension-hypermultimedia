@@ -52,8 +52,8 @@ type SetSoundCloudOptions = {
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
-    soundCloud: {
-      addSoundCloud: (options: SetSoundCloudOptions) => ReturnType;
+    SoundCloud: {
+      setSoundCloud: (options: SetSoundCloudOptions) => ReturnType;
     };
   }
 }
@@ -279,7 +279,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
 
   addCommands() {
     return {
-      addSoundCloud:
+      setSoundCloud:
         (options) =>
         ({ commands }) => {
           if (!isValidSoundCloudUrl(options.url)) return false;

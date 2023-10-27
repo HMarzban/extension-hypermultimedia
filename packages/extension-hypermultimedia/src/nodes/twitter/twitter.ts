@@ -44,7 +44,7 @@ type AddTwitterOptions = {
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     Twitter: {
-      addTwitter: (options: AddTwitterOptions) => ReturnType;
+      setTwitter: (options: AddTwitterOptions) => ReturnType;
     };
   }
 }
@@ -164,12 +164,10 @@ export const Twitter = Node.create({
 
   addCommands() {
     return {
-      addTwitter:
+      setTwitter:
         (options) =>
         ({ commands }) => {
-          if (!isValidTwitterUrl(options.url)) {
-            return false;
-          }
+          if (!isValidTwitterUrl(options.url)) return false;
 
           return commands.insertContent({
             type: this.name,
