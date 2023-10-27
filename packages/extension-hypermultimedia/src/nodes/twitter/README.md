@@ -221,16 +221,16 @@ HyperMultimediaKit.configure({
 
 ## Commands
 
-### addTwitter()
+### setTwitter()
 
 Embed a Twitter tweet into the current node.
 
 ```js
-editor.commands.addTwitter({
+editor.commands.setTwitter({
   url: 'https://twitter.com/username/status/1234567890'
 });
 
-editor.commands.addTwitter({
+editor.commands.setTwitter({
   url: 'https://twitter.com/username/status/1234567890',
   theme: 'dark',
   width: '550px',

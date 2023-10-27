@@ -377,16 +377,16 @@ HyperMultimediaKit.configure({
 
 ## Commands
 
-### addSoundCloud()
+### setSoundCloud()
 
 Embed a SoundCloud track into the current node.
 
 ```js
-editor.commands.addSoundCloud({
+editor.commands.setSoundCloud({
   url: 'https://soundcloud.com/artist/track'
 });
 
-editor.commands.addSoundCloud({
+editor.commands.setSoundCloud({
   url: 'https://soundcloud.com/artist/track',
   visual: true,
   autoPlay: false,
