@@ -1,7 +1,7 @@
 import { mergeAttributes, Node, nodeInputRule } from "@tiptap/core";
 import { Plugin, PluginKey } from "@tiptap/pm/state";
 import { inputRegex, imageClickHandler } from "./helper";
-import { createTooltip } from "../../utils/utils";
+import { createTooltip, generateShortId } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
 interface LayoutOptions {
@@ -20,6 +20,7 @@ interface NodeOptions {
 
 export interface ImageOptions extends LayoutOptions, NodeOptions {
   allowBase64: boolean;
+  inline: boolean;
 }
 
 export type SetImageOptions = {
@@ -39,8 +40,6 @@ declare module "@tiptap/core" {
 export const Image = Node.create<ImageOptions>({
   name: "Image",
   draggable: true,
-  group: "inline",
-  inline: true,
 
   addOptions() {
     return {
@@ -51,11 +50,23 @@ export const Image = Node.create<ImageOptions>({
       float: "unset",
       display: "block",
       HTMLAttributes: {},
+      inline: false,
     };
+  },
+
+  inline() {
+    return this.options.inline;
+  },
+
+  group() {
+    return this.options.inline ? "inline" : "block";
   },
 
   addAttributes() {
     return {
+      keyId: {
+        default: generateShortId(),
+      },
       margin: {
         default: this.options.margin,
       },

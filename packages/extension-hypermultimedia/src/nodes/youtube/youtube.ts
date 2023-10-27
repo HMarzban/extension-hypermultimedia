@@ -1,6 +1,6 @@
 import { mergeAttributes, Node, nodePasteRule } from "@tiptap/core";
 import { getEmbedUrlFromYoutubeUrl, isValidYoutubeUrl, YOUTUBE_REGEX_GLOBAL } from "./helper";
-import { createTooltip, applyStyles } from "../../utils/utils";
+import { createTooltip, applyStyles, generateShortId } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
 interface LayoutOptions {
@@ -14,6 +14,7 @@ interface LayoutOptions {
 }
 
 interface NodeOptions {
+  inline: boolean;
   addPasteHandler: boolean;
   HTMLAttributes: Record<string, any>;
   modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
@@ -55,10 +56,6 @@ declare module "@tiptap/core" {
 
 export const Youtube = Node.create<YoutubeOptions>({
   name: "Youtube",
-  draggable: true,
-  group: "block",
-  atom: true,
-  isolating: true,
 
   addOptions() {
     return {
@@ -86,11 +83,23 @@ export const Youtube = Node.create<YoutubeOptions>({
       clear: "none",
       float: "unset",
       display: "block",
+      inline: false,
     };
+  },
+
+  inline() {
+    return this.options.inline;
+  },
+
+  group() {
+    return this.options.inline ? "inline" : "block";
   },
 
   addAttributes() {
     return {
+      keyId: {
+        default: generateShortId(),
+      },
       margin: {
         default: this.options.margin,
       },
@@ -130,6 +139,8 @@ export const Youtube = Node.create<YoutubeOptions>({
       const dom = document.createElement("div");
       const content = document.createElement("div");
       const iframe = document.createElement("iframe");
+
+      dom.contentEditable = "false";
 
       dom.classList.add("youtube-video__content");
 
@@ -243,8 +254,6 @@ export const Youtube = Node.create<YoutubeOptions>({
   },
 
   renderHTML({ node, HTMLAttributes }) {
-    console.log("rendedHTML", { node, HTMLAttributes });
-
     const embedUrl = getEmbedUrlFromYoutubeUrl({
       url: HTMLAttributes.src,
       autoplay: node.attrs.autoplay,

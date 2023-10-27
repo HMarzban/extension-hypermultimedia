@@ -1,6 +1,6 @@
 import { Node, mergeAttributes, nodePasteRule } from "@tiptap/core";
 import { SOUNDCLOUD_URL_REGEX_GLOBAL, getSoundCloudEmbedUrl, isValidSoundCloudUrl } from "./helper";
-import { createTooltip, applyStyles } from "../../utils/utils";
+import { createTooltip, applyStyles, generateShortId } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
 interface LayoutOptions {
@@ -14,6 +14,7 @@ interface LayoutOptions {
 }
 
 interface NodeOptions {
+  inline: boolean;
   addPasteHandler: boolean;
   HTMLAttributes: Record<string, any>;
   modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
@@ -59,10 +60,7 @@ declare module "@tiptap/core" {
 
 export const SoundCloud = Node.create<SoundCloudOptions>({
   name: "SoundCloud",
-  group: "block",
   draggable: true,
-  isolating: true,
-  atom: true,
 
   addOptions() {
     return {
@@ -77,11 +75,23 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       clear: "none",
       float: "unset",
       display: "block",
+      inline: false,
     };
+  },
+
+  inline() {
+    return this.options.inline;
+  },
+
+  group() {
+    return this.options.inline ? "inline" : "block";
   },
 
   addAttributes() {
     return {
+      keyId: {
+        default: generateShortId(),
+      },
       margin: {
         default: this.options.margin,
       },

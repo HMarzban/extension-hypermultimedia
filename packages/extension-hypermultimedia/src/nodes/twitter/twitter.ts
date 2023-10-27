@@ -5,7 +5,7 @@ import {
   loadTwitterScript,
   fetchOEmbedHtml,
 } from "./helper";
-import { createTooltip, applyStyles } from "../../utils/utils";
+import { createTooltip, applyStyles, generateShortId } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
 
 interface LayoutOptions {
@@ -17,6 +17,7 @@ interface LayoutOptions {
 }
 
 interface NodeOptions {
+  inline: boolean;
   addPasteHandler: boolean;
   HTMLAttributes: Record<string, any>;
   modal?: ((options: MediaPlacement) => HTMLElement | void | null) | null;
@@ -50,7 +51,6 @@ declare module "@tiptap/core" {
 
 export const Twitter = Node.create({
   name: "Twitter",
-  group: "block",
   draggable: true,
 
   addOptions() {
@@ -66,11 +66,23 @@ export const Twitter = Node.create({
       clear: "none",
       float: "unset",
       display: "block",
+      inline: false,
     };
+  },
+
+  inline() {
+    return this.options.inline;
+  },
+
+  group() {
+    return this.options.inline ? "inline" : "block";
   },
 
   addAttributes() {
     return {
+      keyId: {
+        default: generateShortId(),
+      },
       url: {
         default: null,
       },

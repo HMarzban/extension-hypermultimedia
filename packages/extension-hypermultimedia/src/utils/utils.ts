@@ -196,3 +196,9 @@ export const applyStyles = (dom: HTMLElement, styles: StyleAttributes): void => 
     }
   }
 };
+
+export const generateShortId = () => {
+  const randomPart = Math.random().toString(36).substr(2, 5); // 5 random characters
+  const timePart = Date.now().toString(36).slice(-5); // last 5 characters of the current time
+  return `${randomPart}-${timePart}`;
+};

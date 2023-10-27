@@ -16,7 +16,7 @@ export function buildDecorations(
     const gripper = createMediaResizeGripper(prob, editor);
     const options = {
       side: -1,
-      key: prob.imageId,
+      key: prob.keyId || 1,
     };
     return Decoration.widget(prob.from, gripper, options);
   });

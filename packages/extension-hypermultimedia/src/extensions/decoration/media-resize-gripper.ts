@@ -45,7 +45,7 @@ export function extractImageNode(nodeNames, doc) {
   doc.descendants((node, pos) => {
     if (nodeNames.includes(node.type.name)) {
       const { size: nodeSize, childCount } = node.content;
-      result.push({ from: pos, to: pos + nodeSize, nodeSize, childCount });
+      result.push({ from: pos, to: pos + nodeSize, nodeSize, childCount, keyId: node.attrs.keyId });
     }
   });
   return result;
