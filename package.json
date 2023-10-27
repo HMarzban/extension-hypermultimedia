@@ -23,6 +23,8 @@
     "server": "npx lerna run server --scope=@docs.plus/demo",
     "release:minor": "lerna version minor --no-push --no-git-tag-version",
     "release:patch": "lerna version patch --no-push --no-git-tag-version",
+    "release:patch:pre": "lerna version prepatch --no-push --no-git-tag-version",
+    "release:prerelease": "lerna version prerelease --no-push --no-git-tag-version",
     "start": "concurrently \"npx @hocuspocus/cli --sqlite\" \"yarn dev\""
   },
   "devDependencies": {
