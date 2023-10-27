@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2-alpha.1 (2023-10-27)
+
+
+### Bug Fixes
+
+* **@docs.plus/extension-hypermultimedia:** adjust iframe width & height when resize again ([ed6657c](https://github.com/HMarzban/extension-hypermedia/commit/ed6657c011001e65599d7f5baa1bc4a80709f852))
+* **@docs.plus/extension-hypermultimedia:** ensure the tippy wrapper stretches widely ([1bf84db](https://github.com/HMarzban/extension-hypermedia/commit/1bf84db78f0bd4a838ca5a6975657c35e55b856e))
+* **@docs.plus/extension-hypermultimedia:** make sure pick attrs from node attrs ([8e00479](https://github.com/HMarzban/extension-hypermedia/commit/8e004797454d8c70892f3a6c4804b50d2f9ee254))
+
+
+### Features
+
+* **@docs.plus/demo:** add hyperlink extension ([b2dc2cd](https://github.com/HMarzban/extension-hypermedia/commit/b2dc2cdd27f9db47b1351ba733620254bde7d513))
+* **@docs.plus/demo:** store changes ([18af8a1](https://github.com/HMarzban/extension-hypermedia/commit/18af8a10c300e668083f6ec37c8fd1ed29c23c1b))
+* **@docs.plus/extension-hypermultimedia:** inline or block node level ([11dd402](https://github.com/HMarzban/extension-hypermedia/commit/11dd402e86ad689d6146ffd1f9d1e156919af719))
+
+
+
+
+
+## 1.1.2-alpha.0 (2023-10-26)
+
+
+### Bug Fixes
+
+* **@docs.plus/extension-hypermultimedia:** adjust iframe width & height when resize again ([ed6657c](https://github.com/HMarzban/extension-hypermedia/commit/ed6657c011001e65599d7f5baa1bc4a80709f852))
+* **@docs.plus/extension-hypermultimedia:** ensure the tippy wrapper stretches widely ([1bf84db](https://github.com/HMarzban/extension-hypermedia/commit/1bf84db78f0bd4a838ca5a6975657c35e55b856e))
+* **@docs.plus/extension-hypermultimedia:** make sure pick attrs from node attrs ([8e00479](https://github.com/HMarzban/extension-hypermedia/commit/8e004797454d8c70892f3a6c4804b50d2f9ee254))
+
+
+### Features
+
+* **@docs.plus/demo:** add hyperlink extension ([b2dc2cd](https://github.com/HMarzban/extension-hypermedia/commit/b2dc2cdd27f9db47b1351ba733620254bde7d513))
+* **@docs.plus/demo:** store changes ([18af8a1](https://github.com/HMarzban/extension-hypermedia/commit/18af8a10c300e668083f6ec37c8fd1ed29c23c1b))
+
+
+
+
+
+## 1.1.1-alpha.0 (2023-10-26)
+
+
+### Bug Fixes
+
+* **@docs.plus/extension-hypermultimedia:** adjust iframe width & height when resize again ([ed6657c](https://github.com/HMarzban/extension-hypermedia/commit/ed6657c011001e65599d7f5baa1bc4a80709f852))
+* **@docs.plus/extension-hypermultimedia:** ensure the tippy wrapper stretches widely ([1bf84db](https://github.com/HMarzban/extension-hypermedia/commit/1bf84db78f0bd4a838ca5a6975657c35e55b856e))
+
+
+### Features
+
+* **@docs.plus/demo:** add hyperlink extension ([b2dc2cd](https://github.com/HMarzban/extension-hypermedia/commit/b2dc2cdd27f9db47b1351ba733620254bde7d513))
+
+
+
+
+
 # 1.1.0 (2023-10-26)
 
 
