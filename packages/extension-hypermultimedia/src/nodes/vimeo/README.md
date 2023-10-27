@@ -11,14 +11,29 @@ npm install @docs.plus/extension-hypermultimedia
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
+import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo,
 })
 ```
 
 ## Settings
+
+### inline
+
+Controls if the node should be handled inline or as a block.
+
+- Target: `Node`
+- Default: `false`
+
+```js
+HyperMultimediaKit.configure({
+  Vimeo: {
+    inline: true,
+  }
+})
+```
 
 ### frameborder
 
@@ -28,7 +43,7 @@ The frameborder attribute specifies whether or not to display a border around th
 - Default: `0`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     frameborder: 1,
   }
@@ -43,7 +58,7 @@ The allowfullscreen attribute specifies whether or not to display a full-screen 
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     allowfullscreen: false,
   }
@@ -58,7 +73,7 @@ Custom HTML attributes that should be added to the rendered HTML tag.
 - Default: `{}`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     HTMLAttributes: {
       class: 'my-custom-class',
@@ -94,7 +109,7 @@ The autopause attribute specifies whether or not to pause the video when another
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     autopause: false,
   }
@@ -109,7 +124,7 @@ The autoplay attribute specifies whether or not to automatically start playing t
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     autoplay: true,
   }
@@ -124,7 +139,7 @@ The background attribute specifies whether or not to display the video in the ba
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     background: true,
   }
@@ -139,7 +154,7 @@ The byline attribute specifies whether or not to display the video owner's name.
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     byline: false,
   }
@@ -154,7 +169,7 @@ The color attribute specifies the color of the video controls.
 - Default: `#00adef`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     color: '#ff0000',
   }
@@ -169,7 +184,7 @@ The controls attribute specifies whether or not to display the video controls.
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     controls: false,
   }
@@ -184,7 +199,7 @@ The dnt attribute specifies whether or not to honor the "Do Not Track" browser s
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     dnt: true,
   }
@@ -199,7 +214,7 @@ The keyboard attribute specifies whether or not to allow keyboard controls.
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     keyboard: false,
   }
@@ -214,7 +229,7 @@ The loop attribute specifies whether or not to loop the video.
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     loop: true,
   }
@@ -229,7 +244,7 @@ The muted attribute specifies whether or not to mute the video.
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     muted: true,
   }
@@ -244,7 +259,7 @@ The pip attribute specifies whether or not to display the picture-in-picture but
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     pip: false,
   }
@@ -259,7 +274,7 @@ The playsinline attribute specifies whether or not to play the video inline on m
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     playsinline: false,
   }
@@ -274,7 +289,7 @@ The portrait attribute specifies whether or not to display the video owner's por
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     portrait: false,
   }
@@ -289,7 +304,7 @@ The quality attribute specifies the default video quality.
 - Default: `auto`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     quality: '1080p',
   }
@@ -304,7 +319,7 @@ The speed attribute specifies whether or not to display the speed controls.
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     speed: false,
   }
@@ -319,7 +334,7 @@ The startTime attribute specifies the time at which the video should start playi
 - Default: `0`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     startTime: '1m30s',
   }
@@ -334,7 +349,7 @@ The texttrack attribute specifies the default language of the video's captions.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     texttrack: 'en',
   }
@@ -349,7 +364,7 @@ The title attribute specifies whether or not to display the video title.
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     title: false,
   }
@@ -364,7 +379,7 @@ The width attribute specifies the width of the video.
 - Default: `640`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     width: 1280,
   }
@@ -379,7 +394,7 @@ The height attribute specifies the height of the video.
 - Default: `360`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     height: 720,
   }
@@ -394,7 +409,7 @@ Allows pasting Vimeo URLs directly into the editor to auto-generate the embedded
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     addPasteHandler: false,
   }
@@ -409,9 +424,9 @@ A modal box that appears when you <u>**click on the video**</u>. A default modal
 - Default: `false`
 
 ```js
-import { HypermediaKit, vimeoModal } from "@docs.plus/extension-hypermultimedia";
+import { hypermultimedia, vimeoModal } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Vimeo: {
     modal: vimeoModal, // default modal
   }

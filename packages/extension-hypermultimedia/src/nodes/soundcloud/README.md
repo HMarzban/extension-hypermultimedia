@@ -11,14 +11,29 @@ npm install @docs.plus/extension-hypermultimedia
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
+import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud,
 })
 ```
 
 ## Settings
+
+### inline
+
+Controls if the node should be handled inline or as a block.
+
+- Target: `Node`
+- Default: `false`
+
+```js
+HyperMultimediaKit.configure({
+  SoundCloud: {
+    inline: true,
+  }
+})
+```
 
 ### visual
 
@@ -28,7 +43,7 @@ Switch to a video player with `true` or an audio player with `false`.
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     visual: true,
   }
@@ -43,7 +58,7 @@ Set to `true` to autoplay the track on load.
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     autoPlay: true,
   }
@@ -58,7 +73,7 @@ Toggle visibility of related tracks, comments and reposts respectively.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     showComments: false,
     showReposts: false,
@@ -74,7 +89,7 @@ Toggle visibility of related tracks.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     hideRelated: true,
   }
@@ -89,7 +104,7 @@ Set to `true` to autoplay the track on load. This attribute is used in `URLSearc
 - Default: `false`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     autoPlay: true,
   }
@@ -104,7 +119,7 @@ Toggle visibility of related tracks.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     hide_related: true,
   }
@@ -119,7 +134,7 @@ Specify the color of the embedded player. Default color is `#ff5500`.
 - Default: `#ff5500`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     color: "#ff5500",
   }
@@ -134,7 +149,7 @@ Toggle visibility of the buy button.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     buying: false,
   }
@@ -149,7 +164,7 @@ Toggle visibility of the share button.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     sharing: false,
   }
@@ -164,7 +179,7 @@ Toggle visibility of the download button.
 
 ```js
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     download: false,
   }
@@ -179,7 +194,7 @@ Toggle visibility of the artwork.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     show_artwork: false,
   }
@@ -194,7 +209,7 @@ Toggle visibility of the play count.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     show_playcount: false,
   }
@@ -209,7 +224,7 @@ Toggle visibility of the uploader name and avatar.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     show_user: false,
   }
@@ -224,7 +239,7 @@ Specify the track number to start playing from.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     start_track: 2,
   }
@@ -239,7 +254,7 @@ Toggle the single active player.
 - Default: `null`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     single_active: false,
   }
@@ -254,7 +269,7 @@ Specify the dimensions of the embedded player. Default width is `460` and height
 - Default: `460` x `130`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     width: 500,
     height: 160,
@@ -270,7 +285,7 @@ Toggle scrolling of the embedded player.
 - Default: `no`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     scrolling: "yes",
   }
@@ -285,7 +300,7 @@ Toggle the frame border of the embedded player.
 - Default: `no`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     frameborder: "yes",
   }
@@ -300,7 +315,7 @@ Toggle autoplay of the embedded player.
 - Default: `autoplay`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     allow: "autoplay",
   }
@@ -315,7 +330,7 @@ Enable the auto-embedding of SoundCloud tracks by pasting URLs directly into the
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     addPasteHandler: false,
   }
@@ -330,9 +345,9 @@ Custom HTML attributes that should be added to the rendered HTML wrapper tag.
 - Default: `{}`
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
+import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     HTMLAttributes: {
       class: 'my-custom-class',
@@ -349,9 +364,9 @@ A modal box that appears when you <u>**click on the track**</u>. A default modal
 - Default: `true`
 
 ```js
-import { HypermediaKit, soundCloudModal } from "@docs.plus/extension-hypermultimedia";
+import { hypermultimedia, soundCloudModal } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   SoundCloud: {
     modal: soundCloudModal, // default modal
   }

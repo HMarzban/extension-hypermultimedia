@@ -6,7 +6,7 @@ import { Twitter, TwitterOptions } from "./nodes/twitter/twitter";
 import { SoundCloud, SoundCloudOptions } from "./nodes/soundcloud/soundcloud";
 import { MediaResizeGripper } from "./extensions/resizeGripper";
 
-export interface HypermediaKitOptions {
+export interface HyperMultimediaKitOptions {
   Image: Partial<ImageOptions & { resizeGripper?: boolean }> | true | false;
   Youtube: Partial<YoutubeOptions & { resizeGripper?: boolean }> | true | false;
   Vimeo: Partial<VimeoOptions & { resizeGripper?: boolean }> | true | false;
@@ -21,8 +21,8 @@ type MediaExtension =
   | typeof SoundCloud
   | typeof Twitter;
 
-export const HypermediaKit = Extension.create<HypermediaKitOptions>({
-  name: "HypermediaKit",
+export const HyperMultimediaKit = Extension.create<HyperMultimediaKitOptions>({
+  name: "HyperMultimediaKit",
 
   addExtensions() {
     const extensions = [];

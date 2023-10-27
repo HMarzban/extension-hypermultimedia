@@ -13,14 +13,29 @@ npm install @docs.plus/extension-hypermultimedia
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
+import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Image,
 })
 ```
 
 ## Settings
+
+### inline
+
+Controls if the node should be handled inline or as a block.
+
+- Target: `Node`
+- Default: `false`
+
+```js
+HyperMultimediaKit.configure({
+  SoundCloud: {
+    inline: true,
+  }
+})
+```
 
 ### allowBase64
 
@@ -30,9 +45,9 @@ Allow images to be parsed as base64 strings `<img src="data:image/jpg;base64..."
 - Default: `false`
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
+import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Image: {
     allowBase64: true,
   }
@@ -47,9 +62,9 @@ A modal box that apear when you <u>**click on image**</u>. A default modal box i
 - Default: `true`
 
 ```js
-import { HypermediaKit, imageModal } from "@docs.plus/extension-hypermultimedia";
+import { hypermultimedia, imageModal } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Image: {
     modal: imageModal, // default modal
   }
@@ -66,9 +81,9 @@ a resize gripper that apear when you click on image.
 default: `true`
 
 ```js
-import { HypermediaKit, imageModal } from "@docs.plus/extension-hypermultimedia";
+import { hypermultimedia, imageModal } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Image: {
     modal: imageModal,
     resizeGripper: true,
@@ -84,9 +99,9 @@ Custom HTML attributes that should be added to the rendered HTML tag.
 - Default: `{}`
 
 ```js
-import { HypermediaKit, imageModal } from "@docs.plus/extension-hypermultimedia";
+import { hypermultimedia, imageModal } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Image: {
     HTMLAttributes: {
       class: 'my-custom-class',

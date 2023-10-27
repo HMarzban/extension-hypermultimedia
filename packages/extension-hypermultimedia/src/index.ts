@@ -1,6 +1,6 @@
 export * from "./utils/media-placement";
 
-export * from "./hypermediaKit";
+export * from "./hyperMultimediaKit";
 
 export * from "./modals/image";
 
@@ -8,7 +8,7 @@ export * from "./modals/youtube";
 
 export * from "./modals/twitter";
 
-import { HypermediaKit } from "./hypermediaKit";
+import { HyperMultimediaKit } from "./hyperMultimediaKit";
 
 import { imageModal } from "./modals/image";
 
@@ -21,7 +21,7 @@ export const vimeoModal = youtubeModal;
 export const soundCloudModal = youtubeModal;
 
 export default {
-  HypermediaKit,
+  HyperMultimediaKit,
   imageModal,
   youtubeModal,
   twitterModal,

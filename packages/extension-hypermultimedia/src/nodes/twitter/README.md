@@ -11,14 +11,29 @@ npm install @docs.plus/extension-hypermultimedia
 Then, import the extension into your editor:
 
 ```js
-import { HypermediaKit } from "@docs.plus/extension-hypermultimedia";
+import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter,
 })
 ```
 
 ## Settings
+
+### inline
+
+Controls if the node should be handled inline or as a block.
+
+- Target: `Node`
+- Default: `false`
+
+```js
+HyperMultimediaKit.configure({
+  Twitter: {
+    inline: true,
+  }
+})
+```
 
 ### addPasteHandler
 
@@ -28,7 +43,7 @@ Enable the auto-embedding of tweets by pasting Twitter URLs directly into the ed
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     addPasteHandler: false,
   }
@@ -43,7 +58,7 @@ Define the theme of the embedded tweet, either light or dark.
 - Default: `light`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     theme: 'dark',
   }
@@ -58,7 +73,7 @@ Enable the data tracking parameter.
 - Default: `true`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     dnt: false,
   }
@@ -73,7 +88,7 @@ Specify the language of the embedded tweet, e.g., `'en'` for English.
 - Default: `'en'`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     lang: 'fr',
   }
@@ -88,7 +103,7 @@ Define the width of the embedded tweet.
 - Default: `450`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     width: 550,
   }
@@ -103,7 +118,7 @@ Define the height of the embedded tweet.
 - Default: `120`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     height: 600,
   }
@@ -118,7 +133,7 @@ Define the maximum number of tweets to display.
 - Default: `20`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     limit: 10,
   }
@@ -133,7 +148,7 @@ Define the maximum width of the embedded tweet.
 - Default: `550`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     maxwidth: 600,
   }
@@ -148,7 +163,7 @@ Define the maximum height of the embedded tweet.
 - Default: `600`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     maxheight: 650,
   }
@@ -163,7 +178,7 @@ Define the chrome of the embedded tweet.
 - Default: `noheader nofooter noborders noscrollbar transparent`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     chrome: 'noheader nofooter noborders noscrollbar transparent',
   }
@@ -178,7 +193,7 @@ Define the ARIA live region politeness value for tweets added to a timeline.
 - Default: `polite`
 
 ```js
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     aria_polite: 'assertive',
   }
@@ -193,9 +208,9 @@ A modal box that appears when you <u>**click on the tweet**</u>. A default modal
 - Default: `false`
 
 ```js
-import { HypermediaKit, twitterModal } from "@docs.plus/extension-hypermultimedia";
+import { hypermultimedia, twitterModal } from "@docs.plus/extension-hypermultimedia";
 
-HypermediaKit.configure({
+HyperMultimediaKit.configure({
   Twitter: {
     modal: twitterModal, // default modal
   }
