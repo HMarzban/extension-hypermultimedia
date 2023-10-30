@@ -362,7 +362,7 @@ editor.commands.setYoutubeVideo({
 
 |Option          |Description                                                               |Default    |Optional |
 |---             |---                                                                       |---        |---      |
-|url             |The URL of the youtube                                                    |`null`     |         |
+|src             |The URL of the youtube, (Iframe Source Attribute)                         |`null`     |         |
 |width           |The embed width (overrides the default option, optional)                  |`450`      |✅       |
 |height          |The embed height (overrides the default option, optional)                 |`120`      |✅       |
 |float           |The CSS style `float` (overrides the default option, optional)            |`unset`    |✅       |

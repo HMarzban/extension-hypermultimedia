@@ -47,7 +47,7 @@ export interface SoundCloudOptions extends LayoutOptions, NodeOptions {
 }
 
 type SetSoundCloudOptions = {
-  url: string;
+  src: string;
 } & LayoutOptions;
 
 declare module "@tiptap/core" {
@@ -122,7 +122,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       height: {
         default: this.options.height,
       },
-      url: null,
+      src: null,
       autoPlay: null,
       hideRelated: null,
       showComments: null,
@@ -173,7 +173,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       }
 
       const soundCloudAttrs = {
-        url: node.attrs.url,
+        url: node.attrs.src,
         auto_play: node.attrs.auto_play,
         hide_related: node.attrs.hide_related,
         visual: node.attrs.visual,
@@ -282,7 +282,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
       setSoundCloud:
         (options) =>
         ({ commands }) => {
-          if (!isValidSoundCloudUrl(options.url)) return false;
+          if (!isValidSoundCloudUrl(options.src)) return false;
 
           return commands.insertContent({
             type: this.name,
@@ -300,7 +300,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
         find: SOUNDCLOUD_URL_REGEX_GLOBAL,
         type: this.type,
         getAttributes: (match) => {
-          return { url: match.input };
+          return { src: match.input };
         },
       }),
     ];

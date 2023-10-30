@@ -227,11 +227,11 @@ Embed a Twitter tweet into the current node.
 
 ```js
 editor.commands.setTwitter({
-  url: 'https://twitter.com/username/status/1234567890'
+  src: 'https://twitter.com/username/status/1234567890'
 });
 
 editor.commands.setTwitter({
-  url: 'https://twitter.com/username/status/1234567890',
+  src: 'https://twitter.com/username/status/1234567890',
   theme: 'dark',
   width: '550px',
   height: '600px',
@@ -246,7 +246,7 @@ editor.commands.setTwitter({
 
 |Option          |Description                                                               |Default    |Optional |
 |---             |---                                                                       |---        |---      |
-|url             |The URL of the twitter                                                    |`null`     |         |
+|src             |The URL of the youtube, (Iframe Source Attribute)                         |`null`     |         |
 |width           |The embed width (overrides the default option, optional)                  |`450`      |✅       |
 |height          |The embed height (overrides the default option, optional)                 |`120`      |✅       |
 |float           |The CSS style `float` (overrides the default option, optional)            |`unset`    |✅       |

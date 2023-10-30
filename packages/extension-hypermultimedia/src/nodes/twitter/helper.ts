@@ -18,7 +18,7 @@ export const getTwitterIdFromUrl = (url: string): string => {
   return id;
 };
 export interface GetTwitterEmbedUrlOptions {
-  url: string;
+  src: string;
   id?: string; // Tweet ID
   theme?: "light" | "dark"; // Theme of the embedded Tweet
   width?: number | string; // Width of the embedded Tweet, e.g., 550 or '550px'
@@ -33,9 +33,9 @@ export interface GetTwitterEmbedUrlOptions {
 }
 
 export const getTwitterEmbedUrl = (options: GetTwitterEmbedUrlOptions): string => {
-  const { url, ...otherOptions } = options;
+  const { src, ...otherOptions } = options;
 
-  const tweetId = getTwitterIdFromUrl(url);
+  const tweetId = getTwitterIdFromUrl(src);
   const newUrl = new URL(`https://platform.twitter.com/embed/Tweet.html`);
 
   // Special handling for the tweet id which is derived from the url

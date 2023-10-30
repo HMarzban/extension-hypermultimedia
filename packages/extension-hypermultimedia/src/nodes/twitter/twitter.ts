@@ -38,7 +38,7 @@ export interface TwitterOptions extends LayoutOptions, NodeOptions {
 }
 
 type AddTwitterOptions = {
-  url: string;
+  src: string;
 } & LayoutOptions;
 
 declare module "@tiptap/core" {
@@ -83,7 +83,7 @@ export const Twitter = Node.create({
       keyId: {
         default: generateShortId(),
       },
-      url: {
+      src: {
         default: null,
       },
       theme: {
@@ -142,7 +142,7 @@ export const Twitter = Node.create({
           if (typeof node === "string") return {};
 
           return {
-            url: (node as HTMLElement).querySelector("a")?.getAttribute("href"),
+            src: (node as HTMLElement).querySelector("a")?.getAttribute("href"),
           };
         },
       },
@@ -150,7 +150,7 @@ export const Twitter = Node.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    const url = HTMLAttributes.url;
+    const url = HTMLAttributes.src;
 
     return [
       "blockquote",
@@ -160,21 +160,6 @@ export const Twitter = Node.create({
       },
       ["a", { href: url }, url],
     ];
-  },
-
-  addCommands() {
-    return {
-      setTwitter:
-        (options) =>
-        ({ commands }) => {
-          if (!isValidTwitterUrl(options.url)) return false;
-
-          return commands.insertContent({
-            type: this.name,
-            attrs: options,
-          });
-        },
-    };
   },
 
   addNodeView() {
@@ -226,7 +211,7 @@ export const Twitter = Node.create({
       }
 
       const params = {
-        url: this.options.url,
+        url: node.attrs.src,
         theme: this.options.theme,
         width: this.options.width,
         height: this.options.height,
@@ -274,6 +259,21 @@ export const Twitter = Node.create({
     };
   },
 
+  addCommands() {
+    return {
+      setTwitter:
+        (options) =>
+        ({ commands }) => {
+          if (!isValidTwitterUrl(options.src)) return false;
+
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          });
+        },
+    };
+  },
+
   addPasteRules() {
     if (!this.options.addPasteHandler) return [];
 
@@ -282,7 +282,7 @@ export const Twitter = Node.create({
         find: TWITTER_URL_REGEX_GLOBAL,
         type: this.type,
         getAttributes: (match) => {
-          return { url: match.input };
+          return { src: match.input };
         },
       }),
     ];
