@@ -1,4 +1,8 @@
-# Extension-HyperMultimedia Documentation
+# HyperMultimedia
+
+[![Version](https://img.shields.io/npm/v/@docs.plus/extension-hypermultimedia.svg?label=version)](https://www.npmjs.com/package/@docs.plus/extension-hypermultimedia)
+[![Downloads](https://img.shields.io/npm/dm/@docs.plus/extension-hypermultimedia.svg)](https://npmcharts.com/compare/@docs.plus/extension-hypermultimedia)
+[![License](https://img.shields.io/npm/l/@docs.plus/extension-hypermultimedia.svg)](https://www.npmjs.com/package/@docs.plus/extension-hypermultimedia)
 
 `extension-hypermultimedia` is a powerful extension for the TipTap editor, enabling the embedding of various types of multimedia and posts directly within the editor. Below is a list of supported media types:
 
