@@ -1,13 +1,13 @@
 {
   "name": "@docs.plus/extension-hypermultimedia",
-  "description": "Insert multimedia components for docs.plus",
-  "version": "1.1.2-alpha.1",
+  "description": "Insert embeded multimedia components for docs.plus",
+  "version": "1.1.2-alpha.4",
   "author": "Hossein Marzban",
-  "homepage": "https://github.com/HMarzban/extension-hyperMultimedia",
+  "homepage": "https://github.com/docs-plus/docs.plus",
   "repository": {
     "type": "git",
-    "url": "https://github.com/docs-plus/docs.plus",
-    "directory": "packages/extension-hyperMultimedia"
+    "url": " https://github.com/HMarzban/extension-hypermultimedia",
+    "directory": "packages/extension-hypermultimedia"
   },
   "keywords": [
     "tiptap",
