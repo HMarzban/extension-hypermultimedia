@@ -39,40 +39,79 @@ HyperMultimediaKit.configure({
 });
 ```
 
-## API Reference
+## Commands
 
-### Commands
+### Youtube
 
-Explain any commands provided by your extension.
-
-... detailed commands documentation ...
-
-## Examples
-
-```javascript
+```js
 editor.commands.setYoutubeVideo({
   src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
   width: 560,
   height: 315,
 });
+```
 
+> For more details, check out [the Youtube document](./src/nodes/youtube/).
+
+### Vimeo
+
+```js
 editor.commands.setVimeo({
   src: 'https://vimeo.com/123456789'
 })
+```
 
+> For more details, check out [the Vimeo document](./src/nodes/vimeo/).
+
+### Twitter
+
+```js
 editor.commands.setTwitter({
-  url: 'https://twitter.com/username/status/1234567890'
+  src: 'https://twitter.com/tim_cook/status/1719021344854069441'
   float: "left",
 });
+```
 
+> For more details, check out [the Twitter document](./src/nodes/twitter/).
+
+### SoundCloud
+
+```js
 editor.commands.setSoundCloud({
-  url: 'https://soundcloud.com/artist/track'
+  src: 'https://soundcloud.com/artist/track'
   margin: "0.2in"
 });
+```
 
+> For more details, check out [the SoundCloud document](./src/nodes/soundcloud/).
+
+### Image
+
+```js
 editor.commands.setImage({
   src: 'https://example.com/foobar.png',
   alt: 'A boring example image',
   title: 'An example'
 })
 ```
+
+> For more details, check out [the Image document](./src/nodes/image/).
+
+## Sorce code and Example
+
+- Demo: [extension-hypermultimedia](https://github.com/HMarzban/extension-hypermultimedia)
+- Extension: [packages/extension-hypermultimedia](https://github.com/HMarzban/extension-hypermultimedia/tree/main/packages/extension-hypermultimedia)
+- Usage: [packages/nextjs/src/components/Tiptap.tsx](https://github.com/HMarzban/extension-hypermultimedia/blob/main/packages/nextjs/src/components/Tiptap.tsx)
+
+## Inspiration and Acknowledgment, Let's Connect
+
+Thank you for exploring our `HyperMultimedia`` extension from docs.plus! We aim to make collaboration and knowledge sharing not just easy, but also enjoyable.
+
+Our extension is inspired by Tiptap's [extension-image](https://tiptap.dev/api/nodes/image) and [extension-youtube](https://tiptap.dev/api/nodes/youtube). While we've incorporated our own enhancements, we'd like to tip our hats to Tiptap for pioneering the "headless" approach that we admire greatly.
+
+Please note: We're not affiliated with Tiptap, but we believe in recognizing foundational work.
+
+Your feedback and interest in [docs.plus](https://github.com/docs-plus/docs.plus) are invaluable to us. Share your thoughts, suggestions, or dive deeper into our mission at the docs.plus repository.
+
+Wish to converse?
+Connect with us [here](https://github.com/docs-plus/docs.plus#-connect-with-us).
