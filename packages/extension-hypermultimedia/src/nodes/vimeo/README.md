@@ -433,7 +433,7 @@ HyperMultimediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/youtube.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](../../modals/youtube.ts) for more details.
 
 ## Commands
 
@@ -472,4 +472,4 @@ editor.commands.setVimeo({
 
 ## Source code
 
-[packages/extension-hyperMultimedia/vimeo](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/vimeo/vimeo.ts)
+[packages/extension-hyperMultimedia/vimeo](./vimeo.ts)

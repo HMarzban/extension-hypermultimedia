@@ -373,7 +373,7 @@ HyperMultimediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/youtube.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](../../modals/youtube.ts) for more details.
 
 ## Commands
 
@@ -414,4 +414,4 @@ editor.commands.setSoundCloud({
 
 ## Source Code
 
-[packages/extension-hyperMultimedia/soundcloud](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/soundcloud/soundCloud.ts)
+[packages/extension-hyperMultimedia/soundcloud](./soundCloud.ts)

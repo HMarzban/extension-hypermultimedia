@@ -217,7 +217,7 @@ HyperMultimediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/twitter.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](../../modals/twitter.ts) for more details.
 
 ## Commands
 
@@ -257,4 +257,4 @@ editor.commands.setTwitter({
 
 ## Source code
 
-[packages/extension-hyperMultimedia/twitter](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/twitter/twitter.ts)
+[packages/extension-hyperMultimedia/twitter](./twitter.ts)

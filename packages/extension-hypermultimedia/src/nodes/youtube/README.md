@@ -113,7 +113,7 @@ HyperMultimediaKit.configure({
 })
 ```
 
-> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/modals/youtube.ts) for more details.
+> To implement your own modal box, examine the default modal box and replicate the same methods. You can refer to the [source code](../../modals/youtube.ts) for more details.
 
 ### resizeGripper
 
@@ -373,4 +373,4 @@ editor.commands.setYoutubeVideo({
 
 ## Source code
 
-[packages/extension-hyperMultimedia/youtube]((https://github.com/HMarzban/extension-hyperMultimedia/tree/main/packages/extension-hyperMultimedia/src/nodes/youtube/youtube.ts))
+[packages/extension-hyperMultimedia/youtube](./youtube.ts)
