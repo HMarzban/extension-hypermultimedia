@@ -8,7 +8,7 @@ import editorContents from "./editorContents";
 import { HocuspocusProvider } from "@hocuspocus/provider";
 import MenuBar from "./MenuBar";
 import {
-  HypermediaKit,
+  HyperMultimediaKit,
   imageModal,
   youtubeModal,
   vimeoModal,
@@ -31,11 +31,6 @@ const provider = new HocuspocusProvider({
   name: "example-document",
 });
 
-console.log("provider", provider);
-
-// make sure import this arrow.css
-import "tippy.js/dist/svg-arrow.css";
-
 const Tiptap = () => {
   const editor = useEditor({
     extensions: [
@@ -49,21 +44,27 @@ const Tiptap = () => {
           setHyperlink: setHyperlinkModal,
         },
       }),
-      HypermediaKit.configure({
+      HyperMultimediaKit.configure({
         Image: {
           modal: imageModal,
+          inline: true,
         },
         Youtube: {
           modal: youtubeModal,
+          inline: true,
         },
         Vimeo: {
           modal: vimeoModal,
+          inline: true,
         },
         SoundCloud: {
           modal: soundCloudModal,
+          inline: true,
         },
         Twitter: {
           modal: twitterModal,
+          inline: true,
+          theme: "dark",
         },
       }),
 

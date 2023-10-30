@@ -3,65 +3,56 @@ import { useCallback } from "react";
 
 const MenuBar: React.FC<{ editor: TiptapEditor | null }> = ({ editor }) => {
   const addImage = useCallback(() => {
-    if (!editor) {
-      return null;
-    }
+    const url = window.prompt("Enter Image URL");
+    if (!url || !editor) return;
 
-    const url = window.prompt("URL");
+    editor.chain().focus().setImage({ src: url }).run();
+  }, [editor]);
 
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
+  const addYoutubeVideo = useCallback(() => {
+    const url = prompt("Enter YouTube URL");
+    if (!url || !editor) return;
+
+    editor.commands.setYoutubeVideo({
+      src: url,
+      width: 640,
+      height: 480,
+    });
+  }, [editor]);
+
+  const addVimeoVideo = useCallback(() => {
+    const url = prompt("Enter Vimeo URL");
+    if (!url || !editor) return;
+
+    editor.commands.setVimeo({
+      src: url,
+      width: 640,
+      height: 480,
+    });
+  }, [editor]);
+
+  const addTwitterVideo = useCallback(() => {
+    const url = prompt("Enter Twitter URL");
+    if (!url || !editor) return;
+
+    editor.commands.setTwitter({
+      src: url,
+    });
+  }, [editor]);
+
+  const setSoundCloud = useCallback(() => {
+    const url = prompt("Enter SoundCloud URL");
+    if (!url || !editor) return;
+
+    editor.commands.setSoundCloud({
+      src: url,
+    });
   }, [editor]);
 
   if (!editor) return null;
 
-  const addYoutubeVideo = () => {
-    const url = prompt("Enter YouTube URL");
-
-    if (url) {
-      editor.commands.setYoutubeVideo({
-        src: url,
-        width: 640,
-        height: 480,
-      });
-    }
-  };
-
-  const addVimeoVideo = () => {
-    const url = prompt("Enter Vimeo URL");
-
-    if (url) {
-      editor.commands.setVimeo({
-        src: url,
-        width: 640,
-        height: 480,
-      });
-    }
-  };
-
-  const addTwitterVideo = () => {
-    const url = prompt("Enter Twitter URL");
-
-    if (url) {
-      editor.commands.addTwitter({
-        url: url,
-      });
-    }
-  };
-
-  const addSoundCloud = () => {
-    const url = prompt("Enter SoundCloud URL");
-
-    if (url) {
-      editor.commands.addSoundCloud({
-        url: url,
-      });
-    }
-  };
-
   return (
-    <div className="menuBar flex flex-row flex-wrap justify-between">
+    <div className="menuBar flex flex-row flex-wrap justify-start">
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
@@ -211,25 +202,30 @@ const MenuBar: React.FC<{ editor: TiptapEditor | null }> = ({ editor }) => {
 
       <div className="divided"></div>
 
-      <button onClick={addImage}>Set Image</button>
+      <button onClick={addImage}>Insert Image</button>
 
       <div className="divided"></div>
-      <button onClick={addYoutubeVideo}>Add Youtube Video</button>
+      <button onClick={addYoutubeVideo}>Insert YouTube Video</button>
       <div className="divided"></div>
 
-      <button onClick={addVimeoVideo}>Add Viemo Video</button>
+      <button onClick={addVimeoVideo}>Insert Vimeo Video</button>
+
       <div className="divided"></div>
 
-      <button onClick={addTwitterVideo}>Add Twitter</button>
+      <button onClick={addTwitterVideo}>Insert Twitter</button>
+
       <div className="divided"></div>
-      <button onClick={addSoundCloud}>Add SoundCloud</button>
+
+      <button onClick={setSoundCloud}>Insert SoundCloud Track</button>
+
       <div className="divided"></div>
-      <button onClick={() => editor.chain().focus().setHyperlink()}>set hyperlink</button>
+
+      <button onClick={() => editor.chain().focus().setHyperlink()}>Insert Hyperlink</button>
       <button
         onClick={() => editor.chain().focus().unsetHyperlink().run()}
         disabled={!editor.isActive("hyperlink")}
       >
-        unsetHyperlink
+        Remove Hyperlink
       </button>
     </div>
   );
