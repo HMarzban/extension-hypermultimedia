@@ -236,9 +236,10 @@ HyperMultimediaKit.configure({
 
 OR you can create your own modal for each media type. To do so, you must pass a function.
 
-```javascript
-import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
+<details>
+<summary>Custom TwitterModal</summary>
 
+```js
 const twitterModal = (options) => {
  const { editor, tooltip, tippyModal, iframe, wrapper } = options;
   const nodePos = editor.view.posAtDOM(wrapper, 0);
@@ -285,6 +286,12 @@ const twitterModal = (options) => {
   // then display the modal.
   tooltip.update(editor.view, { placement: "bottom-start" }, iframe);
 }
+```
+
+</details>
+
+```javascript
+import { HyperMultimediaKit } from "@docs.plus/extension-hypermultimedia";
 
 Editor = new Editor({
   // Other configurations
@@ -299,7 +306,7 @@ Editor = new Editor({
 });
 ```
 
-> For more details, check out [the modal document](./src/modals/twitter).
+> For more details, check out [the modal document](./src/modals/twitter.ts).
 
 ## Commands
 
