@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.1.2-alpha.5 (2023-10-31)
+
+
+### Features
+
+* **@docs.plus/demo:** add hyperlink extension ([b2dc2cd](https://github.com/HMarzban/extension-hypermedia/commit/b2dc2cdd27f9db47b1351ba733620254bde7d513))
+* **@docs.plus/demo:** store changes ([18af8a1](https://github.com/HMarzban/extension-hypermedia/commit/18af8a10c300e668083f6ec37c8fd1ed29c23c1b))
+
+
+
+
+
 ## 1.1.2-alpha.4 (2023-10-30)
 
 
