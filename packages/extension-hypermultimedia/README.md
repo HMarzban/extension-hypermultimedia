@@ -368,9 +368,9 @@ editor.commands.setImage({
 
 ## Sorce code and Example
 
-- Demo: [extension-hypermultimedia](https://github.com/HMarzban/extension-hypermultimedia)
+- Demo: [extension-hypermultimedia](https://github.com/HMarzban/extension-hypermultimedia#demo-time-)
 - Extension: [packages/extension-hypermultimedia](https://github.com/HMarzban/extension-hypermultimedia/tree/main/packages/extension-hypermultimedia)
-- Usage: [packages/nextjs/src/components/Tiptap.tsx](https://github.com/HMarzban/extension-hypermultimedia/blob/main/packages/nextjs/src/components/Tiptap.tsx)
+- Usage: [packages/nextjs/src/components/Tiptap.tsx](https://github.com/HMarzban/extension-hypermultimedia/blob/main/packages/nextjs/src/components/Tiptap.tsx#L47)
 
 ## Inspiration and Acknowledgment, Let's Connect
 
