@@ -143,7 +143,7 @@ export const highlightButton = (
   display: string,
   buttons: { [key: string]: HTMLElement }
 ) => {
-  const activeClass = "media-resize-gripper__tooltip--active";
+  const activeClass = "hypermultimedia__modal--active";
   const { btnSquareLeft, btnSquareRight, buttonInline, btnSquareCenter } = buttons;
 
   [btnSquareLeft, btnSquareRight, buttonInline, btnSquareCenter].forEach((btn) =>

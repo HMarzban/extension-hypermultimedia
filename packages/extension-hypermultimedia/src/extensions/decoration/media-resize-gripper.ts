@@ -53,7 +53,7 @@ export function extractImageNode(nodeNames, doc) {
 
 export const createMediaResizeGripper = (prob, editor) => {
   const gripper = document.createElement("div");
-  gripper.classList.add("media-resize-gripper");
+  gripper.classList.add("hypermultimedia__resize-gripper");
 
   const clamps = createClamps();
   gripper.append(/*clamps.rotate,*/ ...clamps.sides, ...Object.values(clamps.corners));

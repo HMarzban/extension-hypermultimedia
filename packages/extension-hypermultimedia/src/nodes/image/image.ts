@@ -119,6 +119,7 @@ export const Image = Node.create<ImageOptions>({
       "img",
       mergeAttributes(this.options.HTMLAttributes, {
         ...HTMLAttributes,
+        class: "hypermultimedia--image__content",
         style: ` height:${height}px; width: ${width}px; float: ${float}; clear: ${clear}; margin: ${margin}`,
       }),
     ];

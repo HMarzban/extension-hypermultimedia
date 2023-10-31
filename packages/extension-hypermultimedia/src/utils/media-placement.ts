@@ -30,7 +30,7 @@ export const mediaPlacement = (options: MediaPlacement): void => {
 
   clearChildNodes(tippyModal);
 
-  const div = createElement("div", "media-resize-gripper__tooltip");
+  const div = createElement("div", "hypermultimedia__modal");
   const [buttonInline, btnSquareLeft, btnSquareCenter, btnSquareRight] = buttonTypes.map((type) => {
     return createElement("button", "", Icons[type]());
   });
@@ -53,7 +53,7 @@ export const mediaPlacement = (options: MediaPlacement): void => {
     btnSquareCenter,
   });
 
-  const marginDivider = createElement("div", "media-resize-gripper__tooltip__divider");
+  const marginDivider = createElement("div", "hypermultimedia__modal__divider");
 
   const selectMargin = createMarginSelection(nodePos, wrapper, tooltip, editor, mediaMargin);
 

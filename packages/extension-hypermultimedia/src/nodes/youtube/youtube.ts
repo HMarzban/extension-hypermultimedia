@@ -142,7 +142,7 @@ export const Youtube = Node.create<YoutubeOptions>({
 
       dom.contentEditable = "false";
 
-      dom.classList.add("youtube-video__content");
+      dom.classList.add("hypermultimedia--youtube__content");
 
       const styles = {
         display: node.attrs.display,
@@ -241,9 +241,7 @@ export const Youtube = Node.create<YoutubeOptions>({
       setYoutubeVideo:
         (options: SetYoutubeVideoOptions) =>
         ({ commands }) => {
-          if (!isValidYoutubeUrl(options.src)) {
-            return false;
-          }
+          if (!isValidYoutubeUrl(options.src)) return false;
 
           return commands.insertContent({
             type: this.name,

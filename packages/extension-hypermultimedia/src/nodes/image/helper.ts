@@ -29,7 +29,7 @@ export const imageClickHandler = (
     mediaResizeGripper.style.height = `${img.height}px`;
     mediaResizeGripper.style.left = `${img.offsetLeft}px`;
     mediaResizeGripper.style.top = `${img.offsetTop}px`;
-    mediaResizeGripper.classList.add("media-resize-gripper--active");
+    mediaResizeGripper.classList.add("hypermultimedia__resize-gripper--active");
 
     const handleClickOutside = (e: MouseEvent) => {
       if (e.target !== img) {
@@ -37,7 +37,7 @@ export const imageClickHandler = (
       }
     };
     const removeResizeBorderAndListener = () => {
-      mediaResizeGripper.classList.remove("media-resize-gripper--active");
+      mediaResizeGripper.classList.remove("hypermultimedia__resize-gripper--active");
 
       document.removeEventListener("click", handleClickOutside);
     };

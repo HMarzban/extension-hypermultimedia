@@ -167,7 +167,7 @@ export const Twitter = Node.create({
       const modal = this.options.modal;
 
       const wrapper = document.createElement("div");
-      wrapper.classList.add("twitter-card__content");
+      wrapper.classList.add("hypermultimedia--twitter__content");
 
       const { tooltip, tippyModal } = createTooltip(editor);
 

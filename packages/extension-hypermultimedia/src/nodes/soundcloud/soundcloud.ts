@@ -154,7 +154,7 @@ export const SoundCloud = Node.create<SoundCloudOptions>({
 
       const { tooltip, tippyModal } = createTooltip(editor);
 
-      dom.classList.add("sound-cloud__content");
+      dom.classList.add("hypermultimedia--soundcloud__content");
 
       const styles = {
         display: node.attrs.display,

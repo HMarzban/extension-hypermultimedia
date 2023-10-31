@@ -12,9 +12,9 @@ export const youtubeModal = ({
   const doesMediaResizeGripperExist = wrapper.previousSibling as HTMLElement;
 
   const btnResize = createElement("button", "", Icons["Resize"]());
-  btnResize.classList.add("media-resize-gripper__tooltip__btn--resize");
+  btnResize.classList.add("hypermultimedia__modal__btn--resize");
 
-  const dvided = createElement("div", "media-resize-gripper__tooltip__divider");
+  const dvided = createElement("div", "hypermultimedia__modal__divider");
 
   let documentClickListener: ((event: Event) => void) | null = null;
 
@@ -39,7 +39,7 @@ export const youtubeModal = ({
           !mediaResizeGripper.contains(event.target as Node) &&
           event.target !== mediaResizeGripper
         ) {
-          mediaResizeGripper?.classList?.remove("media-resize-gripper--active");
+          mediaResizeGripper?.classList?.remove("hypermultimedia__resize-gripper--active");
           // Remove the document click listener once it's done its job
           document.removeEventListener("click", documentClickListener);
           documentClickListener = null;
@@ -64,7 +64,7 @@ export const youtubeModal = ({
     mediaResizeGripper.style.left = `${iframe.offsetLeft}px`;
     mediaResizeGripper.style.top = `${iframe.offsetTop}px`;
 
-    mediaResizeGripper.classList.toggle("media-resize-gripper--active");
+    mediaResizeGripper.classList.toggle("hypermultimedia__resize-gripper--active");
 
     toggleDocumentClickListener();
 

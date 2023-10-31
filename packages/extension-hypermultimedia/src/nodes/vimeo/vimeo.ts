@@ -149,7 +149,7 @@ export const Vimeo = Node.create<VimeoOptions>({
       const content = document.createElement("div");
       const iframe = document.createElement("iframe");
 
-      dom.classList.add("vimeo-video__content");
+      dom.classList.add("hypermultimedia--vimeo__content");
 
       const styles = {
         display: node.attrs.display,
