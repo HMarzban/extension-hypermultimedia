@@ -254,7 +254,11 @@ yarn start
 
 Now, you can explore all that our <u>HyperMultimedia extension</u> has to offer in a real-life setting. Enjoy the ride!
 
-### Gif Time! 🎉
+### Demo Time! 🎉
+
+
+https://github.com/HMarzban/extension-hypermultimedia/assets/20157508/360ed068-57df-472c-bb72-4a80818a4a8f
+
 
 ## What's Next? 🚀
 
