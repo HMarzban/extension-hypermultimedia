@@ -222,7 +222,7 @@ editor = new Editor({
 });
 ```
 
-> You can find more detailed and deep dive in setup instructions [here]('./packages/extension-hypermultimedia').
+> You can find more detailed and deep dive in setup instructions [here](./packages/extension-hypermultimedia).
 
 ## Test Drive With Our Demo 🚗
 
@@ -256,9 +256,7 @@ Now, you can explore all that our <u>HyperMultimedia extension</u> has to offer 
 
 ### Demo Time! 🎉
 
-
-https://github.com/HMarzban/extension-hypermultimedia/assets/20157508/360ed068-57df-472c-bb72-4a80818a4a8f
-
+<https://github.com/HMarzban/extension-hypermultimedia/assets/20157508/360ed068-57df-472c-bb72-4a80818a4a8f>
 
 ## What's Next? 🚀
 
