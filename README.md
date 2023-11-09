@@ -216,6 +216,7 @@ editor = new Editor({
     // Other extensions
     HyperMultimediaKit:{
       Image: false,
+      Audio: true,
       SoundCloud: false
     },
   ]
