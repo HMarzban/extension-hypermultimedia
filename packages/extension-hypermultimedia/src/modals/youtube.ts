@@ -2,13 +2,7 @@ import * as Icons from "../utils/icons";
 import { createElement } from "../utils/utils";
 import { mediaPlacement, MediaPlacement } from "../utils/media-placement";
 
-export const youtubeModal = ({
-  editor,
-  tooltip,
-  tippyModal,
-  iframe,
-  wrapper,
-}: MediaPlacement): void => {
+export const youtubeModal = ({ editor, tooltip, tippyModal, iframe, wrapper }: any): void => {
   const doesMediaResizeGripperExist = wrapper.previousSibling as HTMLElement;
 
   const btnResize = createElement("button", "", Icons["Resize"]());
@@ -57,9 +51,9 @@ export const youtubeModal = ({
     // hate typescripte 🤬
     // if ("width" in iframe) {
     // @ts-ignore
-    mediaResizeGripper.style.width = `${iframe.width}px`;
+    mediaResizeGripper.style.width = `${iframe.width || iframe.clientWidth}px`;
     // @ts-ignore
-    mediaResizeGripper.style.height = `${iframe.height}px`;
+    mediaResizeGripper.style.height = `${iframe.height || iframe.clientHeight}px`;
     // }
     mediaResizeGripper.style.left = `${iframe.offsetLeft}px`;
     mediaResizeGripper.style.top = `${iframe.offsetTop}px`;

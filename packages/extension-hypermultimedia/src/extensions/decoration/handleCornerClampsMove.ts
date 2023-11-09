@@ -90,9 +90,6 @@ export default (clamp, corner, gripper, editor, prob) => {
     const { tr } = state;
 
     if (currentNodePos) {
-      tr.setNodeAttribute(currentNodePos, "width", finalWidth);
-      tr.setNodeAttribute(currentNodePos, "height", finalHeight);
-
       const domAtPos = editor.view.nodeDOM(currentNodePos);
 
       domAtPos.style.width = `${finalWidth}px`;
