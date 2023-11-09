@@ -8,13 +8,15 @@ HyperMultimedia is a powerful extension for the TipTap editor, enabling the embe
 
 Below is a list of supported media types:
 
-| Media Type  | Description                                    | Documentation                    |
-|-------------|------------------------------------------------|---------------------------------------|
-| `Images`      | Embed images within the editor.                | [More details](./src/nodes/image/)    |
-| `YouTube`     | Embed YouTube videos within the editor.        | [More details](./src/nodes/youtube/)  |
-| `Vimeo`       | Embed Vimeo videos within the editor.          | [More details](./src/nodes/vimeo/)    |
-| `SoundCloud`  | Embed SoundCloud audio within the editor.      | [More details](./src/nodes/soundcloud/)|
-| `Twitter`     | Embed Twitter posts within the editor.         | [More details](./src/nodes/twitter/)  |
+| Media Type  | Description                                       | Documentation                           |
+|-------------|---------------------------------------------------|-----------------------------------------|
+| `Images`      | Embed images within the editor.                 | [More details](./src/nodes/image/)      |
+| `Audio`      | Embed Audio within the editor.                   | [More details](./src/nodes/audio/)      |
+| `Video`      | Embed Video within the editor.                   | [More details](./src/nodes/video/)      |
+| `YouTube`     | Embed YouTube videos within the editor.         | [More details](./src/nodes/youtube/)    |
+| `Vimeo`       | Embed Vimeo videos within the editor.           | [More details](./src/nodes/vimeo/)      |
+| `SoundCloud`  | Embed SoundCloud audio within the editor.       | [More details](./src/nodes/soundcloud/) |
+| `Twitter`     | Embed Twitter posts within the editor.          | [More details](./src/nodes/twitter/)    |
 
 > Missing a media type? Let us know. 📬
 
@@ -365,6 +367,26 @@ editor.commands.setImage({
 ```
 
 > For more details, check out [the Image document](./src/nodes/image/).
+
+### Video
+
+```js
+editor.commands.setVideo({
+  src: 'https://example.com/foobar.mp4',
+})
+```
+
+> For more details, check out [the Video document](./src/nodes/video/).
+
+### Audio
+
+```js
+editor.commands.setAudio({
+  src: 'https://example.com/foobar.mp3',
+})
+```
+
+> For more details, check out [the Audio document](./src/nodes/audio/).
 
 ## Sorce code and Example
 
