@@ -2,6 +2,8 @@ import { Editor } from "@tiptap/core";
 import { EditorView } from "@tiptap/pm/view";
 import { MediaPlacement } from "../../utils/media-placement";
 
+// ![alt text](image_url)
+// ![alt text](image_url "title")
 export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/;
 
 type ImageClickHandlerOptions = {

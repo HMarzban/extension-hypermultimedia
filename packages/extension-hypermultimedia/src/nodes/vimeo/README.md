@@ -82,25 +82,6 @@ HyperMultimediaKit.configure({
 })
 ```
 
-  autopause?: boolean;
-  autoplay?: boolean;
-  background?: boolean;
-  byline?: boolean | "site-default";
-  color?: string;
-  controls?: boolean;
-  dnt?: boolean;
-  keyboard?: boolean;
-  loop?: boolean;
-  muted?: boolean;
-  pip?: boolean;
-  playsinline?: boolean;
-  portrait?: boolean | "site-default";
-  quality?: "240p" | "360p" | "540p" | "720p" | "1080p" | "2k" | "4k" | "auto";
-  speed?: boolean;
-  startTime?: string;
-  texttrack?: string | false;
-  title?: boolean;
-
 ### autopause
 
 The autopause attribute specifies whether or not to pause the video when another video is played.
@@ -418,7 +399,7 @@ HyperMultimediaKit.configure({
 
 ### modal
 
-A modal box that appears when you <u>**click on the video**</u>. A default modal box is provided which you can utilize or replace with your custom modal.
+A modal box that appears when you <u>**mouseover on the video**</u>. A default modal box is provided which you can utilize or replace with your custom modal.
 
 - Target: `Node`
 - Default: `false`
@@ -461,7 +442,7 @@ editor.commands.setVimeo({
 
 |Option          |Description                                                               |Default    |Optional |
 |---             |---                                                                       |---        |---      |
-|src             |The URL of the youtube, (Iframe Source Attribute)                         |`null`     |         |
+|src             |The URL of the Vimeo, (Iframe Source Attribute)                         |`null`     |         |
 |width           |The embed width (overrides the default option, optional)                  |`450`      |✅       |
 |height          |The embed height (overrides the default option, optional)                 |`120`      |✅       |
 |float           |The CSS style `float` (overrides the default option, optional)            |`unset`    |✅       |
