@@ -5,7 +5,7 @@ import { buildDecorations } from "./decoration";
 export const MediaResizeGripper = Extension.create({
   name: "MediaResizeGripper",
   defaultOptions: {
-    acceptedNodes: ["image"],
+    acceptedNodes: ["Image"],
   },
   addProseMirrorPlugins() {
     const { acceptedNodes } = this.options;
