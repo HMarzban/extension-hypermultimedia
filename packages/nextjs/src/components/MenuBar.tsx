@@ -49,6 +49,23 @@ const MenuBar: React.FC<{ editor: TiptapEditor | null }> = ({ editor }) => {
     });
   }, [editor]);
 
+  const setVideo = useCallback(() => {
+    const url = prompt("Enter Video URL");
+    if (!url || !editor) return;
+
+    editor.commands.setVideo({
+      src: url,
+    });
+  }, [editor]);
+  const setAudio = useCallback(() => {
+    const url = prompt("Enter Audio URL");
+    if (!url || !editor) return;
+
+    editor.commands.setAudio({
+      src: url,
+    });
+  }, [editor]);
+
   if (!editor) return null;
 
   return (
@@ -218,6 +235,10 @@ const MenuBar: React.FC<{ editor: TiptapEditor | null }> = ({ editor }) => {
 
       <button onClick={setSoundCloud}>Insert SoundCloud Track</button>
 
+      <div className="divided"></div>
+      <button onClick={setVideo}> Insert Video</button>
+      <div className="divided"></div>
+      <button onClick={setAudio}> Insert Audio</button>
       <div className="divided"></div>
 
       <button onClick={() => editor.chain().focus().setHyperlink()}>Insert Hyperlink</button>

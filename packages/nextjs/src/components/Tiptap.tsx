@@ -14,6 +14,8 @@ import {
   vimeoModal,
   soundCloudModal,
   twitterModal,
+  videoModal,
+  audioModal,
 } from "@docs.plus/extension-hypermultimedia";
 
 import * as Y from "yjs";
@@ -47,6 +49,14 @@ const Tiptap = () => {
       HyperMultimediaKit.configure({
         Image: {
           modal: imageModal,
+          inline: true,
+        },
+        Video: {
+          modal: videoModal,
+          inline: true,
+        },
+        Audio: {
+          modal: audioModal,
           inline: true,
         },
         Youtube: {
