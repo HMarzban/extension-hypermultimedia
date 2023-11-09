@@ -5,9 +5,13 @@ import { Vimeo, VimeoOptions } from "./nodes/vimeo/vimeo";
 import { Twitter, TwitterOptions } from "./nodes/twitter/twitter";
 import { SoundCloud, SoundCloudOptions } from "./nodes/soundcloud/soundcloud";
 import { MediaResizeGripper } from "./extensions/resizeGripper";
+import { Video, VideoOptions } from "./nodes/video/video";
+import { Audio, AudioOptions } from "./nodes/audio/audio";
 
 export interface HyperMultimediaKitOptions {
   Image: Partial<ImageOptions & { resizeGripper?: boolean }> | true | false;
+  Audio: Partial<AudioOptions & { resizeGripper?: boolean }> | true | false;
+  Video: Partial<VideoOptions & { resizeGripper?: boolean }> | true | false;
   Youtube: Partial<YoutubeOptions & { resizeGripper?: boolean }> | true | false;
   Vimeo: Partial<VimeoOptions & { resizeGripper?: boolean }> | true | false;
   SoundCloud: Partial<SoundCloudOptions & { resizeGripper?: boolean }> | true | false;
@@ -16,6 +20,8 @@ export interface HyperMultimediaKitOptions {
 
 type MediaExtension =
   | typeof Image
+  | typeof Video
+  | typeof Audio
   | typeof Youtube
   | typeof Vimeo
   | typeof SoundCloud
@@ -32,7 +38,7 @@ export const HyperMultimediaKit = Extension.create<HyperMultimediaKitOptions>({
       if (mediaOptions !== false) {
         extensions.push(media.configure(mediaOptions));
 
-        if (mediaOptions.resizeGripper !== false) {
+        if (mediaOptions?.resizeGripper !== false) {
           // By default, it's true
           resizableMedia.push(media.name);
         }
@@ -40,6 +46,8 @@ export const HyperMultimediaKit = Extension.create<HyperMultimediaKitOptions>({
     };
 
     addMediaExtension(Image, this.options.Image);
+    addMediaExtension(Video, this.options.Video);
+    addMediaExtension(Audio, this.options.Audio);
     addMediaExtension(Youtube, this.options.Youtube);
     addMediaExtension(Vimeo, this.options.Vimeo);
     addMediaExtension(SoundCloud, this.options.SoundCloud);

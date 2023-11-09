@@ -20,6 +20,10 @@ export const vimeoModal = youtubeModal;
 
 export const soundCloudModal = youtubeModal;
 
+export const videoModal = youtubeModal;
+
+export const audioModal = twitterModal;
+
 export default {
   HyperMultimediaKit,
   imageModal,

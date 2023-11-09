@@ -15,7 +15,7 @@ export type MediaPlacement = {
   editor: Editor;
   tooltip: Ttooltip;
   tippyModal: HTMLElement;
-  iframe: HTMLIFrameElement | HTMLImageElement | HTMLElement;
+  iframe: HTMLIFrameElement | HTMLImageElement | HTMLAudioElement | HTMLVideoElement | HTMLElement;
   wrapper: HTMLElement;
   extraActions?: HTMLElement[];
 };

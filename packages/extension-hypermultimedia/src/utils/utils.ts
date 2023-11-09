@@ -53,14 +53,24 @@ export const applyStyleAndAttributes = (
   tooltip: Ttooltip,
   nodePos: number
 ) => {
+  // Apply styles to element
   Object.assign(element.style, style);
 
+  // Start a new transaction
   const { state, dispatch } = editor.view;
-  const { tr } = state;
+  let transaction = state.tr;
 
-  Object.entries(attributes).forEach(([key, value]) => tr.setNodeAttribute(nodePos, key, value));
-  dispatch(tr);
+  const node = transaction.doc.nodeAt(nodePos);
 
+  if (node) {
+    transaction.setNodeMarkup(nodePos, null, {
+      ...node.attrs,
+      ...attributes,
+    });
+    dispatch(transaction);
+  }
+
+  // Hide the tooltip
   tooltip.hide();
 };
 
@@ -201,4 +211,52 @@ export const generateShortId = () => {
   const randomPart = Math.random().toString(36).substr(2, 5); // 5 random characters
   const timePart = Date.now().toString(36).slice(-5); // last 5 characters of the current time
   return `${randomPart}-${timePart}`;
+};
+
+export interface StyleLayoutOptions {
+  width?: number | string;
+  height?: number | string;
+  margin?: string;
+  clear?: string;
+  float?: string;
+  display?: string;
+  justifyContent?: string;
+}
+
+/**
+ * Filters and formats style properties.
+ * @param {Record<string, string | number | null>} styleProps - An object containing style properties and their values.
+ * @returns {string} - The formatted style string.
+ */
+const formatStyleProperties = (styleProps: Record<string, string | number | null>): string =>
+  Object.entries(styleProps)
+    .filter(([, value]) => value != null) // Filter out null or undefined values.
+    .map(([key, value]) => `${key}:${value};`) // Map to "key:value;" format.
+    .join(" "); // Join all entries into a single string.
+
+/**
+ * Creates a style string from the options and HTMLAttributes.
+ * @param {StyleLayoutOptions} options - The node options that may contain style properties.
+ * @param {StyleLayoutOptions} HTMLAttributes - The HTML attributes that may contain style properties.
+ * @returns {string} - The concatenated style string.
+ */
+export const createStyleString = (
+  options: StyleLayoutOptions,
+  HTMLAttributes: StyleLayoutOptions
+): string => {
+  const styles: Record<string, string | null> = {
+    height:
+      options.height || HTMLAttributes.height
+        ? `${options.height || parseInt(HTMLAttributes.height as string, 10)}px`
+        : null,
+    width:
+      options.width || HTMLAttributes.width
+        ? `${options.width || parseInt(HTMLAttributes.width as string, 10)}px`
+        : null,
+    float: HTMLAttributes.float || null,
+    clear: HTMLAttributes.clear || null,
+    margin: HTMLAttributes.margin || null,
+  };
+
+  return formatStyleProperties(styles);
 };
