@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0-alpha.1](https://github.com/HMarzban/extension-hypermultimedia/compare/v1.2.0...v1.3.0-alpha.1) (2023-11-09)
+
+
+### Bug Fixes
+
+* **@docs.plus/extension-hypermultimedia:** naming ([5ecadef](https://github.com/HMarzban/extension-hypermultimedia/commit/5ecadef366036e122e286b7050d3397a4db81ec4))
+
+
+### Features
+
+* **@docs.plus/extension-hypermultimedia:** audio and video extension support ([4de250b](https://github.com/HMarzban/extension-hypermultimedia/commit/4de250bf3b4bdfd4effaee82382b3fff32383ac2))
+* **@docs.plus/extension-hypermultimedia:** support audio tag ([814a956](https://github.com/HMarzban/extension-hypermultimedia/commit/814a956025da841cd48cc73d5509c6673904dcb8))
+* **@docs.plus/extension-hypermultimedia:** support video tag ([606ae44](https://github.com/HMarzban/extension-hypermultimedia/commit/606ae4499f9ed096a4f29a195a969c8205ffacc7))
+
+
+
+
+
+# [1.3.0-alpha.0](https://github.com/HMarzban/extension-hypermultimedia/compare/v1.2.0...v1.3.0-alpha.0) (2023-11-09)
+
+
+### Bug Fixes
+
+* **@docs.plus/extension-hypermultimedia:** naming ([5ecadef](https://github.com/HMarzban/extension-hypermultimedia/commit/5ecadef366036e122e286b7050d3397a4db81ec4))
+
+
+### Features
+
+* **@docs.plus/extension-hypermultimedia:** audio and video extension support ([4de250b](https://github.com/HMarzban/extension-hypermultimedia/commit/4de250bf3b4bdfd4effaee82382b3fff32383ac2))
+* **@docs.plus/extension-hypermultimedia:** support audio tag ([814a956](https://github.com/HMarzban/extension-hypermultimedia/commit/814a956025da841cd48cc73d5509c6673904dcb8))
+* **@docs.plus/extension-hypermultimedia:** support video tag ([606ae44](https://github.com/HMarzban/extension-hypermultimedia/commit/606ae4499f9ed096a4f29a195a969c8205ffacc7))
+
+
+
+
+
 # 1.2.0 (2023-10-31)
 
 

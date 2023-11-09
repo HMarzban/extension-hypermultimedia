@@ -22,6 +22,7 @@
     "release": "lerna version --no-push --no-git-tag-version",
     "server": "npx lerna run server --scope=@docs.plus/demo",
     "release:minor": "lerna version minor --no-push --no-git-tag-version",
+    "release:preminor": "lerna version preminor --no-push --no-git-tag-version",
     "release:patch": "lerna version patch --no-push --no-git-tag-version",
     "release:patch:pre": "lerna version prepatch --no-push --no-git-tag-version",
     "release:prerelease": "lerna version prerelease --no-push --no-git-tag-version",
