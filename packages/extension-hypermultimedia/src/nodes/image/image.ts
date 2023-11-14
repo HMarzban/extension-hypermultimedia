@@ -51,6 +51,8 @@ export const Image = Node.create<ImageOptions>({
       display: "block",
       HTMLAttributes: {},
       inline: false,
+      width: 250,
+      height: 160,
     };
   },
 
@@ -83,10 +85,10 @@ export const Image = Node.create<ImageOptions>({
         default: "rotate(0deg)",
       },
       width: {
-        default: null,
+        default: this.options.width,
       },
       height: {
-        default: null,
+        default: this.options.height,
       },
       src: {
         default: null,
