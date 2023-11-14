@@ -46,14 +46,17 @@ Note: By default, the Image, YouTube, Vimeo, SoundCloud, and Twitter are active.
 
 ```scss
 .hypermultimedia {
-  iframe {
-    background-color: #fafafa;
+  iframe,
+  audio,
+  video {
+    background-color: #cfcfcf;
   }
 
   &__resize-gripper {
     position: absolute;
     margin: 0;
     display: none;
+    z-index: 1;
 
     .media-resize-clamp {
       width: 10px;
@@ -61,6 +64,7 @@ Note: By default, the Image, YouTube, Vimeo, SoundCloud, and Twitter are active.
       background-color: #1a73e8;
       border: 1px solid #fff;
       display: none;
+      z-index: 4;
 
       &--rotate {
         border-radius: 50%;
@@ -87,6 +91,7 @@ Note: By default, the Image, YouTube, Vimeo, SoundCloud, and Twitter are active.
         left: -5px;
         transform: translateY(-50%);
         cursor: ew-resize;
+        z-index: 2;
       }
 
       &--right {
@@ -95,6 +100,7 @@ Note: By default, the Image, YouTube, Vimeo, SoundCloud, and Twitter are active.
         right: -5px;
         transform: translateY(-50%);
         cursor: ew-resize;
+        z-index: 2;
       }
 
       &--top {
@@ -103,6 +109,7 @@ Note: By default, the Image, YouTube, Vimeo, SoundCloud, and Twitter are active.
         left: 50%;
         transform: translateX(-50%);
         cursor: ns-resize;
+        z-index: 2;
       }
 
       &--bottom {
@@ -111,6 +118,7 @@ Note: By default, the Image, YouTube, Vimeo, SoundCloud, and Twitter are active.
         left: 50%;
         transform: translateX(-50%);
         cursor: ns-resize;
+        z-index: 2;
       }
 
       &--top-left {
@@ -264,7 +272,11 @@ Now, you can explore all that our <u>HyperMultimedia extension</u> has to offer 
 In our mission to make your life easier, we have some exciting features lined up:
 
 - More control on the emebded iframe
-- support more media type, like `Spotify` ro `Instagram` and etc.
+- support more media type, like `Spotify` or `Instagram` and etc.
+- Loom video support
+- ✅ Image tag support
+- ✅ Video tag support
+- ✅ Audio tag support
 - And much more on the way!
 
 ## Join Our Journey 🤝
