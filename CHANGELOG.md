@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/HMarzban/extension-hypermedia/compare/v1.2.0...v1.3.0) (2023-11-14)
+
+
+### Bug Fixes
+
+* **@docs.plus/extension-hypermultimedia:** naming ([5ecadef](https://github.com/HMarzban/extension-hypermedia/commit/5ecadef366036e122e286b7050d3397a4db81ec4))
+* **@docs.plus/extension-hypermultimedia:** use default value for width and height ([5e65aee](https://github.com/HMarzban/extension-hypermedia/commit/5e65aee3a4669ca388e8acad5fcf2fd5f1cd4b62))
+
+
+### Features
+
+* **@docs.plus/demo:** insert audio and video tag ([29305f1](https://github.com/HMarzban/extension-hypermedia/commit/29305f1637870a13415ad5d979000f04fda24c1c))
+* **@docs.plus/extension-hypermultimedia:** audio and video extension support ([4de250b](https://github.com/HMarzban/extension-hypermedia/commit/4de250bf3b4bdfd4effaee82382b3fff32383ac2))
+* **@docs.plus/extension-hypermultimedia:** support audio tag ([814a956](https://github.com/HMarzban/extension-hypermedia/commit/814a956025da841cd48cc73d5509c6673904dcb8))
+* **@docs.plus/extension-hypermultimedia:** support video tag ([606ae44](https://github.com/HMarzban/extension-hypermedia/commit/606ae4499f9ed096a4f29a195a969c8205ffacc7))
+
+
+
+
+
 # [1.3.0-alpha.1](https://github.com/HMarzban/extension-hypermedia/compare/v1.2.0...v1.3.0-alpha.1) (2023-11-09)
 
 
