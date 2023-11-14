@@ -183,6 +183,8 @@ editor.commands.setAudio({
 ## Markdown syntax
 
 ```md
+![audio](src width height)
+
 ![audio](https://example.com/foobar.mp3)
 ```
 
@@ -190,9 +192,9 @@ editor.commands.setAudio({
 
 |Option          |Description                                                               |Default    |Optional |
 |---             |---                                                                       |---        |---      |
-|src             |The URL of the audio                        |`null`     |         |
-|width           |The embed width (overrides the default option, optional)                  |`450`      |✅       |
-|height          |The embed height (overrides the default option, optional)                 |`120`      |✅       |
+|src             |The URL of the audio                                                      |`null`     |         |
+|width           |The embed width (overrides the default option, optional)                  |`null`     |✅       |
+|height          |The embed height (overrides the default option, optional)                 |`null`     |✅       |
 |float           |The CSS style `float` (overrides the default option, optional)            |`unset`    |✅       |
 |clear           |The CSS style `clear` (overrides the default option, optional)            |`none`     |✅       |
 |display         |The CSS style `display` (overrides the default option, optional)          |`block`    |✅       |

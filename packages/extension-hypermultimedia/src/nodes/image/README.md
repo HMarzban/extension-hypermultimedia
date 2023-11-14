@@ -114,6 +114,8 @@ HyperMultimediaKit.configure({
 ## Markdown syntax
 
 ```md
+![alt text](src alt title)
+
 ![alt text](https://example.com/foobar.png)
 ```
 
@@ -149,9 +151,9 @@ editor.commands.setImage({
 
 |Option          |Description                                                               |Default    |Optional |
 |---             |---                                                                       |---        |---      |
-|src             |The URL of the image                        |`null`     |         |
-|width           |The embed width (overrides the default option, optional)                  |`450`      |✅       |
-|height          |The embed height (overrides the default option, optional)                 |`120`      |✅       |
+|src             |The URL of the image                                                      |`null`     |         |
+|width           |The embed width (overrides the default option, optional)                  |`250`     |✅       |
+|height          |The embed height (overrides the default option, optional)                 |`160`     |✅       |
 |float           |The CSS style `float` (overrides the default option, optional)            |`unset`    |✅       |
 |clear           |The CSS style `clear` (overrides the default option, optional)            |`none`     |✅       |
 |display         |The CSS style `display` (overrides the default option, optional)          |`block`    |✅       |

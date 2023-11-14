@@ -206,6 +206,8 @@ editor.commands.setVideo({
 ## Markdown syntax
 
 ```md
+![video](src title width height)
+
 ![video](https://example.com/foobar.mp4)
 ```
 

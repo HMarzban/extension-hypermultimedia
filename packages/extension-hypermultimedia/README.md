@@ -61,14 +61,17 @@ you import and use the default modal for each media type like this:
 
 ```scss
 .hypermultimedia {
-  iframe {
-    background-color: #fafafa;
+  iframe,
+  audio,
+  video {
+    background-color: #cfcfcf;
   }
 
   &__resize-gripper {
     position: absolute;
     margin: 0;
     display: none;
+    z-index: 1;
 
     .media-resize-clamp {
       width: 10px;
@@ -76,6 +79,7 @@ you import and use the default modal for each media type like this:
       background-color: #1a73e8;
       border: 1px solid #fff;
       display: none;
+      z-index: 4;
 
       &--rotate {
         border-radius: 50%;
@@ -102,6 +106,7 @@ you import and use the default modal for each media type like this:
         left: -5px;
         transform: translateY(-50%);
         cursor: ew-resize;
+        z-index: 2;
       }
 
       &--right {
@@ -110,6 +115,7 @@ you import and use the default modal for each media type like this:
         right: -5px;
         transform: translateY(-50%);
         cursor: ew-resize;
+        z-index: 2;
       }
 
       &--top {
@@ -118,6 +124,7 @@ you import and use the default modal for each media type like this:
         left: 50%;
         transform: translateX(-50%);
         cursor: ns-resize;
+        z-index: 2;
       }
 
       &--bottom {
@@ -126,6 +133,7 @@ you import and use the default modal for each media type like this:
         left: 50%;
         transform: translateX(-50%);
         cursor: ns-resize;
+        z-index: 2;
       }
 
       &--top-left {
@@ -366,6 +374,14 @@ editor.commands.setImage({
 })
 ```
 
+#### Markdown syntax
+
+```md
+![alt text](src alt title)
+
+![alt text](https://example.com/foobar.png)
+```
+
 > For more details, check out [the Image document](./src/nodes/image/).
 
 ### Video
@@ -376,6 +392,14 @@ editor.commands.setVideo({
 })
 ```
 
+#### Markdown syntax
+
+```md
+![video](src title width height)
+
+![video](https://example.com/foobar.mp4)
+```
+
 > For more details, check out [the Video document](./src/nodes/video/).
 
 ### Audio
@@ -384,6 +408,14 @@ editor.commands.setVideo({
 editor.commands.setAudio({
   src: 'https://example.com/foobar.mp3',
 })
+```
+
+#### Markdown syntax
+
+```md
+![audio](src width height)
+
+![audio](https://example.com/foobar.mp3)
 ```
 
 > For more details, check out [the Audio document](./src/nodes/audio/).
