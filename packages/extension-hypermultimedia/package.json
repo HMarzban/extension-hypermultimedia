@@ -45,7 +45,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "linkifyjs": "^4.1.1",
     "tippy.js": "^6.3.7"
   },
   "peerDependencies": {
