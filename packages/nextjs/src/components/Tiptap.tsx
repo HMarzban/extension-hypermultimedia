@@ -77,11 +77,11 @@ const Tiptap = () => {
           theme: "dark",
         },
       }),
-
       TextAlign.configure({
         types: ["heading", "paragraph", "image"],
       }),
       StarterKit.configure({
+        history: false,
         bulletList: {
           keepMarks: true,
           keepAttributes: false,
