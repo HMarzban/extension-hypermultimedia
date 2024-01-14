@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/HMarzban/extension-hypermedia/compare/v1.3.0...v1.3.1) (2024-01-14)
+
+
+### Bug Fixes
+
+* **@docs.plus/demo:** collaboration history, conflict ([70dada0](https://github.com/HMarzban/extension-hypermedia/commit/70dada046510a2cfd926517ad5fff76e31f36b54))
+* **@docs.plus/extension-hypermultimedia:** depricate "defaultOptions" [#1](https://github.com/HMarzban/extension-hypermedia/issues/1) ([89add0e](https://github.com/HMarzban/extension-hypermedia/commit/89add0ecbf35e18d534f9157b805292b5c80bee7))
+
+
+
+
+
 # [1.3.0](https://github.com/HMarzban/extension-hypermedia/compare/v1.2.0...v1.3.0) (2023-11-14)
 
 
