@@ -5,23 +5,6 @@ export const isValidVimeoUrl = (url: string): boolean => {
   return VIMEO_REGEX.test(url);
 };
 
-export const getVimeoVideoId = (url: string): string | null => {
-  const matches = url.match(/vimeo\.com\/(\d{9})/);
-  return matches ? matches[1] : null;
-};
-
-export const getViemoVideoDetails = async (videoId: string): Promise<any> => {
-  let data;
-  try {
-    const response = await fetch(`https://vimeo.com/api/oembed.json?url=${videoId}`);
-    data = await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-
-  return data;
-};
-
 export interface GetEmbedUrlOptions {
   url: string;
   height?: number;
