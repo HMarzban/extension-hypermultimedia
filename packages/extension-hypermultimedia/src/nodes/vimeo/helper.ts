@@ -5,23 +5,6 @@ export const isValidVimeoUrl = (url: string): boolean => {
   return VIMEO_REGEX.test(url);
 };
 
-export const getVimeoVideoId = (url: string): string | null => {
-  const matches = url.match(/vimeo\.com\/(\d{9})/);
-  return matches ? matches[1] : null;
-};
-
-export const getViemoVideoDetails = async (videoId: string): Promise<any> => {
-  let data;
-  try {
-    const response = await fetch(`https://vimeo.com/api/oembed.json?url=${videoId}`);
-    data = await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-
-  return data;
-};
-
 export interface GetEmbedUrlOptions {
   url: string;
   height?: number;
@@ -58,15 +41,15 @@ export const getEmbedUrlFromVimeoUrl = (options: GetEmbedUrlOptions): string | n
   }
 
   // Extract video ID from the URL
-  const videoIdRegex = /vimeo\.com\/(\d+)/gm;
+  const videoIdRegex = /vimeo\.com\/(?<id>\d+)(\/(?<h>[0-9A-Fa-f]+))?/gm;
   const matches = videoIdRegex.exec(url);
 
-  if (!matches || !matches[1]) {
+  if (!matches?.groups?.id) {
     return null;
   }
 
   // Create a new URL object for the Vimeo embed URL
-  const embedUrl = new URL(`https://player.vimeo.com/video/${matches[1]}`);
+  const embedUrl = new URL(`https://player.vimeo.com/video/${matches?.groups?.id}`);
 
   // Process rest of the options and append them to the URL's search params
   Object.entries(restOptions).forEach(([key, value]) => {
@@ -79,6 +62,10 @@ export const getEmbedUrlFromVimeoUrl = (options: GetEmbedUrlOptions): string | n
       }
     }
   });
+
+  if (matches[3]) {
+    embedUrl.searchParams.append('h', matches?.groups?.h);
+  }
 
   // Handle the title, height, and width separately as they are not part of restOptions
   if (title === false) {
