@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "strict": false,
+    "noEmit": false,
+    "sourceMap": false,
+    "types": [
+      // "cypress"
+    ],
+    "paths": {
+    },
+    "typeRoots": [
+      "../../node_modules/@types"
+    ]
+  },
+  "include": [
+    "./*/*.ts",
+    "../../**/*.ts"
+  ],
+  "exclude": [
+  ]
+}
