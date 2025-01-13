@@ -1,8 +1,9 @@
 export const TWITTER_URL_REGEX =
-  /^(https?:\/\/)?((www|mobile)\.)?twitter\.com\/[A-Za-z0-9_]{1,15}\/status\/[0-9]+\/?$/;
+  /^(https?:\/\/)?((www|mobile)\.)?x\.com\/[A-Za-z0-9_]{1,15}\/status\/[0-9]+\/?$/;
 
 export const TWITTER_URL_REGEX_GLOBAL =
-  /^(https?:\/\/)?((www|mobile)\.)?twitter\.com\/[A-Za-z0-9_]{1,15}\/status\/[0-9]+\/?$/g;
+  /^(https?:\/\/)?((www|mobile)\.)?x\.com\/[A-Za-z0-9_]{1,15}\/status\/[0-9]+\/?$/;
+
 
 export const isValidTwitterUrl = (url: string): boolean => {
   return TWITTER_URL_REGEX.test(url);
