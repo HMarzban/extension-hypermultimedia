@@ -1,12 +1,12 @@
+import { useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import { Color } from "@tiptap/extension-color";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import TextAlign from "@tiptap/extension-text-align";
 import StarterKit from "@tiptap/starter-kit";
-import editorContents from "./editorContents";
+import * as Y from "yjs";
 import { HocuspocusProvider } from "@hocuspocus/provider";
-import MenuBar from "./MenuBar";
 import {
   HyperMultimediaKit,
   imageModal,
@@ -17,8 +17,6 @@ import {
   videoModal,
   audioModal,
 } from "@docs.plus/extension-hypermultimedia";
-
-import * as Y from "yjs";
 import Collaboration from "@tiptap/extension-collaboration";
 import {
   Hyperlink,
@@ -26,16 +24,26 @@ import {
   setHyperlinkModal,
 } from "@docs.plus/extension-hyperlink";
 
-const ydoc = new Y.Doc();
+import editorContents from "./editorContents";
+import MenuBar from "./MenuBar";
 
-const provider = new HocuspocusProvider({
-  url: "ws://127.0.0.1:1234",
-  name: "example-document",
-});
+const ydoc = new Y.Doc();
 
 const Tiptap = () => {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
+      StarterKit.configure({
+        history: false,
+        bulletList: {
+          keepMarks: true,
+          keepAttributes: false,
+        },
+        orderedList: {
+          keepMarks: true,
+          keepAttributes: false,
+        },
+      }),
       Color.configure({ types: [TextStyle.name, ListItem.name] }),
       TextStyle.configure(),
       Hyperlink.configure({
@@ -80,23 +88,28 @@ const Tiptap = () => {
       TextAlign.configure({
         types: ["heading", "paragraph", "image"],
       }),
-      StarterKit.configure({
-        history: false,
-        bulletList: {
-          keepMarks: true,
-          keepAttributes: false,
-        },
-        orderedList: {
-          keepMarks: true,
-          keepAttributes: false,
-        },
-      }),
+
       Collaboration.configure({
-        document: provider.document,
+        document: ydoc,
       }),
     ],
-    content: editorContents,
   });
+
+  useEffect(() => {
+    const provider = new HocuspocusProvider({
+      url: "ws://127.0.0.1:1234",
+      name: "example-document",
+      document: ydoc,
+      // The onSynced callback ensures initial content is set only once using editor.setContent(), preventing repetitive content loading on editor syncs.
+      onSynced() {
+        if (!ydoc.getMap("config").get("initialContentLoaded") && editor) {
+          ydoc.getMap("config").set("initialContentLoaded", true);
+
+          editor.commands.setContent(editorContents);
+        }
+      },
+    });
+  }, [editor]);
 
   return (
     <div className="w-[80rem] p-6 border rounded-md">

@@ -22,6 +22,11 @@
     "soundcloud",
     "twitter"
   ],
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "umd": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -29,26 +34,26 @@
       "require": "./dist/index.cjs"
     }
   },
-  "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "umd": "dist/index.umd.js",
-  "types": "dist/index.d.ts",
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && rollup -c",
-    "ts": "tsc -p tsconfig.json"
+    "build": "yarn clean && tsup",
+    "ts": "tsc -p tsconfig.json",
+    "update:packages": "ncu -u"
   },
   "license": "MIT",
   "dependencies": {
     "tippy.js": "^6.3.7"
   },
   "peerDependencies": {
-    "@tiptap/core": "^2.0.3",
-    "@tiptap/pm": "^2.0.3"
+    "@tiptap/core": "^2.0.0",
+    "@tiptap/pm": "^2.0.0"
+  },
+  "devDependencies": {
+    "@tiptap/core": "^2.11.2",
+    "@tiptap/pm": "^2.11.2"
   }
 }
