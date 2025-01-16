@@ -3,6 +3,7 @@ import { Plugin, PluginKey } from "@tiptap/pm/state";
 import { inputRegex, imageClickHandler } from "./helper";
 import { createTooltip, generateShortId } from "../../utils/utils";
 import { MediaPlacement } from "../../utils/media-placement";
+import { EditorView } from "@tiptap/pm/view";
 
 interface LayoutOptions {
   width?: number;
@@ -157,20 +158,25 @@ export const Image = Node.create<ImageOptions>({
   addProseMirrorPlugins() {
     const { tooltip, tippyModal } = createTooltip(this.editor);
 
+    const handleImageEvent = (view: EditorView, event: MouseEvent | TouchEvent) => {
+      this.editor.commands.blur();
+
+      imageClickHandler(view, event, {
+        editor: this.editor,
+        tooltip,
+        tippyModal,
+        modal: this.options.modal || null,
+      });
+      return true;
+    };
+
     return [
       new Plugin({
         key: new PluginKey("ImageClickHandler"),
         props: {
           handleDOMEvents: {
-            click: (view, event) => {
-              imageClickHandler(view, event, {
-                editor: this.editor,
-                tooltip,
-                tippyModal,
-                modal: this.options.modal,
-              });
-              return false;
-            },
+            click: handleImageEvent,
+            touchend: handleImageEvent,
           },
         },
       }),

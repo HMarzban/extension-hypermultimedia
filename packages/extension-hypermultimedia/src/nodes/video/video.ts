@@ -179,7 +179,9 @@ export const Video = Node.create<VideoOptions>({
 
       if (modal) {
         videoTag.addEventListener("mouseenter", (e) => {
-          modal && modal({ editor, tooltip, tippyModal, iframe: videoTag, wrapper: dom });
+          if (tooltip && tippyModal) {
+            modal({ editor, tooltip, tippyModal, iframe: videoTag, wrapper: dom });
+          }
         });
       }
 

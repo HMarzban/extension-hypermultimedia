@@ -44,6 +44,10 @@ export const mediaPlacement = (options: MediaPlacement): void => {
     button.addEventListener("click", () => {
       return applyStyleAndAttributes(wrapper, style, attributes, editor, tooltip, nodePos);
     });
+    button.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      return applyStyleAndAttributes(wrapper, style, attributes, editor, tooltip, nodePos);
+    });
   });
 
   highlightButton(float, mediaMargin, display, {

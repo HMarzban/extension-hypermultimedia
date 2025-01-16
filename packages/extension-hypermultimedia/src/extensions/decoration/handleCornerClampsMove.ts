@@ -1,32 +1,57 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
+import { Editor } from "@tiptap/core";
+import { getTooltipInstance } from "../../utils/utils";
 
 const MIN_WIDTH = 60;
 const MIN_HEIGHT = 30;
 
-export default (clamp, corner, gripper, editor, prob) => {
-  let initialLeft = 0,
-    initialTop = 0;
+type Corner = "topRight" | "bottomLeft" | "topLeft" | "bottomRight";
 
-  function handleMouseDown(corner) {
-    return function (e) {
+interface Prob {
+  from?: number;
+}
+
+export default function resizable(
+  clamp: HTMLElement,
+  corner: Corner,
+  gripper: HTMLElement,
+  editor: Editor,
+  prob: Prob
+): void {
+  let initialLeft = 0;
+  let initialTop = 0;
+
+  function getPointerPosition(e: MouseEvent | TouchEvent): { x: number; y: number } {
+    if (e.type.startsWith("touch") && "touches" in e && e.touches.length > 0) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    const mouseEvent = e as MouseEvent;
+    return { x: mouseEvent.clientX, y: mouseEvent.clientY };
+  }
+
+  function handleDown(selectedCorner: Corner) {
+    return function (e: MouseEvent | TouchEvent) {
       e.preventDefault();
 
+      const { x, y } = getPointerPosition(e);
+
       const initial = {
-        x: e.clientX,
-        y: e.clientY,
+        x,
+        y,
         width: gripper.offsetWidth,
         height: gripper.offsetHeight,
         top: gripper.offsetTop,
         left: gripper.offsetLeft,
       };
 
-      function handleMouseMove(e) {
-        const deltaX = e.clientX - initial.x;
-        const deltaY = e.clientY - initial.y;
-        let newWidth, newHeight;
+      function handleMove(ev: MouseEvent | TouchEvent) {
+        const { x: moveX, y: moveY } = getPointerPosition(ev);
+        const deltaX = moveX - initial.x;
+        const deltaY = moveY - initial.y;
 
-        switch (corner) {
+        let newWidth: number;
+        let newHeight: number;
+
+        switch (selectedCorner) {
           case "topRight":
             newWidth = initial.width + deltaX;
             newHeight = initial.height - deltaY;
@@ -66,49 +91,59 @@ export default (clamp, corner, gripper, editor, prob) => {
         }
       }
 
-      function handleMouseUp() {
-        handleMouseUpCorner(handleMouseMove);
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
+      function handleUp() {
+        handleMouseUpCorner();
+        const tooltipInstance = getTooltipInstance();
+        if (tooltipInstance?.tooltip) tooltipInstance.tooltip.destroyTooltip();
+        editor.commands.blur();
+
+        document.removeEventListener("mousemove", handleMove);
+        document.removeEventListener("mouseup", handleUp);
+        document.removeEventListener("touchmove", handleMove);
+        document.removeEventListener("touchend", handleUp);
       }
 
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("mousemove", handleMove);
+      document.addEventListener("mouseup", handleUp);
+      document.addEventListener("touchmove", handleMove);
+      document.addEventListener("touchend", handleUp);
     };
   }
 
   function handleMouseUpCorner() {
-    // Get the final size and append it to the wrapper
     const finalWidth = gripper.offsetWidth;
     const finalHeight = gripper.offsetHeight;
 
+    // Reset inline top/left styles
     gripper.style.left = `${initialLeft}px`;
     gripper.style.top = `${initialTop}px`;
 
-    const currentNodePos = prob.from || null;
-    const { state, dispatch } = editor.view;
-    const { tr } = state;
+    const currentNodePos = prob.from ?? null;
+    if (currentNodePos !== null) {
+      const { state, dispatch } = editor.view;
+      const { tr } = state;
 
-    if (currentNodePos) {
-      const domAtPos = editor.view.nodeDOM(currentNodePos);
+      const domAtPos = editor.view.nodeDOM(currentNodePos) as HTMLElement;
+      if (domAtPos) {
+        domAtPos.style.width = `${finalWidth}px`;
+        domAtPos.style.height = `${finalHeight}px`;
+      }
 
-      domAtPos.style.width = `${finalWidth}px`;
-      domAtPos.style.height = `${finalHeight}px`;
+      const nodeAtPos = state.doc.nodeAt(currentNodePos);
+      if (nodeAtPos) {
+        tr.setNodeMarkup(currentNodePos, null, {
+          ...nodeAtPos.attrs,
+          width: finalWidth,
+          height: finalHeight,
+        });
+      }
 
-      // Create a new transaction to update the node attributes
-      tr.setNodeMarkup(currentNodePos, null, {
-        ...state.doc.nodeAt(currentNodePos).attrs,
-        width: finalWidth,
-        height: finalHeight,
-      });
-
-      // Set meta data on the transaction if necessary
       tr.setMeta("resizeMedia", true);
       tr.setMeta("addToHistory", true);
-
       dispatch(tr);
     }
   }
 
-  clamp.addEventListener("mousedown", handleMouseDown(corner));
-};
+  clamp.addEventListener("mousedown", handleDown(corner));
+  clamp.addEventListener("touchstart", handleDown(corner));
+}

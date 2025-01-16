@@ -188,7 +188,9 @@ export const Youtube = Node.create<YoutubeOptions>({
 
       if (modal) {
         iframe.addEventListener("mouseenter", (e) => {
-          modal && modal({ editor, tooltip, tippyModal, iframe, wrapper: dom });
+          if (tooltip && tippyModal) {
+            modal({ editor, tooltip, tippyModal, iframe, wrapper: dom });
+          }
         });
       }
 

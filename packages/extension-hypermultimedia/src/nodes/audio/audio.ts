@@ -176,7 +176,9 @@ export const Audio = Node.create<AudioOptions>({
 
       if (modal) {
         audioTag.addEventListener("mouseenter", (e) => {
-          modal && modal({ editor, tooltip, tippyModal, iframe: audioTag, wrapper: dom });
+          if (tooltip && tippyModal) {
+            modal({ editor, tooltip, tippyModal, iframe: audioTag, wrapper: dom });
+          }
         });
       }
 

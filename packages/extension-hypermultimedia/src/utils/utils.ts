@@ -21,6 +21,7 @@ export interface StyleAttributes {
 export type Ttooltip = {
   hide: () => void;
   update: (view: EditorView, options: Partial<TippyProps>, target: HTMLElement) => void;
+  show: () => void;
 };
 
 const MARGIN_OPTIONS: MarginOption[] = [
@@ -178,13 +179,22 @@ export const highlightButton = (
   }
 };
 
+let tooltipInstance: {
+  tooltip: Tippy | null;
+  tippyModal: HTMLElement | null;
+  tippyInstance: Instance | undefined;
+} | null = null;
+
 export const createTooltip = (
   editor: Editor
 ): {
-  tooltip: Tippy;
-  tippyModal: HTMLElement;
+  tooltip: Tippy | null;
+  tippyModal: HTMLElement | null;
   tippyInstance: Instance | undefined;
 } => {
+  // Return existing instance if available
+  if (tooltipInstance) return tooltipInstance;
+
   const tooltip = new Tippy({
     editor: editor,
     // targetElement: "#editorContents",
@@ -192,11 +202,22 @@ export const createTooltip = (
 
   const { tippyModal, tippyInstance } = tooltip.init();
 
-  return {
+  // Store the instance
+  tooltipInstance = {
     tooltip,
-    tippyModal: tippyModal,
-    tippyInstance: tippyInstance,
+    tippyModal,
+    tippyInstance,
   };
+
+  return tooltipInstance;
+};
+
+export const getTooltipInstance = (): {
+  tooltip: Tippy | null;
+  tippyModal: HTMLElement | null;
+  tippyInstance: Instance | undefined;
+} | null => {
+  return tooltipInstance;
 };
 
 export const applyStyles = (dom: HTMLElement, styles: StyleAttributes): void => {

@@ -1,17 +1,20 @@
 import { defineConfig } from "tsup";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 export default defineConfig({
   entry: ["src/index.ts"],
   outDir: "dist",
   format: ["cjs", "esm", "iife"],
-  // Ensures type definitions are generated
   dts: true,
-  splitting: false, // Usually false for libraries
-  sourcemap: true,
-  clean: true, // Removes old dist before building
-  // Uncomment if you want the output minified
-  minify: true,
-  // Externalize certain dependencies if needed
+  splitting: false,
+  sourcemap: !isProduction,
+  clean: isProduction,
+  minify: isProduction,
   external: ["@tiptap/core", "@tiptap/pm"],
   tsconfig: "tsconfig.json",
+  esbuildOptions(options) {
+    // Only preserve console logs in development
+    options.drop = isProduction ? ["console"] : [];
+  },
 });

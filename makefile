@@ -15,3 +15,5 @@ upgrade_dependencies:
 		echo "Skipping package reinstallation"; \
 	fi
 
+build_extension:
+	lerna run build --scope=@docs.plus/extension-hypermultimedia

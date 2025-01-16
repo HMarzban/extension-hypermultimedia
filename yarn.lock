@@ -29,13 +29,6 @@
     linkifyjs "^4.1.1"
     tippy.js "^6.3.7"
 
-"@docs.plus/extension-hypermultimedia@workspace:*":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@docs.plus/extension-hypermultimedia/-/extension-hypermultimedia-1.3.1.tgz#1ccb432f99e333d039cf9aacca78f27f873ed9c4"
-  integrity sha512-A3zSjAN1m5INa9pQv2uscP9A2N7x6MJ6OG8Z7t+umKwDP5yEqScTyTGGd+QfXYoYNqHs7tP3xqpWHEUnQG2IbA==
-  dependencies:
-    tippy.js "^6.3.7"
-
 "@emnapi/core@^1.1.0":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@emnapi/core/-/core-1.3.1.tgz#9c62d185372d1bddc94682b87f376e03dfac3f16"
@@ -2790,9 +2783,9 @@ ejs@^3.1.7:
     jake "^10.8.5"
 
 electron-to-chromium@^1.5.73:
-  version "1.5.80"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.80.tgz#ca7a8361d7305f0ec9e203ce4e633cbb8a8ef1b1"
-  integrity sha512-LTrKpW0AqIuHwmlVNV+cjFYTnXtM9K37OGhpe0ZI10ScPSxqVSryZHIY3WnCS5NSYbBODRTZyhRMS2h5FAEqAw==
+  version "1.5.81"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.81.tgz#04530f04a29af1d6ec3a628840703ce9ac90c8dd"
+  integrity sha512-SFsAz1hoR+u1eAWjofSPQnx0InE1QHGUAQ92pqYJPT8GARzmyP1zcEBDBxFFC6okJk2E94Ryfmib4DB8Sc6LBw==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -5910,10 +5903,10 @@ postcss@8.4.31:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-postcss@8.5.0, postcss@^8.4.47:
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.0.tgz#15244b9fd65f809b2819682456f0e7e1e30c145b"
-  integrity sha512-27VKOqrYfPncKA2NrFOVhP5MGAfHKLYn/Q0mz9cNQyRAKYi3VNHwYU2qKKqPCqgBmeeJ0uAFB56NumXZ5ZReXg==
+postcss@8.5.1, postcss@^8.4.47:
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.1.tgz#e2272a1f8a807fafa413218245630b5db10a3214"
+  integrity sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==
   dependencies:
     nanoid "^3.3.8"
     picocolors "^1.1.1"

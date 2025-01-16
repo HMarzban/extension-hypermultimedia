@@ -25,6 +25,7 @@ class Tooltip {
     });
     this.view.dom.addEventListener("dragstart", this.dragstartHandler);
     this.editor.on("blur", this.blurHandler);
+    this.view.dom.addEventListener("resize", this.destroyTooltip);
   }
 
   init() {
@@ -34,7 +35,7 @@ class Tooltip {
   }
 
   show() {
-    this.tippyInstance?.show();
+    setTimeout(() => this.tippyInstance?.show());
     return true;
   }
 
