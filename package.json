@@ -19,7 +19,7 @@
     "build": "lerna run build",
     "update:packages": "ncu -u",
     "dev": "npx lerna run dev --scope=@docs.plus/demo",
-    "release": "lerna version --no-push --no-git-tag-version",
+    "release": "NODE_ENV=production lerna version --no-push --no-git-tag-version",
     "server": "npx lerna run server --scope=@docs.plus/demo",
     "release:minor": "NODE_ENV=production lerna version minor --no-push --no-git-tag-version",
     "release:preminor": "NODE_ENV=production lerna version preminor --no-push --no-git-tag-version",
