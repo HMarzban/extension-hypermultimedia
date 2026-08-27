@@ -1,3 +1,21 @@
+> [!IMPORTANT]
+> **This package has moved.** The source now lives in the docs.plus monorepo, and this repository is
+> no longer where it is developed.
+>
+> **New home → [`docs-plus/docs.plus/extensions/extension-hypermultimedia`](https://github.com/docs-plus/docs.plus/tree/main/extensions/extension-hypermultimedia)**
+>
+> The npm package name has not changed. Install the current release with:
+>
+> ```bash
+> bun add @docs.plus/extension-hypermultimedia
+> ```
+>
+> **The README below documents version `1.x`.** The current release is `2.0.0`, and parts of the API
+> changed. Read the [current README](https://github.com/docs-plus/docs.plus/tree/main/extensions/extension-hypermultimedia#readme) and the
+> [CHANGELOG](https://github.com/docs-plus/docs.plus/blob/main/extensions/extension-hypermultimedia/CHANGELOG.md) before you copy any code from this page.
+
+---
+
 # HyperMultimedia Extension for Tiptap Editor
 
 [![Version](https://img.shields.io/npm/v/@docs.plus/extension-hypermultimedia.svg?label=version)](https://www.npmjs.com/package/@docs.plus/extension-hypermultimedia)
@@ -15,7 +33,7 @@ Getting the `HyperMultimedia` extension up and running on your project is super 
 1. Install the package:
 
 ```bash
-npm install @docs.plus/extension-hypermultimedia
+bun add @docs.plus/extension-hypermultimedia
 ```
 
 2. Import the extension into your project:
