@@ -9,8 +9,10 @@ This repository preserves the standalone 1.x source and its issue history. Use t
 The npm package name stays the same:
 
 ```sh
-bun add @docs.plus/extension-hypermultimedia
+npm install @docs.plus/extension-hypermultimedia
 ```
+
+Or use `pnpm add @docs.plus/extension-hypermultimedia`, `yarn add @docs.plus/extension-hypermultimedia`, or `bun add @docs.plus/extension-hypermultimedia`.
 
 Read the [current documentation](https://github.com/docs-plus/docs.plus/tree/main/extensions/extension-hypermultimedia#readme) and [migration notes](https://github.com/docs-plus/docs.plus/blob/main/extensions/extension-hypermultimedia/CHANGELOG.md) before upgrading. The 2.0.0 release changes parts of the 1.x API.
 

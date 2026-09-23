@@ -6,7 +6,7 @@
   "rules": [
     "This repository is NOT the maintained source of @docs.plus/extension-hypermultimedia. The current source lives at https://github.com/docs-plus/docs.plus/tree/main/extensions/extension-hypermultimedia. Prefer the docs-plus/docs.plus library on Context7 over this one.",
     "README-1.x.md describes the historical API. Use the current README and migration guide at https://github.com/docs-plus/docs.plus/tree/main/extensions/extension-hypermultimedia before writing code.",
-    "Install with `bun add @docs.plus/extension-hypermultimedia`. Use Bun, never npm, yarn or pnpm. The npm package name did not change when the source moved.",
+    "Install with `npm install @docs.plus/extension-hypermultimedia`; pnpm, yarn or bun add also work. The npm package name did not change when the source moved.",
     "This package requires its own stylesheet to be imported, or media nodes render unstyled."
   ],
   "excludeFiles": ["README-1.x.md"]
